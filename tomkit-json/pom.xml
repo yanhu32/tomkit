@@ -13,7 +13,7 @@
     <packaging>jar</packaging>
 
     <name>tomkit-json</name>
-    <url>https://github.com/yanhu32/tomkit/tomkit-json</url>
+    <url>https://github.com/yanhu32/tomkit/tree/main/tomkit-json</url>
 
     <dependencies>
     </dependencies>
