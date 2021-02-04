@@ -13,7 +13,7 @@
 
     <name>tomkit</name>
     <description>
-        简单、灵活且强大的Java开发工具包，将一切化繁为简。
+        集天下之大成，化繁为简。
     </description>
     <url>https://github.com/yanhu32/tomkit</url>
     <prerequisites>
@@ -58,7 +58,7 @@
 
     <issueManagement>
         <system>github</system>
-        <url>https://github.com/alibaba/nacos/issues</url>
+        <url>https://github.com/yanhu32/tomkit/issues</url>
     </issueManagement>
 
     <!--属性-->
@@ -88,6 +88,8 @@
 
         <!-- dependency version -->
         <junit.version>4.13</junit.version>
+        <jackson.version>2.11.4</jackson.version>
+        <gson.version>2.8.4</gson.version>
 
     </properties>
 
@@ -242,6 +244,7 @@
     <!-- 子模块管理 -->
     <modules>
         <module>tomkit-json</module>
+        <module>tomkit-core</module>
     </modules>
 
     <!-- 所有的子项目默认依赖 -->
@@ -262,11 +265,32 @@
                 <version>${junit.version}</version>
                 <scope>test</scope>
             </dependency>
+            <!--jackson-->
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-core</artifactId>
+                <version>${jackson.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-databind</artifactId>
+                <version>${jackson.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-annotations</artifactId>
+                <version>${jackson.version}</version>
+            </dependency>
+            <!--gson-->
+            <dependency>
+                <groupId>com.google.code.gson</groupId>
+                <artifactId>gson</artifactId>
+                <version>${gson.version}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
     <distributionManagement>
-        <!-- 这里的id一定要在maven setting文件中存在于server下的id -->
         <snapshotRepository>
             <id>snapshots</id>
             <name>Development Snapshot Repository</name>
