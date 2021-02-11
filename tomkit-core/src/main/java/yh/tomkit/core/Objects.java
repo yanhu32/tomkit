@@ -31,11 +31,11 @@ public final class Objects extends JdkObjects {
      * <p>判断当前对象是否不为null</p>
      *
      * <pre>
-     *     Objects.isNotNull(null)  -> false
-     *     Objects.isNotNull(1)     -> true
+     *     Objects.isNotNull(null)  = false
+     *     Objects.isNotNull(1)     = true
      * </pre>
      *
-     * @param obj
+     * @param obj a Object
      * @return 入参不为null返回true，否则返回false
      */
     public static boolean isNotNull(Object obj) {
@@ -43,10 +43,10 @@ public final class Objects extends JdkObjects {
     }
 
     /**
-     * 判断所有入参对象是否全为null
+     * 判断所有入参对象是否全为 {@code null}
      *
-     * @param objs
-     * @return
+     * @param objs Object array
+     * @return 是否全为 {@code null}
      */
     public static boolean isAllNull(Object... objs) {
         for (Object obj : objs) {
@@ -58,10 +58,10 @@ public final class Objects extends JdkObjects {
     }
 
     /**
-     * 判断所有入参对象是否全为null
+     * 判断所有入参对象是否全为 {@code null}
      *
-     * @param objs
-     * @return
+     * @param objs 对象集合
+     * @return 是否全为 {@code null}
      */
     public static boolean isAllNull(Iterable<Object> objs) {
         for (Object obj : objs) {
@@ -73,10 +73,10 @@ public final class Objects extends JdkObjects {
     }
 
     /**
-     * 判断所有入参对象是否全不为null
+     * 判断所有入参对象是否全不为 {@code null}
      *
-     * @param objs
-     * @return
+     * @param objs 对象数组
+     * @return 是否全不为 {@code null}
      */
     public static boolean isAllNotNull(Object... objs) {
         for (Object obj : objs) {
@@ -88,10 +88,10 @@ public final class Objects extends JdkObjects {
     }
 
     /**
-     * 判断所有入参对象是否全不为null
+     * 判断所有入参对象是否全不为 {@code null}
      *
-     * @param objs
-     * @return
+     * @param objs 对象集合
+     * @return 是否全不为 {@code null}
      */
     public static boolean isAllNotNull(Iterable<Object> objs) {
         for (Object obj : objs) {
@@ -103,10 +103,10 @@ public final class Objects extends JdkObjects {
     }
 
     /**
-     * 判断是否有为null的对象
+     * 判断是否有为 {@code null} 的对象
      *
-     * @param objs
-     * @return
+     * @param objs 对象数组
+     * @return 是否有为 {@code null}
      */
     public static boolean hasNull(Object... objs) {
         for (Object obj : objs) {
@@ -118,10 +118,10 @@ public final class Objects extends JdkObjects {
     }
 
     /**
-     * 判断是否有为null的对象
+     * 判断是否有为 {@code null} 的对象
      *
-     * @param objs
-     * @return
+     * @param objs 对象集合
+     * @return 是否有为 {@code null}
      */
     public static boolean hasNull(Iterable<Object> objs) {
         for (Object obj : objs) {
@@ -133,10 +133,10 @@ public final class Objects extends JdkObjects {
     }
 
     /**
-     * 判断是否有不为null的对象
+     * 判断是否有不为 {@code null} 的对象
      *
-     * @param objs
-     * @return
+     * @param objs 对象数组
+     * @return 是否有不为 {@code null}
      */
     public static boolean hasNotNull(Object... objs) {
         for (Object obj : objs) {
@@ -148,10 +148,10 @@ public final class Objects extends JdkObjects {
     }
 
     /**
-     * 判断是否有不为null的对象
+     * 判断是否存在不为 {@code null} 的对象
      *
-     * @param objs
-     * @return
+     * @param objs 对象集合
+     * @return 是否存在不为 {@code null}
      */
     public static boolean hasNotNull(Iterable<Object> objs) {
         for (Object obj : objs) {
@@ -163,20 +163,28 @@ public final class Objects extends JdkObjects {
     }
 
     /**
-     * 判断对象是否为null或空
+     * 判断对象是否为 {@code null} 或空对象
      * 支持字符串、集合、数组、Optional等类型
+     * <ul>
+     *     <li>null</li>
+     *     <li>空字符序列</li>
+     *     <li>空Optional</li>
+     *     <li>空集合</li>
+     *     <li>空Map</li>
+     *     <li>空数组</li>
+     * </ul>
      *
      * <pre>
-     *     Objects.isEmpty(null)                = true
-     *     Objects.isEmpty("")                  = true
-     *     Objects.isEmpty(Optional.empty)      = true
-     *     Objects.isEmpty(new ArrayList<>())   = true
-     *     Objects.isEmpty(new HashMap<>())     = true
-     *     Objects.isEmpty(new String[0])       = true
+     *     Objects.isEmpty(null)                    = true
+     *     Objects.isEmpty("")                      = true
+     *     Objects.isEmpty(Optional.empty)          = true
+     *     Objects.isEmpty(Collections.emptyList()) = true
+     *     Objects.isEmpty(Collections.emptyMap())  = true
+     *     Objects.isEmpty(new String[0])           = true
      * </pre>
      *
-     * @param obj
-     * @return
+     * @param obj o object
+     * @return 是否为 {@code null} 或空对象
      */
     public static boolean isEmpty(Object obj) {
         if (obj == null) {
@@ -204,22 +212,22 @@ public final class Objects extends JdkObjects {
     }
 
     /**
-     * 判断对象是否不为null或空
+     * 判断对象是否不为 {@code null} 或空对象
      * 支持字符串、集合、数组、Optional等类型
      *
-     * @param obj
-     * @return
+     * @param obj a object
+     * @return 是否不为 {@code null} 或空对象
      */
     public static boolean isNotEmpty(Object obj) {
         return !isEmpty(obj);
     }
 
     /**
-     * 判断入参对象是否全为null或空
+     * 判断入参对象是否全为 {@code null} 或空对象
      * 支持字符串、集合、数组、Optional等类型
      *
-     * @param objs
-     * @return
+     * @param objs 对象数组
+     * @return 是否全为 {@code null} 或空对象
      */
     public static boolean isAllEmpty(Object... objs) {
         for (Object obj : objs) {
@@ -231,11 +239,11 @@ public final class Objects extends JdkObjects {
     }
 
     /**
-     * 判断入参对象是否全为null或空
+     * 判断入参对象是否全为 {@code null} 或空对象
      * 支持字符串、集合、数组、Optional等类型
      *
-     * @param objs
-     * @return
+     * @param objs 对象集合
+     * @return 是否全为 {@code null} 或空对象
      */
     public static boolean isAllEmpty(Iterable<Object> objs) {
         for (Object obj : objs) {
@@ -247,11 +255,11 @@ public final class Objects extends JdkObjects {
     }
 
     /**
-     * 判断入参对象是否全不为null或空
+     * 判断入参对象是否全不为 {@code null} 或空对象
      * 支持字符串、集合、数组、Optional等类型
      *
-     * @param objs
-     * @return
+     * @param objs 对象数组
+     * @return 是否全不为 {@code null} 或空对象
      */
     public static boolean isAllNotEmpty(Object... objs) {
         for (Object obj : objs) {
@@ -263,11 +271,11 @@ public final class Objects extends JdkObjects {
     }
 
     /**
-     * 判断入参对象是否全不为null或空
+     * 判断入参对象是否全不为 {@code null} 或空对象
      * 支持字符串、集合、数组、Optional等类型
      *
-     * @param objs
-     * @return
+     * @param objs 对象集合
+     * @return 是否全不为 {@code null} 或空对象
      */
     public static boolean isAllNotEmpty(Iterable<Object> objs) {
         for (Object obj : objs) {
@@ -279,11 +287,11 @@ public final class Objects extends JdkObjects {
     }
 
     /**
-     * 判断入参对象是否存在null或空的对象
+     * 判断入参对象是否存在 {@code null} 或空对象
      * 支持字符串、集合、数组、Optional等类型
      *
-     * @param objs
-     * @return
+     * @param objs 对象数组
+     * @return 是否存在 {@code null} 或空对象
      */
     public static boolean hasEmpty(Object... objs) {
         for (Object obj : objs) {
@@ -295,11 +303,11 @@ public final class Objects extends JdkObjects {
     }
 
     /**
-     * 判断入参对象是否存在null或空的对象
+     * 判断入参对象是否存在 {@code null} 或空对象
      * 支持字符串、集合、数组、Optional等类型
      *
-     * @param objs
-     * @return
+     * @param objs 对象集合
+     * @return 是否存在 {@code null} 或空对象
      */
     public static boolean hasEmpty(Iterable<Object> objs) {
         for (Object obj : objs) {
@@ -311,11 +319,11 @@ public final class Objects extends JdkObjects {
     }
 
     /**
-     * 判断入参对象是否存在不为null或空的对象
+     * 判断入参对象是否存在不为 {@code null} 或空对象
      * 支持字符串、集合、数组、Optional等类型
      *
-     * @param objs
-     * @return
+     * @param objs 对象数组
+     * @return 是否存在不为 {@code null} 或空对象
      */
     public static boolean hasNotEmpty(Object... objs) {
         for (Object obj : objs) {
@@ -327,11 +335,11 @@ public final class Objects extends JdkObjects {
     }
 
     /**
-     * 判断入参对象是否存在不为null或空的对象
+     * 判断入参对象是否存在不为 {@code null} 或空对象
      * 支持字符串、集合、数组、Optional等类型
      *
-     * @param objs
-     * @return
+     * @param objs 对象集合
+     * @return 是否存在不为 {@code null} 或空对象
      */
     public static boolean hasNotEmpty(Iterable<Object> objs) {
         for (Object obj : objs) {
@@ -345,9 +353,9 @@ public final class Objects extends JdkObjects {
     /**
      * 判断两个对象是否不相等，两个对象都可以为null
      *
-     * @param a
-     * @param b
-     * @return
+     * @param a a object
+     * @param b a object
+     * @return 两个对象是否不相等
      */
     public static boolean notEquals(Object a, Object b) {
         return !equals(a, b);
@@ -356,15 +364,15 @@ public final class Objects extends JdkObjects {
     /**
      * 判断对象是否为数组类型
      *
-     * @param obj
-     * @return
+     * @param obj a object
+     * @return 对象是否为数组
      */
     public static boolean isArray(Object obj) {
         return (obj != null && obj.getClass().isArray());
     }
 
     /**
-     * 如果当前对象为null则返回默认值
+     * 如果当前对象为 {@code null} 则返回默认值
      *
      * <pre>
      *     Objects.defaultIfNull(null, null)      = null
@@ -374,16 +382,16 @@ public final class Objects extends JdkObjects {
      *     Objects.defaultIfNull(Boolean.TRUE, *) = Boolean.TRUE
      * </pre>
      *
-     * @param object
-     * @param defaultValue
-     * @return
+     * @param object       a object
+     * @param defaultValue 默认值
+     * @return 返回对象或默认值
      */
     public static Object defaultIfNull(Object object, Object defaultValue) {
         return object != null ? object : defaultValue;
     }
 
     /**
-     * 如果当前对象为null或空则返回默认值
+     * 如果当前对象为 {@code} 或空对象则返回默认值
      *
      * <pre>
      *     Objects.defaultIfEmpty(null, null)       = null
@@ -393,70 +401,71 @@ public final class Objects extends JdkObjects {
      *     Objects.defaultIfEmpty(Boolean.TRUE, *)  = Boolean.TRUE
      * </pre>
      *
-     * @param object
-     * @param defaultValue
-     * @return
+     * @param object       a object
+     * @param defaultValue 默认值
+     * @return 当前对象或默认值
+     * @see #isEmpty(Object)
      */
     public static Object defaultIfEmpty(Object object, Object defaultValue) {
         return !isEmpty(object) ? object : defaultValue;
     }
 
     /**
-     * 判断布尔包装类是否为true
+     * 判断布尔包装类是否为 {@code true}
      *
-     * @param b
-     * @return
+     * @param b a boolean
+     * @return 是否为 {@code true}
      */
     public static boolean isTrue(Boolean b) {
         return null != b && b;
     }
 
     /**
-     * 判断布尔包装类是否不为true
+     * 判断布尔包装类是否不为 {@code true}
      *
-     * @param b
-     * @return
+     * @param b a boolean
+     * @return 是否不为 {@code true}
      */
     public static boolean isNotTrue(Boolean b) {
         return null == b || !b;
     }
 
     /**
-     * 判断布尔包装类是否为false
+     * 判断布尔包装类是否为 {@code false}
      *
-     * @param b
-     * @return
+     * @param b a boolean
+     * @return 是否为 {@code false}
      */
     public static boolean isFalse(Boolean b) {
         return null != b && !b;
     }
 
     /**
-     * 判断布尔包装类是否不为false
+     * 判断布尔包装类是否不为 {@code false}
      *
-     * @param b
-     * @return
+     * @param b a boolean
+     * @return 是否不为 {@code false}
      */
     public static boolean isNotFalse(Boolean b) {
         return null == b || b;
     }
 
     /**
-     * 判断异常是否属于RuntimeException或Error
+     * 判断异常是否属于 {@link RuntimeException} 或 {@link Error}
      *
-     * @param ex
-     * @return
+     * @param ex a throwable
+     * @return 是否属于 {@link RuntimeException} 或 {@link Error}
      */
     public static boolean isCheckedException(Throwable ex) {
         return !(ex instanceof RuntimeException || ex instanceof Error);
     }
 
     /**
-     * 检查给定数组是否包含给定元素。
+     * 检查给定数组是否包含给定元素
      *
-     * @param array
-     * @param element
-     * @return
+     * @param array   对象数组
+     * @param element 对象
+     * @return 数组是否包含给定对象
      */
     public static boolean containsElement(Object[] array, Object element) {
         if (array == null) {
@@ -471,23 +480,23 @@ public final class Objects extends JdkObjects {
     }
 
     /**
-     * 检查给定枚举常量数组是否包含给定名称的常量，区分大小写。
+     * 检查给定枚举常量数组是否包含给定名称的常量，区分大小写
      *
-     * @param enumValues
-     * @param constant
-     * @return
+     * @param enumValues 枚举数组
+     * @param constant   常量名称
+     * @return 是否包含
      */
     public static boolean containsConstant(Enum<?>[] enumValues, String constant) {
         return containsConstant(enumValues, constant, false);
     }
 
     /**
-     * 检查给定枚举常量数组是否包含给定名称的常量。
+     * 检查给定枚举常量数组是否包含给定名称的常量
      *
-     * @param enumValues
-     * @param constant
-     * @param caseSensitive
-     * @return
+     * @param enumValues    枚举数组
+     * @param constant      字符常量
+     * @param caseSensitive 是否区分大小写
+     * @return 是否包含
      */
     public static boolean containsConstant(Enum<?>[] enumValues, String constant, boolean caseSensitive) {
         for (Enum<?> candidate : enumValues) {
@@ -502,10 +511,10 @@ public final class Objects extends JdkObjects {
     /**
      * 不分大小写替代 {@link Enum#valueOf(Class, String)}
      *
-     * @param enumValues
-     * @param constant
-     * @param <E>
-     * @return
+     * @param enumValues 枚举数组
+     * @param constant   字符常量
+     * @param <E>        枚举类型
+     * @return 枚举对象
      */
     public static <E extends Enum<?>> E caseInsensitiveValueOf(E[] enumValues, String constant) {
         for (E candidate : enumValues) {
@@ -520,11 +529,11 @@ public final class Objects extends JdkObjects {
     /**
      * 将给定对象添加到给定数组中，返回一个新的数组
      *
-     * @param array
-     * @param obj
-     * @param <A>
-     * @param <O>
-     * @return
+     * @param array 对象数组
+     * @param obj   指定对象
+     * @param <A>   数组类型
+     * @param <O>   指定对象类型
+     * @return 新数组
      */
     public static <A, O extends A> A[] arrayAddItem(A[] array, O obj) {
         Class<?> compType = Object.class;
@@ -546,9 +555,9 @@ public final class Objects extends JdkObjects {
     /**
      * 判断给定的对象是否相等，支持数组内容对比
      *
-     * @param o1
-     * @param o2
-     * @return
+     * @param o1 a object
+     * @param o2 a object
+     * @return 对象是否相等
      * @see Object#equals(Object)
      * @see java.util.Arrays#equals
      */
@@ -571,9 +580,9 @@ public final class Objects extends JdkObjects {
     /**
      * 比较两个对象（数组）是否相等
      *
-     * @param array1
-     * @param array2
-     * @return
+     * @param array1 a array object
+     * @param array2 a array object
+     * @return 是否相等
      * @see java.util.Arrays#equals
      */
     private static boolean arrayEquals(Object array1, Object array2) {
@@ -610,6 +619,8 @@ public final class Objects extends JdkObjects {
     /**
      * 返回给定对象的哈希码，支持数组类型
      *
+     * @param obj a object
+     * @return 对象哈希码
      * @see Object#hashCode()
      * @see #nullSafeHashCode(Object[])
      * @see #nullSafeHashCode(boolean[])
@@ -660,8 +671,8 @@ public final class Objects extends JdkObjects {
     /**
      * 返回指定数组内容的哈希码
      *
-     * @param array
-     * @return
+     * @param array object数组
+     * @return 数组内容哈希码
      */
     public static int nullSafeHashCode(Object[] array) {
         if (array == null) {
@@ -677,8 +688,8 @@ public final class Objects extends JdkObjects {
     /**
      * 返回指定数组内容的哈希码
      *
-     * @param array
-     * @return
+     * @param array boolean数组
+     * @return 数组内容哈希码
      */
     public static int nullSafeHashCode(boolean[] array) {
         if (array == null) {
@@ -694,8 +705,8 @@ public final class Objects extends JdkObjects {
     /**
      * 返回指定数组内容的哈希码
      *
-     * @param array
-     * @return
+     * @param array byte数组
+     * @return 数组内容哈希码
      */
     public static int nullSafeHashCode(byte[] array) {
         if (array == null) {
@@ -711,8 +722,8 @@ public final class Objects extends JdkObjects {
     /**
      * 返回指定数组内容的哈希码
      *
-     * @param array
-     * @return
+     * @param array char数组
+     * @return 数组内容哈希码
      */
     public static int nullSafeHashCode(char[] array) {
         if (array == null) {
@@ -728,8 +739,8 @@ public final class Objects extends JdkObjects {
     /**
      * 返回指定数组内容的哈希码
      *
-     * @param array
-     * @return
+     * @param array double数组
+     * @return 数组内容哈希码
      */
     public static int nullSafeHashCode(double[] array) {
         if (array == null) {
@@ -745,8 +756,8 @@ public final class Objects extends JdkObjects {
     /**
      * 返回指定数组内容的哈希码
      *
-     * @param array
-     * @return
+     * @param array float数组
+     * @return 数组内容哈希码
      */
     public static int nullSafeHashCode(float[] array) {
         if (array == null) {
@@ -762,8 +773,8 @@ public final class Objects extends JdkObjects {
     /**
      * 返回指定数组内容的哈希码
      *
-     * @param array
-     * @return
+     * @param array int数组
+     * @return 数组内容哈希码
      */
     public static int nullSafeHashCode(int[] array) {
         if (array == null) {
@@ -779,8 +790,8 @@ public final class Objects extends JdkObjects {
     /**
      * 返回指定数组内容的哈希码
      *
-     * @param array
-     * @return
+     * @param array long数组
+     * @return 数组内容哈希码
      */
     public static int nullSafeHashCode(long[] array) {
         if (array == null) {
@@ -796,8 +807,8 @@ public final class Objects extends JdkObjects {
     /**
      * 返回指定数组内容的哈希码
      *
-     * @param array
-     * @return
+     * @param array short数组
+     * @return 数组内容哈希码
      */
     public static int nullSafeHashCode(short[] array) {
         if (array == null) {
@@ -813,8 +824,8 @@ public final class Objects extends JdkObjects {
     /**
      * 返回对象的完整的字符串形式
      *
-     * @param obj
-     * @return
+     * @param obj a object
+     * @return 对象字符串形式
      */
     public static String identityToString(Object obj) {
         if (obj == null) {
@@ -826,8 +837,8 @@ public final class Objects extends JdkObjects {
     /**
      * 返回对象哈希码的十六进制字符串
      *
-     * @param obj
-     * @return
+     * @param obj a object
+     * @return 哈希码十六进制
      */
     public static String getIdentityHexString(Object obj) {
         return Integer.toHexString(System.identityHashCode(obj));
@@ -836,8 +847,8 @@ public final class Objects extends JdkObjects {
     /**
      * 返回对象字符串值，null返回空字符
      *
-     * @param obj
-     * @return
+     * @param obj a object
+     * @return 字符串值
      */
     public static String getDisplayString(Object obj) {
         if (obj == null) {
@@ -849,9 +860,9 @@ public final class Objects extends JdkObjects {
     /**
      * 返回对象类名
      *
-     * @param obj
-     * @param <T>
-     * @return
+     * @param obj o object
+     * @param <T> 对象类型
+     * @return 对象类名
      */
     public static <T> String nullSafeClassName(T obj) {
         return (obj != null ? obj.getClass().getName() : NULL_STRING);
@@ -860,8 +871,8 @@ public final class Objects extends JdkObjects {
     /**
      * 返回指定对象（数组）的字符串表示形式
      *
-     * @param obj
-     * @return
+     * @param obj a object
+     * @return 对象字符串形式
      * @see Object#hashCode()
      * @see #nullSafeToString(Object[])
      * @see #nullSafeToString(boolean[])
@@ -914,8 +925,8 @@ public final class Objects extends JdkObjects {
     /**
      * 返回Object数组的字符串形式
      *
-     * @param array
-     * @return
+     * @param array object数组
+     * @return 数组字符串形式
      */
     public static String nullSafeToString(Object[] array) {
         if (array == null) {
@@ -934,8 +945,8 @@ public final class Objects extends JdkObjects {
     /**
      * 返回boolean数组的字符串形式
      *
-     * @param array
-     * @return
+     * @param array boolean数组
+     * @return 数组字符串形式
      */
     public static String nullSafeToString(boolean[] array) {
         if (array == null) {
@@ -954,8 +965,8 @@ public final class Objects extends JdkObjects {
     /**
      * 返回byte数组的字符串形式
      *
-     * @param array
-     * @return
+     * @param array byte数组
+     * @return 数组字符串形式
      */
     public static String nullSafeToString(byte[] array) {
         if (array == null) {
@@ -974,8 +985,8 @@ public final class Objects extends JdkObjects {
     /**
      * 返回char数组的字符串形式
      *
-     * @param array
-     * @return
+     * @param array char数组
+     * @return 数组字符串形式
      */
     public static String nullSafeToString(char[] array) {
         if (array == null) {
@@ -994,8 +1005,8 @@ public final class Objects extends JdkObjects {
     /**
      * 返回double数组的字符串形式
      *
-     * @param array
-     * @return
+     * @param array double数组
+     * @return 数组字符串形式
      */
     public static String nullSafeToString(double[] array) {
         if (array == null) {
@@ -1014,8 +1025,8 @@ public final class Objects extends JdkObjects {
     /**
      * 返回float数组的字符串形式
      *
-     * @param array
-     * @return
+     * @param array float数组
+     * @return 数组字符串形式
      */
     public static String nullSafeToString(float[] array) {
         if (array == null) {
@@ -1034,8 +1045,8 @@ public final class Objects extends JdkObjects {
     /**
      * 返回int数组的字符串形式
      *
-     * @param array
-     * @return
+     * @param array int数组
+     * @return 数组字符串形式
      */
     public static String nullSafeToString(int[] array) {
         if (array == null) {
@@ -1054,8 +1065,8 @@ public final class Objects extends JdkObjects {
     /**
      * 返回long数组的字符串形式
      *
-     * @param array
-     * @return
+     * @param array long数组
+     * @return 数组字符串形式
      */
     public static String nullSafeToString(long[] array) {
         if (array == null) {
@@ -1074,8 +1085,8 @@ public final class Objects extends JdkObjects {
     /**
      * 返回short数组的字符串形式
      *
-     * @param array
-     * @return
+     * @param array short数组
+     * @return 数组字符串形式
      */
     public static String nullSafeToString(short[] array) {
         if (array == null) {

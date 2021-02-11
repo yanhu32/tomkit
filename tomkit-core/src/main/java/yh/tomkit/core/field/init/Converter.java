@@ -11,8 +11,8 @@ public interface Converter<O> {
     /**
      * 字符串转换为其他类型
      *
-     * @param s
-     * @return o
+     * @param s 字符串
+     * @return 转换后的对象
      */
     O convert(String s);
 

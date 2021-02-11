@@ -679,7 +679,7 @@ public abstract class StringExtender extends JdkString {
      * @param source a string
      * @param fun    转换接口
      * @param <T>    任意类型
-     * @return Optional<T>
+     * @return 指定类型
      * @see Function#apply(Object)
      */
     public static <T> Optional<T> map(final String source, final Function<String, T> fun) {
@@ -698,7 +698,8 @@ public abstract class StringExtender extends JdkString {
      *
      * @param source a string
      * @param fun    转换接口
-     * @return Optional<N extends Number>
+     * @param <N>    {@link Number}子类
+     * @return 数字
      * @see Number
      * @see Function#apply(Object)
      */
@@ -933,7 +934,7 @@ public abstract class StringExtender extends JdkString {
     }
 
     /**
-     * 判断 a > b
+     * 判断a是否大于b
      *
      * <p>a或b为 {@code null} 时返回 {@code false}</p>
      *
@@ -945,14 +946,14 @@ public abstract class StringExtender extends JdkString {
      *
      * @param a a string
      * @param b a string
-     * @return a > b ?
+     * @return 是否大于
      */
     public static boolean gt(final String a, final String b) {
         return (isAllNotNull(a, b) && a.compareTo(b) > 0);
     }
 
     /**
-     * 判断 a < b
+     * 判断a是否小于b
      *
      * <p>a或b为 {@code null} 时返回 {@code false}</p>
      *
@@ -964,7 +965,7 @@ public abstract class StringExtender extends JdkString {
      *
      * @param a a string
      * @param b a string
-     * @return a < b ?
+     * @return 是否小于
      */
     public static boolean lt(final String a, final String b) {
         return (isAllNotNull(a, b) && a.compareTo(b) < 0);
@@ -984,7 +985,7 @@ public abstract class StringExtender extends JdkString {
      *
      * @param a a string
      * @param b a string
-     * @return a.length() == b.length() ?
+     * @return 长度是否等于
      */
     public static boolean lengthEq(final CharSequence a, final CharSequence b) {
         return (null != a && null != b && a.length() == b.length());
@@ -1004,7 +1005,7 @@ public abstract class StringExtender extends JdkString {
      *
      * @param a a string
      * @param b a string
-     * @return a.length() > b.length() ?
+     * @return 长度是否大于
      */
     public static boolean lengthGt(final CharSequence a, final CharSequence b) {
         return (null != a && null != b && a.length() > b.length());
@@ -1024,7 +1025,7 @@ public abstract class StringExtender extends JdkString {
      *
      * @param a a string
      * @param b a string
-     * @return a.length() >= b.length() ?
+     * @return 长度是否大于等于
      */
     public static boolean lengthGte(final CharSequence a, final CharSequence b) {
         return (null != a && null != b && a.length() >= b.length());
@@ -1044,7 +1045,7 @@ public abstract class StringExtender extends JdkString {
      *
      * @param a a string
      * @param b a string
-     * @return a.length() < b.length() ?
+     * @return 长度是否小于
      */
     public static boolean lengthLt(final CharSequence a, final CharSequence b) {
         return (null != a && null != b && a.length() < b.length());
@@ -1064,7 +1065,7 @@ public abstract class StringExtender extends JdkString {
      *
      * @param a a string
      * @param b a string
-     * @return a.length() <= b.length() ?
+     * @return 长度是否大于等于
      */
     public static boolean lengthLte(final CharSequence a, final CharSequence b) {
         return (null != a && null != b && a.length() <= b.length());
@@ -2395,7 +2396,7 @@ public abstract class StringExtender extends JdkString {
      *
      * @param source a string
      * @return 反转后的字符串
-     * @see StringBuilder#reverse()#toString()
+     * @see StringBuilder#reverse()
      */
     public static String reverse(final String source) {
         if (isEmpty(source)) {
@@ -2417,7 +2418,7 @@ public abstract class StringExtender extends JdkString {
      * </pre>
      *
      * @param source   a string
-     * @param maxWidth 字符串最大长度，maxWidth >= 4
+     * @param maxWidth 字符串最大长度，大于等于4
      * @return 省略后字符串
      */
     public static String abbreviate(final String source, final int maxWidth) {

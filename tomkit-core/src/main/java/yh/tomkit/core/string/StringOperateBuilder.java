@@ -21,6 +21,9 @@ abstract class StringOperateBuilder extends StringExtender {
 
     /**
      * 通过字节数组实例化字符串，使用系统默认编码
+     *
+     * @param bytes 字节数组
+     * @return 字符串构建器
      */
     public static Builder builder(final byte[] bytes) {
         return new Builder(newString(bytes));
@@ -28,6 +31,10 @@ abstract class StringOperateBuilder extends StringExtender {
 
     /**
      * 通过字节数组实例化字符串
+     *
+     * @param bytes   字节数组
+     * @param charset 编码
+     * @return 字符串构建器
      */
     public static Builder builder(final byte[] bytes, final Charset charset) {
         return new Builder(newString(bytes, charset));
@@ -35,6 +42,9 @@ abstract class StringOperateBuilder extends StringExtender {
 
     /**
      * 通过字节数组实例化字符串，使用utf-8编码
+     *
+     * @param bytes 字节数组
+     * @return 字符串构建器
      */
     public static Builder builderByUtf8(final byte[] bytes) {
         return new Builder(newStringUtf8(bytes));
