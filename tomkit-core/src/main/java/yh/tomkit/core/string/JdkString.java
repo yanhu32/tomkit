@@ -1,8 +1,5 @@
 package yh.tomkit.core.string;
 
-import org.jetbrains.annotations.Contract;
-import org.jetbrains.annotations.NotNull;
-
 import java.util.Locale;
 
 /**
@@ -27,7 +24,6 @@ abstract class JdkString implements StringInterface {
      * @see String#join(CharSequence, CharSequence...)
      * @see java.util.StringJoiner
      */
-    @NotNull
     public static String join(CharSequence delimiter, CharSequence... elements) {
         return String.join(delimiter, elements);
     }
@@ -55,7 +51,6 @@ abstract class JdkString implements StringInterface {
      * @see String#join(CharSequence, CharSequence...)
      * @see java.util.StringJoiner
      */
-    @NotNull
     public static String join(CharSequence delimiter, Iterable<? extends CharSequence> elements) {
         return String.join(delimiter, elements);
     }
@@ -67,8 +62,7 @@ abstract class JdkString implements StringInterface {
      * @param args   占位符参数
      * @return 格式化后字符串
      */
-    @NotNull
-    public static String format(@NotNull String format, Object... args) {
+    public static String format(String format, Object... args) {
         return String.format(format, args);
     }
 
@@ -80,8 +74,7 @@ abstract class JdkString implements StringInterface {
      * @param args   占位符参数
      * @return 格式化后字符串
      */
-    @NotNull
-    public static String format(Locale l, @NotNull String format, Object... args) {
+    public static String format(Locale l, String format, Object... args) {
         return String.format(l, format, args);
     }
 
@@ -101,8 +94,6 @@ abstract class JdkString implements StringInterface {
      * @param data 字符数组
      * @return 字符串值
      */
-    @NotNull
-    @Contract(pure = true)
     public static String valueOf(char[] data) {
         return String.valueOf(data);
     }
@@ -115,8 +106,6 @@ abstract class JdkString implements StringInterface {
      * @param count  长度
      * @return 字符串值
      */
-    @NotNull
-    @Contract(pure = true)
     public static String valueOf(char[] data, int offset, int count) {
         return String.valueOf(data, offset, count);
     }
@@ -129,8 +118,6 @@ abstract class JdkString implements StringInterface {
      * @param count  长度
      * @return 字符串值
      */
-    @NotNull
-    @Contract(pure = true)
     public static String copyValueOf(char[] data, int offset, int count) {
         return String.copyValueOf(data, offset, count);
     }
@@ -141,8 +128,6 @@ abstract class JdkString implements StringInterface {
      * @param data 字符数组
      * @return 字符串值
      */
-    @NotNull
-    @Contract(pure = true)
     public static String copyValueOf(char[] data) {
         return String.copyValueOf(data);
     }
@@ -153,8 +138,6 @@ abstract class JdkString implements StringInterface {
      * @param b 布尔
      * @return 字符串值
      */
-    @NotNull
-    @Contract(pure = true)
     public static String valueOf(boolean b) {
         return b ? "true" : "false";
     }
@@ -165,8 +148,6 @@ abstract class JdkString implements StringInterface {
      * @param c 字符
      * @return 字符串值
      */
-    @NotNull
-    @Contract(pure = true)
     public static String valueOf(char c) {
         return String.valueOf(c);
     }
@@ -177,8 +158,6 @@ abstract class JdkString implements StringInterface {
      * @param i 整型
      * @return 字符串值
      */
-    @NotNull
-    @Contract(pure = true)
     public static String valueOf(int i) {
         return String.valueOf(i);
     }
@@ -189,8 +168,6 @@ abstract class JdkString implements StringInterface {
      * @param l 长整型
      * @return 字符串值
      */
-    @NotNull
-    @Contract(pure = true)
     public static String valueOf(long l) {
         return String.valueOf(l);
     }
@@ -201,8 +178,6 @@ abstract class JdkString implements StringInterface {
      * @param f 浮点数
      * @return 字符串值
      */
-    @NotNull
-    @Contract(pure = true)
     public static String valueOf(float f) {
         return String.valueOf(f);
     }
@@ -213,8 +188,6 @@ abstract class JdkString implements StringInterface {
      * @param d 双精度浮点数
      * @return 字符串值
      */
-    @NotNull
-    @Contract(pure = true)
     public static String valueOf(double d) {
         return String.valueOf(d);
     }

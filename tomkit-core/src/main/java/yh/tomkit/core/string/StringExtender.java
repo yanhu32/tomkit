@@ -1,7 +1,5 @@
 package yh.tomkit.core.string;
 
-import org.jetbrains.annotations.Contract;
-import org.jetbrains.annotations.NotNull;
 import yh.tomkit.core.Chars;
 import yh.tomkit.core.function.CharSupplier;
 
@@ -51,8 +49,7 @@ public abstract class StringExtender extends JdkString {
      * @param sources 字符序列列表
      * @return 是否所有字符序列都为 {@code null}
      */
-    @Contract(pure = true)
-    public static boolean isAllNull(@NotNull final CharSequence... sources) {
+    public static boolean isAllNull(final CharSequence... sources) {
         for (CharSequence source : sources) {
             if (null != source) {
                 return false;
