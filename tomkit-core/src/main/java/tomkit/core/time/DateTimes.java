@@ -56,12 +56,12 @@ public final class DateTimes {
      * 格式化日期时间
      * 支持以下类型:
      * <ul>
-     *     {@link ZonedDateTime} 带时区的日期时间
-     *     {@link OffsetDateTime} 带时区偏移量的日期时间
-     *     {@link Instant} 时间戳
-     *     {@link LocalDateTime} 本地日期时间
-     *     {@link LocalDate} 本地日期
-     *     {@link LocalTime} 本地时间
+     *     {@link ZonedDateTime}
+     *     {@link OffsetDateTime}
+     *     {@link Instant}
+     *     {@link LocalDateTime}
+     *     {@link LocalDate}
+     *     {@link LocalTime}
      * </ul>
      *
      * @param time {@link Temporal} 子类型日期时间

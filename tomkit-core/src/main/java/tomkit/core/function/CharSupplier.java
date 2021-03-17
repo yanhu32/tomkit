@@ -1,7 +1,5 @@
 package tomkit.core.function;
 
-import java.util.function.Supplier;
-
 /**
  * 字符提供者
  *
@@ -11,7 +9,7 @@ import java.util.function.Supplier;
 @FunctionalInterface
 public interface CharSupplier {
     /**
-     * 获取一个字符，避免使用 {@link Supplier<Character>} 进行自动拆箱
+     * 获取一个字符，避免使用进行自动拆箱
      *
      * @return 字符
      */
