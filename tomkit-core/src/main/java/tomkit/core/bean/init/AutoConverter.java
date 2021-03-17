@@ -1,5 +1,7 @@
-package yh.tomkit.core.field.init;
+package tomkit.core.bean.init;
 
+
+import tomkit.core.function.StringConverter;
 
 import java.io.Serializable;
 
@@ -9,12 +11,12 @@ import java.io.Serializable;
  * @author yh
  * @since 2021/1/12
  */
-final class AutoConverter implements Converter<Serializable> {
+final class AutoConverter implements StringConverter<Serializable> {
     /**
      * 不做任何事情
      *
-     * @param s
-     * @return
+     * @param s 字符串值
+     * @return 转换后的值
      */
     @Override
     public Serializable convert(String s) {

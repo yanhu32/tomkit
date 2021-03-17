@@ -10,10 +10,13 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>tomkit-core</artifactId>
-    <version>1.0.1</version>
+    <version>1.0.2</version>
     <packaging>jar</packaging>
 
-    <dependencies>
-    </dependencies>
+    <name>tomkit-core</name>
+    <description>
+        Java开发核心工具包，集天下之大成，化繁为简。
+    </description>
+    <url>https://github.com/yanhu32/tomkit/tree/main/tomkit-core</url>
 
 </project>

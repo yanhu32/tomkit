@@ -1,9 +1,9 @@
-package yh.tomkit.core.field.init;
+package tomkit.core.bean.init;
 
 
-import yh.tomkit.core.string.Strings;
+import tomkit.core.lang.Strings;
+import tomkit.core.function.StringConverter;
 
-import java.beans.IntrospectionException;
 import java.beans.PropertyDescriptor;
 import java.io.Serializable;
 import java.lang.reflect.Field;
@@ -11,9 +11,8 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.math.BigDecimal;
 import java.math.BigInteger;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
+import java.sql.Date;
+import java.time.*;
 import java.time.format.DateTimeFormatter;
 
 /**
@@ -55,7 +54,7 @@ public final class InitHelper {
                         descriptor.getWriteMethod().invoke(target, value);
                     }
                 }
-            } catch (IllegalAccessException | IntrospectionException | InvocationTargetException e) {
+            } catch (Exception e) {
                 e.printStackTrace();
             }
         }
@@ -68,51 +67,74 @@ public final class InitHelper {
      * @param field 字段
      * @return 注解指定的默认值
      */
-    private static Object getDefaultValue(Field field) {
+    private static Object getDefaultValue(Field field) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException {
         Init def = field.getAnnotation(Init.class);
         if (null != def) {
             String value = def.value();
-            Class<? extends Converter<? extends Serializable>> converter = def.converter();
+            Class<? extends StringConverter<? extends Serializable>> converter = def.converter();
             if (converter == AutoConverter.class) {
                 String format = def.format();
                 JavaType javaType = JavaType.get(field.getType()).orElse(JavaType.VOID);
+                DateTimeFormatter formatter;
                 switch (javaType) {
+
                     case BOOLEAN:
                         return Boolean.valueOf(value);
+
                     case BYTE:
                         return Byte.valueOf(value);
+
                     case SHORT:
                         return Short.valueOf(value);
+
                     case INT:
                         return Integer.valueOf(value);
+
                     case LONG:
                         return Long.valueOf(value);
+
                     case FLOAT:
                         return Float.valueOf(value);
+
                     case DOUBLE:
                         return Double.valueOf(value);
+
                     case CHAR:
                         return value.charAt(0);
+
                     case STRING:
+
                         return value;
                     case BIG_DECIMAL:
                         return new BigDecimal(value);
+
                     case BIG_INTEGER:
                         return new BigInteger(value);
+
+                    case DATE:
+                        formatter = DateTimeFormatter.ofPattern(Strings.defaultIfEmpty(format, DEFAULT_DATE_TIME_FORMAT));
+                        return Date.from(LocalDateTime.parse(value, formatter).atZone(ZoneId.systemDefault()).toInstant());
+
                     case LOCAL_DATE:
                         return LocalDate.parse(value, DateTimeFormatter.ofPattern(Strings.defaultIfEmpty(format, DEFAULT_DATE_FORMAT)));
+
                     case LOCAL_TIME:
                         return LocalTime.parse(value, DateTimeFormatter.ofPattern(Strings.defaultIfEmpty(format, DEFAULT_TIME_FORMAT)));
+
                     case LOCAL_DATE_TIME:
                         return LocalDateTime.parse(value, DateTimeFormatter.ofPattern(Strings.defaultIfEmpty(format, DEFAULT_DATE_TIME_FORMAT)));
+
+                    case ZONED_DATE_TIME:
+                        formatter = DateTimeFormatter.ofPattern(Strings.defaultIfEmpty(format, DEFAULT_DATE_TIME_FORMAT));
+                        return ZonedDateTime.of(LocalDateTime.parse(value, formatter), ZoneId.systemDefault());
+
+                    case OFFSET_DATE_TIME:
+                        formatter = DateTimeFormatter.ofPattern(Strings.defaultIfEmpty(format, DEFAULT_DATE_TIME_FORMAT));
+                        return ZonedDateTime.of(LocalDateTime.parse(value, formatter), ZoneId.systemDefault()).toOffsetDateTime();
                     default:
                 }
             } else {
-                try {
-                    return converter.getDeclaredConstructor().newInstance().convert(value);
-                } catch (InstantiationException | IllegalAccessException | NoSuchMethodException | InvocationTargetException e) {
-                    e.printStackTrace();
-                }
+                return converter.getDeclaredConstructor().newInstance().convert(value);
             }
         }
         return null;

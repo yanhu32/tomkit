@@ -1,4 +1,4 @@
-package yh.tomkit.core.string;
+package tomkit.core.lang;
 
 import java.nio.ByteBuffer;
 import java.nio.charset.Charset;
@@ -8,12 +8,12 @@ import java.util.function.Function;
 import java.util.function.Predicate;
 
 /**
- * 字符串操作构建器
+ * 字符串操作辅助类
  *
  * @author yh
  * @since 2021/2/4
  */
-abstract class StringOperateBuilder extends StringExtender {
+abstract class StringsHelper {
 
     public static Builder builder(String value) {
         return new Builder(value);
@@ -26,7 +26,7 @@ abstract class StringOperateBuilder extends StringExtender {
      * @return 字符串构建器
      */
     public static Builder builder(final byte[] bytes) {
-        return new Builder(newString(bytes));
+        return new Builder(Strings.newString(bytes));
     }
 
     /**
@@ -37,7 +37,7 @@ abstract class StringOperateBuilder extends StringExtender {
      * @return 字符串构建器
      */
     public static Builder builder(final byte[] bytes, final Charset charset) {
-        return new Builder(newString(bytes, charset));
+        return new Builder(Strings.newString(bytes, charset));
     }
 
     /**
@@ -47,7 +47,7 @@ abstract class StringOperateBuilder extends StringExtender {
      * @return 字符串构建器
      */
     public static Builder builderByUtf8(final byte[] bytes) {
-        return new Builder(newStringUtf8(bytes));
+        return new Builder(Strings.newStringUtf8(bytes));
     }
 
     public static class Builder {
@@ -72,7 +72,7 @@ abstract class StringOperateBuilder extends StringExtender {
          * 返回双引号的字符串
          */
         public Builder doubleQuote() {
-            value = StringOperateBuilder.doubleQuote(value);
+            value = Strings.doubleQuote(value);
             return this;
         }
 
@@ -80,7 +80,7 @@ abstract class StringOperateBuilder extends StringExtender {
          * 返回单引号的字符串
          */
         public Builder quote() {
-            value = StringOperateBuilder.quote(value);
+            value = Strings.quote(value);
             return this;
         }
 
@@ -88,7 +88,7 @@ abstract class StringOperateBuilder extends StringExtender {
          * 两侧添加指定字符
          */
         public Builder twoFlanks(final String tag) {
-            value = StringOperateBuilder.twoFlanks(value, tag);
+            value = Strings.twoFlanks(value, tag);
             return this;
         }
 
@@ -96,7 +96,7 @@ abstract class StringOperateBuilder extends StringExtender {
          * 去掉开头和结尾的空格 {@code '\u0020'}
          */
         public Builder trim() {
-            value = StringOperateBuilder.trim(value);
+            value = Strings.trim(value);
             return this;
         }
 
@@ -119,7 +119,7 @@ abstract class StringOperateBuilder extends StringExtender {
          * </ul>
          */
         public Builder strip() {
-            value = StringOperateBuilder.strip(value);
+            value = Strings.strip(value);
             return this;
         }
 
@@ -143,7 +143,7 @@ abstract class StringOperateBuilder extends StringExtender {
          * </ul>
          */
         public Builder stripAll() {
-            value = StringOperateBuilder.stripAll(value);
+            value = Strings.stripAll(value);
             return this;
         }
 
@@ -167,7 +167,7 @@ abstract class StringOperateBuilder extends StringExtender {
          * </ul>
          */
         public Builder stripStart() {
-            value = StringOperateBuilder.stripStart(value);
+            value = Strings.stripStart(value);
             return this;
         }
 
@@ -191,7 +191,7 @@ abstract class StringOperateBuilder extends StringExtender {
          * </ul>
          */
         public Builder stripEnd() {
-            value = StringOperateBuilder.stripEnd(value);
+            value = Strings.stripEnd(value);
             return this;
         }
 
@@ -199,7 +199,7 @@ abstract class StringOperateBuilder extends StringExtender {
          * 返回传入的字符串，如果为 {@code null} 则返回空串
          */
         public Builder defaultStr() {
-            value = StringOperateBuilder.defaultStr(value);
+            value = Strings.defaultStr(value);
             return this;
         }
 
@@ -207,7 +207,7 @@ abstract class StringOperateBuilder extends StringExtender {
          * 返回传入的字符串，如果为 {@code null} 则返回默认值
          */
         public Builder defaultIfNull(final String defaultStr) {
-            value = StringOperateBuilder.defaultIfNull(value, defaultStr);
+            value = Strings.defaultIfNull(value, defaultStr);
             return this;
         }
 
@@ -215,7 +215,7 @@ abstract class StringOperateBuilder extends StringExtender {
          * 返回传入的字符串，如果为 {@code null} 或 {@code ""} 则返回默认值
          */
         public Builder defaultIfEmpty(final String defaultStr) {
-            value = StringOperateBuilder.defaultIfEmpty(value, defaultStr);
+            value = Strings.defaultIfEmpty(value, defaultStr);
             return this;
         }
 
@@ -239,7 +239,7 @@ abstract class StringOperateBuilder extends StringExtender {
          * </ul>
          */
         public Builder defaultIfBlank(String defaultStr) {
-            value = StringOperateBuilder.defaultIfBlank(value, defaultStr);
+            value = Strings.defaultIfBlank(value, defaultStr);
             return this;
         }
 
@@ -247,7 +247,7 @@ abstract class StringOperateBuilder extends StringExtender {
          * 获取字符串中最左边的len个字符
          */
         public Builder left(final int len) {
-            value = StringOperateBuilder.left(value, len);
+            value = Strings.left(value, len);
             return this;
         }
 
@@ -255,7 +255,7 @@ abstract class StringOperateBuilder extends StringExtender {
          * 获取字符串中最右边的len个字符
          */
         public Builder right(final int len) {
-            value = StringOperateBuilder.right(value, len);
+            value = Strings.right(value, len);
             return this;
         }
 
@@ -263,7 +263,7 @@ abstract class StringOperateBuilder extends StringExtender {
          * 获取字符串中从pos开始len个字符
          */
         public Builder mid(final int pos, final int len) {
-            value = StringOperateBuilder.mid(value, pos, len);
+            value = Strings.mid(value, pos, len);
             return this;
         }
 
@@ -271,7 +271,7 @@ abstract class StringOperateBuilder extends StringExtender {
          * 替换字符
          */
         public Builder replace(final char target, final char replacement) {
-            value = StringOperateBuilder.replace(value, target, replacement);
+            value = Strings.replace(value, target, replacement);
             return this;
         }
 
@@ -279,7 +279,7 @@ abstract class StringOperateBuilder extends StringExtender {
          * 替换字符序列
          */
         public Builder replace(final CharSequence target, final CharSequence replacement) {
-            value = StringOperateBuilder.replace(value, target, replacement);
+            value = Strings.replace(value, target, replacement);
             return this;
         }
 
@@ -287,7 +287,7 @@ abstract class StringOperateBuilder extends StringExtender {
          * 替换满足指定正则的字符序列
          */
         public Builder replaceAll(final String regex, final String replacement) {
-            value = StringOperateBuilder.replaceAll(value, regex, replacement);
+            value = Strings.replaceAll(value, regex, replacement);
             return this;
         }
 
@@ -295,7 +295,7 @@ abstract class StringOperateBuilder extends StringExtender {
          * 替换符合的第一个字符序列
          */
         public Builder replaceFirst(final String regex, final String replacement) {
-            value = StringOperateBuilder.replaceFirst(value, regex, replacement);
+            value = Strings.replaceFirst(value, regex, replacement);
             return this;
         }
 
@@ -303,7 +303,7 @@ abstract class StringOperateBuilder extends StringExtender {
          * 去除指定字符序列
          */
         public Builder remove(final CharSequence str) {
-            value = StringOperateBuilder.remove(value, str);
+            value = Strings.remove(value, str);
             return this;
         }
 
@@ -311,7 +311,7 @@ abstract class StringOperateBuilder extends StringExtender {
          * 去除满足指定正则的字符序列
          */
         public Builder removeAll(final String regex) {
-            value = StringOperateBuilder.removeAll(value, regex);
+            value = Strings.removeAll(value, regex);
             return this;
         }
 
@@ -319,7 +319,7 @@ abstract class StringOperateBuilder extends StringExtender {
          * 去除第一个满足指定正则的字符序列
          */
         public Builder removeFirst(final String regex) {
-            value = StringOperateBuilder.removeFirst(value, regex);
+            value = Strings.removeFirst(value, regex);
             return this;
         }
 
@@ -327,7 +327,7 @@ abstract class StringOperateBuilder extends StringExtender {
          * 去除最后一个满足指定的字符序列
          */
         public Builder removeLast(final String str) {
-            value = StringOperateBuilder.removeLast(value, str);
+            value = Strings.removeLast(value, str);
             return this;
         }
 
@@ -335,7 +335,7 @@ abstract class StringOperateBuilder extends StringExtender {
          * 截取最后一个"."后的部分
          */
         public Builder suffix() {
-            value = StringOperateBuilder.suffix(value);
+            value = Strings.suffix(value);
             return this;
         }
 
@@ -343,7 +343,7 @@ abstract class StringOperateBuilder extends StringExtender {
          * 获取最后一个指定字符后的部分
          */
         public Builder suffix(final char separator) {
-            value = StringOperateBuilder.suffix(value, separator);
+            value = Strings.suffix(value, separator);
             return this;
         }
 
@@ -352,7 +352,7 @@ abstract class StringOperateBuilder extends StringExtender {
          * 重复一个字符串多次生成一个新字符串
          */
         public Builder repeat(int repeat) {
-            value = StringOperateBuilder.repeat(value, repeat);
+            value = Strings.repeat(value, repeat);
             return this;
         }
 
@@ -360,7 +360,7 @@ abstract class StringOperateBuilder extends StringExtender {
          * 右侧填充空格
          */
         public Builder rpad(final int size) {
-            value = StringOperateBuilder.rpad(value, size);
+            value = Strings.rpad(value, size);
             return this;
         }
 
@@ -368,7 +368,7 @@ abstract class StringOperateBuilder extends StringExtender {
          * 右侧填充字符
          */
         public Builder rpad(final int size, final char padChar) {
-            value = StringOperateBuilder.rpad(value, size, padChar);
+            value = Strings.rpad(value, size, padChar);
             return this;
         }
 
@@ -376,7 +376,7 @@ abstract class StringOperateBuilder extends StringExtender {
          * 右侧填充字符串
          */
         public Builder rpad(final int size, final String padStr) {
-            value = StringOperateBuilder.rpad(value, size, padStr);
+            value = Strings.rpad(value, size, padStr);
             return this;
         }
 
@@ -385,7 +385,7 @@ abstract class StringOperateBuilder extends StringExtender {
          * 左侧填充空格
          */
         public Builder lpad(String source, int size) {
-            value = StringOperateBuilder.lpad(value, size);
+            value = Strings.lpad(value, size);
             return this;
         }
 
@@ -393,7 +393,7 @@ abstract class StringOperateBuilder extends StringExtender {
          * 左侧填充字符
          */
         public Builder lpad(final int size, final char padChar) {
-            value = StringOperateBuilder.lpad(value, size, padChar);
+            value = Strings.lpad(value, size, padChar);
             return this;
         }
 
@@ -401,7 +401,7 @@ abstract class StringOperateBuilder extends StringExtender {
          * 左侧填充字符串
          */
         public Builder lpad(final int size, final String padStr) {
-            value = StringOperateBuilder.lpad(value, size, padStr);
+            value = Strings.lpad(value, size, padStr);
             return this;
         }
 
@@ -409,7 +409,7 @@ abstract class StringOperateBuilder extends StringExtender {
          * 转大写
          */
         public Builder upperCase() {
-            value = StringOperateBuilder.upperCase(value);
+            value = Strings.upperCase(value);
             return this;
         }
 
@@ -417,7 +417,7 @@ abstract class StringOperateBuilder extends StringExtender {
          * 转大写
          */
         public Builder upperCase(Locale locale) {
-            value = StringOperateBuilder.upperCase(value, locale);
+            value = Strings.upperCase(value, locale);
             return this;
         }
 
@@ -425,7 +425,7 @@ abstract class StringOperateBuilder extends StringExtender {
          * 转小写
          */
         public Builder lowerCase() {
-            value = StringOperateBuilder.lowerCase(value);
+            value = Strings.lowerCase(value);
             return this;
         }
 
@@ -433,7 +433,7 @@ abstract class StringOperateBuilder extends StringExtender {
          * 转小写
          */
         public Builder lowerCase(final Locale locale) {
-            value = StringOperateBuilder.lowerCase(value, locale);
+            value = Strings.lowerCase(value, locale);
             return this;
         }
 
@@ -441,7 +441,7 @@ abstract class StringOperateBuilder extends StringExtender {
          * 大小写互换，大写转小写，小写转大写
          */
         public Builder swapCase() {
-            value = StringOperateBuilder.swapCase(value);
+            value = Strings.swapCase(value);
             return this;
         }
 
@@ -449,7 +449,7 @@ abstract class StringOperateBuilder extends StringExtender {
          * 首字母大写
          */
         public Builder capitalize() {
-            value = StringOperateBuilder.capitalize(value);
+            value = Strings.capitalize(value);
             return this;
         }
 
@@ -457,7 +457,7 @@ abstract class StringOperateBuilder extends StringExtender {
          * 首字母小写
          */
         public Builder uncapitalize() {
-            value = StringOperateBuilder.uncapitalize(value);
+            value = Strings.uncapitalize(value);
             return this;
         }
 
@@ -465,7 +465,7 @@ abstract class StringOperateBuilder extends StringExtender {
          * 下划线命名转驼峰命名，字符串长度需大于2
          */
         public Builder underscoreToCamelCase() {
-            value = StringOperateBuilder.underscoreToCamelCase(value);
+            value = Strings.underscoreToCamelCase(value);
             return this;
         }
 
@@ -473,7 +473,7 @@ abstract class StringOperateBuilder extends StringExtender {
          * 驼峰命名转下划线命名，字符串长度需大于2
          */
         public Builder camelToUnderscoreCase() {
-            value = StringOperateBuilder.camelToUnderscoreCase(value);
+            value = Strings.camelToUnderscoreCase(value);
             return this;
         }
 
@@ -481,7 +481,7 @@ abstract class StringOperateBuilder extends StringExtender {
          * 反转字符串
          */
         public Builder reverse() {
-            value = StringOperateBuilder.reverse(value);
+            value = Strings.reverse(value);
             return this;
         }
 
@@ -489,7 +489,7 @@ abstract class StringOperateBuilder extends StringExtender {
          * 省略字符串
          */
         public Builder abbreviate(final int maxWidth) {
-            value = StringOperateBuilder.abbreviate(value, maxWidth);
+            value = Strings.abbreviate(value, maxWidth);
             return this;
         }
 
@@ -497,7 +497,7 @@ abstract class StringOperateBuilder extends StringExtender {
          * 返回规范化的空格参数字符串，删除开头和结尾的空格，然后用单个空格替换空白字符序列。
          */
         public Builder normalizeSpace() {
-            value = StringOperateBuilder.normalizeSpace(value);
+            value = Strings.normalizeSpace(value);
             return this;
         }
 
@@ -521,14 +521,14 @@ abstract class StringOperateBuilder extends StringExtender {
          * 判断字符序列是否为 {@code null} 或 {@code ""}
          */
         public boolean isEmpty() {
-            return StringOperateBuilder.isEmpty(value);
+            return Strings.isEmpty(value);
         }
 
         /**
          * 判断字符序列是否不为 {@code null} 或 {@code ""}
          */
         public boolean isNotEmpty() {
-            return StringOperateBuilder.isNotEmpty(value);
+            return Strings.isNotEmpty(value);
         }
 
         /**
@@ -536,7 +536,7 @@ abstract class StringOperateBuilder extends StringExtender {
          * {@code LINE_SEPARATOR}, {@code PARAGRAPH_SEPARATOR})
          */
         public boolean isSpace() {
-            return StringOperateBuilder.isSpace(value);
+            return Strings.isSpace(value);
         }
 
         /**
@@ -544,7 +544,7 @@ abstract class StringOperateBuilder extends StringExtender {
          * {@code LINE_SEPARATOR}, {@code PARAGRAPH_SEPARATOR})
          */
         public boolean isNotSpace() {
-            return StringOperateBuilder.isNotSpace(value);
+            return Strings.isNotSpace(value);
         }
 
         /**
@@ -567,7 +567,7 @@ abstract class StringOperateBuilder extends StringExtender {
          * </ul>
          */
         public boolean isBlank() {
-            return StringOperateBuilder.isBlank(value);
+            return Strings.isBlank(value);
         }
 
         /**
@@ -590,14 +590,14 @@ abstract class StringOperateBuilder extends StringExtender {
          * </ul>
          */
         public boolean isNotBlank() {
-            return StringOperateBuilder.isNotBlank(value);
+            return Strings.isNotBlank(value);
         }
 
         /**
          * 判断字符序列是否存在非空白字符
          */
         public boolean hasText() {
-            return StringOperateBuilder.hasText(value);
+            return Strings.hasText(value);
         }
 
         /**
@@ -622,196 +622,196 @@ abstract class StringOperateBuilder extends StringExtender {
          * </ul>
          */
         public boolean hasWhitespace() {
-            return StringOperateBuilder.hasWhitespace(value);
+            return Strings.hasWhitespace(value);
         }
 
         /**
          * 判断字符序列长度是否大于
          */
         public boolean hasLength() {
-            return StringOperateBuilder.hasLength(value);
+            return Strings.hasLength(value);
         }
 
         /**
          * 判断是否符合给定谓语表达式
          */
         public boolean test(final Predicate<String> predicate) {
-            return StringOperateBuilder.test(value, predicate);
+            return Strings.test(value, predicate);
         }
 
         /**
          * 判断目标字符串是否包含指定字符序列
          */
         public boolean contains(final CharSequence x) {
-            return StringOperateBuilder.contains(value, x);
+            return Strings.contains(value, x);
         }
 
         /**
          * 是否含有指定字符
          */
         public boolean contains(final char c) {
-            return StringOperateBuilder.contains(value, c);
+            return Strings.contains(value, c);
         }
 
         /**
          * 是否匹配正则表达式
          */
         public boolean matches(final String regex) {
-            return StringOperateBuilder.matches(value, regex);
+            return Strings.matches(value, regex);
         }
 
         /**
          * 以...开始
          */
         public boolean startsWith(final String prefix) {
-            return StringOperateBuilder.startsWith(value, prefix);
+            return Strings.startsWith(value, prefix);
         }
 
         /**
          * 以...开始（不区分大小写）
          */
         public boolean startsWithIgnoreCase(final String prefix) {
-            return StringOperateBuilder.startsWithIgnoreCase(value, prefix);
+            return Strings.startsWithIgnoreCase(value, prefix);
         }
 
         /**
          * 以...结尾
          */
         public boolean endsWith(final String suffix) {
-            return StringOperateBuilder.endsWith(value, suffix);
+            return Strings.endsWith(value, suffix);
         }
 
         /**
          * 以...结束（不区分大小写）
          */
         public boolean endsWithIgnoreCase(final String suffix) {
-            return StringOperateBuilder.endsWithIgnoreCase(value, suffix);
+            return Strings.endsWithIgnoreCase(value, suffix);
         }
 
         /**
          * 判断a是否等于b
          */
         public boolean equals(final CharSequence b) {
-            return StringOperateBuilder.equals(value, b);
+            return Strings.equals(value, b);
         }
 
         /**
          * 判断a是否等于b，不区分大小写
          */
         public boolean equalsIgnoreCase(final String b) {
-            return StringOperateBuilder.equalsIgnoreCase(value, b);
+            return Strings.equalsIgnoreCase(value, b);
         }
 
         /**
          * 判断a是否不等于b
          */
         public boolean notEquals(final String b) {
-            return StringOperateBuilder.notEquals(value, b);
+            return Strings.notEquals(value, b);
         }
 
         /**
          * 判断 a > b
          */
         public boolean gt(final String b) {
-            return StringOperateBuilder.gt(value, b);
+            return Strings.gt(value, b);
         }
 
         /**
          * 判断 a < b
          */
         public boolean lt(final String b) {
-            return StringOperateBuilder.lt(value, b);
+            return Strings.lt(value, b);
         }
 
         /**
          * 判断a的长度等于b的长度
          */
         public boolean lengthEq(final CharSequence b) {
-            return StringOperateBuilder.lengthEq(value, b);
+            return Strings.lengthEq(value, b);
         }
 
         /**
          * 判断a的长度大于b的长度
          */
         public boolean lengthGt(final CharSequence b) {
-            return StringOperateBuilder.lengthGt(value, b);
+            return Strings.lengthGt(value, b);
         }
 
         /**
          * 判断a的长度大于等于b的长度
          */
         public boolean lengthGte(final CharSequence b) {
-            return StringOperateBuilder.lengthGte(value, b);
+            return Strings.lengthGte(value, b);
         }
 
         /**
          * 判断a的长度小于b的长度
          */
         public boolean lengthLt(final CharSequence b) {
-            return StringOperateBuilder.lengthLt(value, b);
+            return Strings.lengthLt(value, b);
         }
 
         /**
          * 判断a的长度小于等于b的长度
          */
         public boolean lengthLte(final CharSequence b) {
-            return StringOperateBuilder.lengthLte(value, b);
+            return Strings.lengthLte(value, b);
         }
 
         /**
          * 字符串转换其他对象
          */
         public <T> Optional<T> map(final Function<String, T> fun) {
-            return StringOperateBuilder.map(value, fun);
+            return Strings.map(value, fun);
         }
 
         /**
          * 字符串转换数字
          */
         public <N extends Number> Optional<N> toNumber(final Function<String, N> fun) {
-            return StringOperateBuilder.toNumber(value, fun);
+            return Strings.toNumber(value, fun);
         }
 
         /**
          * 将字符串转为字节数组，使用系统默认编码
          */
         public ByteBuffer getByteBuffer() {
-            return StringOperateBuilder.getByteBuffer(value);
+            return Strings.getByteBuffer(value);
         }
 
         /**
          * 将字符串转为字节数组
          */
         public ByteBuffer getByteBuffer(final Charset charset) {
-            return StringOperateBuilder.getByteBuffer(value, charset);
+            return Strings.getByteBuffer(value, charset);
         }
 
         /**
          * 将字符串转为字节数组，使用utf-8编码
          */
         public ByteBuffer getByteBufferUtf8() {
-            return StringOperateBuilder.getByteBufferUtf8(value);
+            return Strings.getByteBufferUtf8(value);
         }
 
         /**
          * 将字符串转为字节数组，使用系统默认编码
          */
         public byte[] getBytes() {
-            return StringOperateBuilder.getBytes(value);
+            return Strings.getBytes(value);
         }
 
         /**
          * 将字符串转为字节数组
          */
         public byte[] getBytes(final Charset charset) {
-            return StringOperateBuilder.getBytes(value, charset);
+            return Strings.getBytes(value, charset);
         }
 
         /**
          * 将字符串转为字节数组，使用utf-8编码
          */
         public byte[] getBytesUtf8() {
-            return StringOperateBuilder.getBytesUtf8(value);
+            return Strings.getBytesUtf8(value);
         }
 
 
@@ -819,84 +819,84 @@ abstract class StringOperateBuilder extends StringExtender {
          * 字符串长度
          */
         public int length() {
-            return StringOperateBuilder.length(value);
+            return Strings.length(value);
         }
 
         /**
          * 子字符串出现的次数
          */
         public int countMatches(final String sub) {
-            return StringOperateBuilder.countMatches(value, sub);
+            return Strings.countMatches(value, sub);
         }
 
         /**
          * 检查字符串是否以指定字符串数组中的任何一个结尾
          */
         public boolean endsWithAny(final String[] searchStrings) {
-            return StringOperateBuilder.endsWithAny(value, searchStrings);
+            return Strings.endsWithAny(value, searchStrings);
         }
 
         /**
          * 判断字符序列的所有字符是否满足给定判断条件
          */
         public boolean isCharPredicate(final Predicate<Character> predicate) {
-            return StringOperateBuilder.isCharPredicate(value, predicate);
+            return Strings.isCharPredicate(value, predicate);
         }
 
         /**
          * 是否只包含小写字符
          */
         public boolean isLowerCase() {
-            return StringOperateBuilder.isLowerCase(value);
+            return Strings.isLowerCase(value);
         }
 
         /**
          * 是否只包含大写字符
          */
         public boolean isUpperCase() {
-            return StringOperateBuilder.isUpperCase(value);
+            return Strings.isUpperCase(value);
         }
 
         /**
          * 检查字符串是否只包含unicode字母
          */
         public boolean isLetter() {
-            return StringOperateBuilder.isLetter(value);
+            return Strings.isLetter(value);
         }
 
         /**
          * 检查字符串是否只包含unicode数字，小数点不是unicode数字并返回 {@code false}
          */
         public boolean isDigit() {
-            return StringOperateBuilder.isDigit(value);
+            return Strings.isDigit(value);
         }
 
         /**
          * 检查字符串是否只包含unicode字母或数字
          */
         public boolean isLetterOrDigit() {
-            return StringOperateBuilder.isLetterOrDigit(value);
+            return Strings.isLetterOrDigit(value);
         }
 
         /**
          * 检查字符串是否只包含unicode空格
          */
         public boolean isSpaceChar() {
-            return StringOperateBuilder.isSpaceChar(value);
+            return Strings.isSpaceChar(value);
         }
 
         /**
          * 检查字符串是否只包含ASCII可打印字符
          */
         public boolean isAsciiPrintable() {
-            return StringOperateBuilder.isAsciiPrintable(value);
+            return Strings.isAsciiPrintable(value);
         }
 
         /**
          * 检查字符串是否只包含ASCII控制字符
          */
         public boolean isAsciiControl() {
-            return StringOperateBuilder.isAsciiControl(value);
+            return Strings.isAsciiControl(value);
         }
 
         /**
@@ -921,14 +921,14 @@ abstract class StringOperateBuilder extends StringExtender {
          * </ul>
          */
         public boolean isWhitespace() {
-            return StringOperateBuilder.isWhitespace(value);
+            return Strings.isWhitespace(value);
         }
 
         /**
          * 判断字符序列内所有字符是否都在Unicode中有定义
          */
         public boolean isDefined() {
-            return StringOperateBuilder.isDefined(value);
+            return Strings.isDefined(value);
         }
 
     }

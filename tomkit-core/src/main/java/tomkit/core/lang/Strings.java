@@ -1,7 +1,6 @@
-package yh.tomkit.core.string;
+package tomkit.core.lang;
 
-import yh.tomkit.core.Chars;
-import yh.tomkit.core.function.CharSupplier;
+import tomkit.core.function.CharSupplier;
 
 import java.nio.ByteBuffer;
 import java.nio.charset.Charset;
@@ -21,7 +20,56 @@ import java.util.function.Predicate;
  * @author yh
  * @since 2021/1/29
  */
-public abstract class StringExtender extends JdkString {
+public final class Strings {
+
+    /**
+     * 空字符串
+     */
+    private static final String EMPTY = "";
+
+    /**
+     * 下划线
+     */
+    private static final char UNDERLINE = '_';
+
+    /**
+     * 双引号
+     */
+    private static final char DOUBLE_QUOTE = '\"';
+
+    /**
+     * 单引号（英文）
+     */
+    private static final char QUOTE = '\'';
+
+    /**
+     * 空格字符
+     */
+    private static final char SPACE = ' ';
+
+    /**
+     * 空格
+     */
+    private static final String SPACE_STR = " ";
+
+    /**
+     * 省略号
+     */
+    private static final String ELLIPSIS = "...";
+
+    /**
+     * 表示搜索失败的索引
+     */
+    private static final int INDEX_NOT_FOUND = -1;
+
+    /**
+     * 填充常数可以扩展到的最大大小
+     */
+    private static final int PAD_LIMIT = 8192;
+
+    private Strings() {
+        throw new AssertionError("StringKit cannot be instantiated!");
+    }
 
     /**
      * 字符序列是否为 {@code null}
@@ -525,12 +573,15 @@ public abstract class StringExtender extends JdkString {
      * @param len      字符串长度
      * @param supplier 字符生成器
      * @return 随机字符串
-     * @see CharSupplier#getAsChar()
+     * @see CharSupplier#get()
      */
     public static String randomStr(final int len, final CharSupplier supplier) {
+        Assert.state(len > 0, "len has to be greater than 0");
+        Assert.notNull(supplier, "supplier cannot be null");
+
         StringBuilder builder = new StringBuilder(len);
         for (int i = 0; i < len; i++) {
-            builder.append(supplier.getAsChar());
+            builder.append(supplier.get());
         }
         return builder.toString();
     }
@@ -540,10 +591,12 @@ public abstract class StringExtender extends JdkString {
      *
      * @param len 随机串长度
      * @return 随机串
-     * @see CharSupplier#getAsChar()
+     * @see CharSupplier#get()
      * @see #randomStr(int, CharSupplier)
      */
     public static String randomStr(final int len) {
+        Assert.state(len > 0, "len has to be greater than 0");
+
         ThreadLocalRandom random = ThreadLocalRandom.current();
         return randomStr(len, () -> (char) (32 + random.nextInt(95)));
     }
@@ -553,10 +606,12 @@ public abstract class StringExtender extends JdkString {
      *
      * @param len 随机串长度
      * @return 随机串
-     * @see CharSupplier#getAsChar()
+     * @see CharSupplier#get()
      * @see #randomStr(int, CharSupplier)
      */
     public static String randomLetter(final int len) {
+        Assert.state(len > 0, "len has to be greater than 0");
+
         ThreadLocalRandom random = ThreadLocalRandom.current();
         CharSupplier supplier = () -> (char) ((random.nextBoolean() ? 65 : 97)
                 + random.nextInt(26));
@@ -568,10 +623,12 @@ public abstract class StringExtender extends JdkString {
      *
      * @param len 随机串长度
      * @return 随机串
-     * @see CharSupplier#getAsChar()
+     * @see CharSupplier#get()
      * @see #randomStr(int, CharSupplier)
      */
     public static String randomDigit(final int len) {
+        Assert.state(len > 0, "len has to be greater than 0");
+
         ThreadLocalRandom random = ThreadLocalRandom.current();
         return randomStr(len, () -> (char) (48 + random.nextInt(10)));
     }
@@ -581,10 +638,12 @@ public abstract class StringExtender extends JdkString {
      *
      * @param len 随机串长度
      * @return 随机串
-     * @see CharSupplier#getAsChar()
+     * @see CharSupplier#get()
      * @see #randomStr(int, CharSupplier)
      */
     public static String randomLetterDigit(final int len) {
+        Assert.state(len > 0, "len has to be greater than 0");
+
         ThreadLocalRandom random = ThreadLocalRandom.current();
         CharSupplier supplier = () -> {
             switch (random.nextInt(3)) {
@@ -660,48 +719,49 @@ public abstract class StringExtender extends JdkString {
      * @return boolean value
      */
     public static boolean test(final String source, final Predicate<String> predicate) {
-        return (null != source && null != predicate && predicate.test(source));
+        Assert.notNull(predicate, "predicate cannot be null");
+        return predicate.test(source);
     }
 
     /**
-     * 字符串转换其他对象
-     *
-     * <p>当前字符串不为 {@code null} 时则执行 {@link Function#apply(Object)} 方法</p>
+     * 字符串转换为其他对象
+     * 当source不为 {@code null} 时调用 {@link Function#apply(Object)}
      *
      * <pre class="code">
      *     Strings.map(null, Integer::valueOf) = Optional.empty
      *     Strings.map("11", Integer::valueOf) = Optional[2]
      * </pre>
      *
-     * @param source a string
-     * @param fun    转换接口
-     * @param <T>    任意类型
+     * @param source   a string
+     * @param function 转换接口
+     * @param <T>      任意类型
      * @return 指定类型
      * @see Function#apply(Object)
      */
-    public static <T> Optional<T> map(final String source, final Function<String, T> fun) {
-        return Optional.ofNullable(null != source ? fun.apply(source) : null);
+    public static <T> Optional<T> map(final String source, final Function<String, T> function) {
+        Assert.notNull(function, "function cannot be null");
+        return Optional.ofNullable(null != source ? function.apply(source) : null);
     }
 
     /**
-     * 字符串转换数字
-     *
-     * <p>当前字符串不为 {@code null} 时则执行 {@link Function#apply(Object)} 方法</p>
+     * 字符串转换为数字 {@link Number} 子类
+     * 当source不为 {@code null} 时调用 {@link Function#apply(Object)}
      *
      * <pre class="code">
      *     Strings.toNumber(null, Integer::new) = Optional.empty
      *     Strings.toNumber("1", Integer::new)  = Optional[1]
      * </pre>
      *
-     * @param source a string
-     * @param fun    转换接口
-     * @param <N>    {@link Number}子类
+     * @param source   a string
+     * @param function 转换接口
+     * @param <N>      {@link Number} 子类
      * @return 数字
      * @see Number
      * @see Function#apply(Object)
      */
-    public static <N extends Number> Optional<N> toNumber(final String source, final Function<String, N> fun) {
-        return Optional.ofNullable(null != source ? fun.apply(source) : null);
+    public static <N extends Number> Optional<N> toNumber(final String source, final Function<String, N> function) {
+        Assert.notNull(function, "function cannot be null");
+        return Optional.ofNullable(null != source ? function.apply(source) : null);
     }
 
     /**
@@ -1066,6 +1126,77 @@ public abstract class StringExtender extends JdkString {
      */
     public static boolean lengthLte(final CharSequence a, final CharSequence b) {
         return (null != a && null != b && a.length() <= b.length());
+    }
+
+    /**
+     * 根据delimiter作为分隔符将elements所有字符序列拼接在一起
+     *
+     * <pre>
+     *     Strings.join(",", null, "b")    = "null,b"
+     *     Strings.join(",", "1", "b")     = "1,b"
+     *     Strings.join("", "1", "b")      = "1b"
+     *     Strings.join(",", "1", "", "2") = "1,,2"
+     * </pre>
+     *
+     * @param delimiter 分隔每个元素的分隔符
+     * @param elements  需要拼接的字符序列集合
+     * @return 拼接后的字符串
+     * @see String#join(CharSequence, CharSequence...)
+     * @see java.util.StringJoiner
+     */
+    public static String join(CharSequence delimiter, CharSequence... elements) {
+        Assert.notNull(delimiter, "delimiter cannot be null");
+        Assert.notNull(elements, "elements cannot be null");
+        return String.join(delimiter, elements);
+    }
+
+    /**
+     * 根据delimiter作为分隔符将elements所有字符序列拼接在一起
+     *
+     * @param delimiter 分隔每个元素的分隔符
+     * @param elements  需要拼接的字符序列集合
+     * @return 拼接后的字符串
+     * @see String#join(CharSequence, CharSequence...)
+     * @see java.util.StringJoiner
+     */
+    public static String join(CharSequence delimiter, Iterable<? extends CharSequence> elements) {
+        Assert.notNull(delimiter, "delimiter cannot be null");
+        Assert.notNull(elements, "elements cannot be null");
+        return String.join(delimiter, elements);
+    }
+
+    /**
+     * 格式化字符串
+     *
+     * <pre>
+     *     Strings.format(null)         = java.lang.IllegalArgumentException: format cannot be null
+     *     Strings.format("")           = ""
+     *     Strings.format("%dAB")       = java.util.MissingFormatArgumentException: Format specifier '%d'
+     *     Strings.format("%dAB", null) = "nullAB"
+     *     Strings.format("%dAB", 1)    = "1AB"
+     * </pre>
+     *
+     * @param format 格式
+     * @param args   占位符参数
+     * @return 格式化后字符串
+     */
+    public static String format(String format, Object... args) {
+        Assert.notNull(format, "format cannot be null");
+        return String.format(format, args);
+    }
+
+    /**
+     * 格式化字符串
+     *
+     * @param locale 地区
+     * @param format 格式
+     * @param args   占位符参数
+     * @return 格式化后字符串
+     */
+    public static String format(Locale locale, String format, Object... args) {
+        Assert.notNull(locale, "locale cannot be null");
+        Assert.notNull(format, "format cannot be null");
+        return String.format(locale, format, args);
     }
 
     /**
@@ -2243,12 +2374,7 @@ public abstract class StringExtender extends JdkString {
      * @return string
      */
     public static String capitalize(final String source) {
-        if (isEmpty(source)) {
-            return source;
-        }
-        char[] chars = source.toCharArray();
-        chars[0] = Character.toUpperCase(chars[0]);
-        return new String(chars);
+        return changeFirstCharacterCase(source, true);
     }
 
     /**
@@ -2267,12 +2393,28 @@ public abstract class StringExtender extends JdkString {
      * @return string
      */
     public static String uncapitalize(String source) {
-        if (isEmpty(source)) {
-            return source;
+        return changeFirstCharacterCase(source, false);
+    }
+
+    private static String changeFirstCharacterCase(String str, boolean capitalize) {
+        if (!hasLength(str)) {
+            return str;
         }
-        char[] chars = source.toCharArray();
-        chars[0] = Character.toLowerCase(chars[0]);
-        return new String(chars);
+
+        char baseChar = str.charAt(0);
+        char updatedChar;
+        if (capitalize) {
+            updatedChar = Character.toUpperCase(baseChar);
+        } else {
+            updatedChar = Character.toLowerCase(baseChar);
+        }
+        if (baseChar == updatedChar) {
+            return str;
+        }
+
+        char[] chars = str.toCharArray();
+        chars[0] = updatedChar;
+        return new String(chars, 0, chars.length);
     }
 
     /**

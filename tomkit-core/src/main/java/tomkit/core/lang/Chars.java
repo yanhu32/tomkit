@@ -1,4 +1,4 @@
-package yh.tomkit.core;
+package tomkit.core.lang;
 
 /**
  * 字符工具类
