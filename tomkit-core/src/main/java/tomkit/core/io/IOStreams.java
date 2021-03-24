@@ -214,6 +214,46 @@ public final class IOStreams {
     }
 
     /**
+     * 将字符输入流复制给字符输出流
+     * <p>
+     * 不对流做关闭处理
+     *
+     * @param reader
+     * @param writer
+     * @return
+     * @throws IOException
+     */
+    public static long copy(Reader reader, Writer writer) throws IOException {
+        return copy(reader, writer, BUFFER_SIZE / 2);
+    }
+
+    /**
+     * 将字符输入流复制给字符输出流
+     * <p>
+     * 不对流做关闭处理
+     *
+     * @param reader
+     * @param writer
+     * @param bufferSize
+     * @return
+     * @throws IOException
+     */
+    public static long copy(Reader reader, Writer writer, int bufferSize) throws IOException {
+        Assert.notNull(reader, "字符输入流不能为空");
+        Assert.notNull(writer, "字符输出流不能为空");
+
+        final char[] buffer = new char[bufferSize];
+        long count = 0;
+        int n;
+        while (-1 != (n = reader.read(buffer))) {
+            writer.write(buffer, 0, n);
+            count += n;
+        }
+        writer.flush();
+        return count;
+    }
+
+    /**
      * 将给定InputStream的内容范围复制到给定OutputStream
      * <p>如果指定的范围超过了InputStream的长度，则复制到流的末尾，并返回实际复制的字节数
      * <p>不对流做关闭处理
