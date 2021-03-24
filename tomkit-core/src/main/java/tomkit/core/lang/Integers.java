@@ -9,59 +9,22 @@ import java.util.function.BiPredicate;
  * @since 2021/3/23
  */
 public class Integers {
-    /**
-     * a是否等于b
-     *
-     * @param a
-     * @param b
-     * @return
-     */
-    public static boolean eq(int a, int b) {
-        return a == b;
-    }
 
     /**
-     * a是否小于b
+     * a是否等于b，a和b可以为{@code null}
      *
      * @param a
      * @param b
      * @return
      */
-    public static boolean lt(int a, int b) {
-        return a < b;
-    }
-
-    /**
-     * a是否大于b
-     *
-     * @param a
-     * @param b
-     * @return
-     */
-    public static boolean gt(int a, int b) {
-        return a > b;
-    }
-
-    /**
-     * a是否小于等于b
-     *
-     * @param a
-     * @param b
-     * @return
-     */
-    public static boolean lte(int a, int b) {
-        return a <= b;
-    }
-
-    /**
-     * a是否大于等于b
-     *
-     * @param a
-     * @param b
-     * @return
-     */
-    public static boolean gte(int a, int b) {
-        return a >= b;
+    public static boolean equals(Integer a, Integer b) {
+        if (null == a && null == b) {
+            return true;
+        }
+        if (null == a || null == b) {
+            return false;
+        }
+        return a.equals(b);
     }
 
     /**
@@ -134,6 +97,12 @@ public class Integers {
         return predicate.test(a, b);
     }
 
+    /**
+     * 将整型转为字符串形式
+     *
+     * @param value
+     * @return
+     */
     public static String toString(Integer value) {
         if (null == value) {
             return "null";

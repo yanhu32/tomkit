@@ -35,6 +35,10 @@ public class Chars {
         }
     }
 
+    public static char[] getAsciiCharArray() {
+        return ASCII_CHAR_ARRAY;
+    }
+
     public static char getChar(int i) {
         return ASCII_CHAR_ARRAY[i];
     }
