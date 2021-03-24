@@ -13,7 +13,10 @@ import java.util.function.Predicate;
  * @author yh
  * @since 2021/2/4
  */
-abstract class StringsHelper {
+public final class StringsHelper {
+
+    private StringsHelper() {
+    }
 
     public static Builder builder(String value) {
         return new Builder(value);

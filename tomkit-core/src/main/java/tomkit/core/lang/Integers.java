@@ -8,7 +8,10 @@ import java.util.function.BiPredicate;
  * @author yh
  * @since 2021/3/23
  */
-public class Integers {
+public final class Integers {
+
+    private Integers() {
+    }
 
     /**
      * a是否等于b，a和b可以为{@code null}

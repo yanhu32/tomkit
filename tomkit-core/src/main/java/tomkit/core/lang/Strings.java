@@ -68,7 +68,7 @@ public final class Strings {
     private static final int PAD_LIMIT = 8192;
 
     private Strings() {
-        throw new AssertionError("StringKit cannot be instantiated!");
+        throw new AssertionError("Strings cannot be instantiated!");
     }
 
     /**

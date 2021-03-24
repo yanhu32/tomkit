@@ -8,7 +8,7 @@ import java.util.concurrent.ThreadLocalRandom;
  * @author yh
  * @since 2021/3/23
  */
-public class Randoms {
+public final class Randoms {
 
     static final char[] CHARS = {
             '0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
@@ -18,6 +18,9 @@ public class Randoms {
             'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N',
             'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X',
             'Y', 'Z'};
+
+    private Randoms() {
+    }
 
     public static int nextInt() {
         return ThreadLocalRandom.current().nextInt();
