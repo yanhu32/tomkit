@@ -71,6 +71,9 @@ public class Weeks {
      * @return
      */
     public static String nextWeekDateStr(DayOfWeek week) {
+        if (null == week) {
+            return null;
+        }
         return DateTimes.format(nextWeekDate(week));
     }
 
