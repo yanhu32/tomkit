@@ -25,10 +25,11 @@ public final class IOStreams {
 
     /**
      * 将给定输入流的内容复制到一个新的字节数组中
-     * <p>不对输入流做关闭处理
+     * <p>
+     * 不对输入流做关闭处理
      *
-     * @param in 要复制的流(可能是{@code null}或空)
-     * @return 已复制到(可能为空)的新字节数组
+     * @param in 要复制的流
+     * @return 已复制的新字节数组
      * @throws IOException 发生I/O错误时
      */
     public static byte[] copyToByteArray(InputStream in) throws IOException {
@@ -41,11 +42,27 @@ public final class IOStreams {
     }
 
     /**
-     * 将给定输入流的内容复制到一个字符串中，使用UTF-8编码
-     * <p>不对输入流做关闭处理
+     * 将给定字符输入流的内容复制到一个新的字符数组中
+     * <p>
+     * 不对输入流做关闭处理
      *
-     * @param in 要复制的流(可能是{@code null}或空)
-     * @return 被复制到(可能为空)的字符串
+     * @param reader 要复制的流
+     * @return 已复制的新字符数组
+     * @throws IOException 发生I/O错误时
+     */
+    public static char[] copyToCharArray(Reader reader) throws IOException {
+        Assert.notNull(reader, "字符输入流不能为空");
+
+        return copyToString(reader).toCharArray();
+    }
+
+    /**
+     * 将给定输入流的内容复制到一个字符串中，使用UTF-8编码
+     * <p>
+     * 不对输入流做关闭处理
+     *
+     * @param in 要复制的流
+     * @return 被复制的字符串
      * @throws IOException 发生I/O错误时
      */
     public static String copyToString(InputStream in) throws IOException {
@@ -54,19 +71,34 @@ public final class IOStreams {
 
     /**
      * 将给定输入流的内容复制到一个字符串中
-     * <p>不对输入流做关闭处理
+     * <p>
+     * 不对输入流做关闭处理
      *
-     * @param in      要复制的流(可能是{@code null}或空)
+     * @param in      要复制的流
      * @param charset 用来解码字节的 {@link Charset}
-     * @return 被复制到(可能为空)的字符串
+     * @return 被复制的字符串
      * @throws IOException 发生I/O错误时
      */
     public static String copyToString(InputStream in, Charset charset) throws IOException {
         Assert.notNull(in, "输入流不能为空");
         Assert.notNull(charset, "字符编码不能为空");
 
+        return copyToString(new BufferedReader(new InputStreamReader(in, charset)));
+    }
+
+    /**
+     * 将给定字符输入流的内容复制到一个字符串中
+     * <p>
+     * 不对输入流做关闭处理
+     *
+     * @param reader 要复制的流
+     * @return 被复制的字符串
+     * @throws IOException 发生I/O错误时
+     */
+    public static String copyToString(Reader reader) throws IOException {
+        Assert.notNull(reader, "字符输入流不能为空");
+
         StringBuilder builder = new StringBuilder(BUFFER_SIZE);
-        BufferedReader reader = new BufferedReader(new InputStreamReader(in, charset));
         char[] buffer = new char[BUFFER_SIZE];
         int readLen;
         while ((readLen = reader.read(buffer)) != -1) {
@@ -372,14 +404,5 @@ public final class IOStreams {
         }
         return count;
     }
-
-//    public static long copy(InputStream in , OutputStream os) throws IOException {
-//        ReadableByteChannel readableByteChannel = Channels.newChannel(in);
-//        WritableByteChannel writableByteChannel = Channels.newChannel(os);
-//        ByteBuffer.wrap();
-//        ByteBuffer buffer = ByteBuffer.allocate(1024);
-//        int read = readableByteChannel.read(buffer);
-//        writableByteChannel.write(buffer);
-//    }
 
 }
