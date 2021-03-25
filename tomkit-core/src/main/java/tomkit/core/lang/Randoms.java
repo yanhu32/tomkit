@@ -142,7 +142,8 @@ public final class Randoms {
      * @return
      */
     public static String randomStr(int len, CharSupplier supplier) {
-        Assert.state(len > 0, "len必须大于0");
+        Assert.isTrue(len > 0, "len必须大于0");
+
         StringBuilder builder = new StringBuilder();
         for (int i = 0; i < len; i++) {
             builder.append(supplier.get());

@@ -576,7 +576,7 @@ public final class Strings {
      * @see CharSupplier#get()
      */
     public static String randomStr(final int len, final CharSupplier supplier) {
-        Assert.state(len > 0, "len has to be greater than 0");
+        Assert.isTrue(len > 0, "len has to be greater than 0");
         Assert.notNull(supplier, "supplier cannot be null");
 
         StringBuilder builder = new StringBuilder(len);
@@ -595,7 +595,7 @@ public final class Strings {
      * @see #randomStr(int, CharSupplier)
      */
     public static String randomStr(final int len) {
-        Assert.state(len > 0, "len has to be greater than 0");
+        Assert.isTrue(len > 0, "len has to be greater than 0");
 
         ThreadLocalRandom random = ThreadLocalRandom.current();
         return randomStr(len, () -> (char) (32 + random.nextInt(95)));
@@ -610,7 +610,7 @@ public final class Strings {
      * @see #randomStr(int, CharSupplier)
      */
     public static String randomLetter(final int len) {
-        Assert.state(len > 0, "len has to be greater than 0");
+        Assert.isTrue(len > 0, "len has to be greater than 0");
 
         ThreadLocalRandom random = ThreadLocalRandom.current();
         CharSupplier supplier = () -> (char) ((random.nextBoolean() ? 65 : 97)
@@ -627,7 +627,7 @@ public final class Strings {
      * @see #randomStr(int, CharSupplier)
      */
     public static String randomDigit(final int len) {
-        Assert.state(len > 0, "len has to be greater than 0");
+        Assert.isTrue(len > 0, "len has to be greater than 0");
 
         ThreadLocalRandom random = ThreadLocalRandom.current();
         return randomStr(len, () -> (char) (48 + random.nextInt(10)));
@@ -642,7 +642,7 @@ public final class Strings {
      * @see #randomStr(int, CharSupplier)
      */
     public static String randomLetterDigit(final int len) {
-        Assert.state(len > 0, "len has to be greater than 0");
+        Assert.isTrue(len > 0, "len has to be greater than 0");
 
         ThreadLocalRandom random = ThreadLocalRandom.current();
         CharSupplier supplier = () -> {

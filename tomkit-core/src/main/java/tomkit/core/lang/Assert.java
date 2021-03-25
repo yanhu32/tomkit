@@ -44,11 +44,11 @@ public final class Assert {
     }
 
     /**
-     * 断言一个布尔表达式，如果表达式为 {@code false} 则抛出一个 {@link IllegalStateException} 异常
+     * 断言一个布尔表达式，如果表达式为 {@code false} 则抛出一个 {@link IllegalArgumentException} 异常
      *
      * @param expression 布尔表达式
      * @param message    断言失败时使用的异常消息
-     * @throws IllegalStateException 如果表达式为 {@code false}
+     * @throws IllegalArgumentException 如果表达式为 {@code false}
      */
     public static void isTrue(boolean expression, String message) {
         if (!expression) {
@@ -57,11 +57,11 @@ public final class Assert {
     }
 
     /**
-     * 断言一个布尔表达式，如果表达式为 {@code false} 则抛出一个 {@link IllegalStateException} 异常
+     * 断言一个布尔表达式，如果表达式为 {@code false} 则抛出一个 {@link IllegalArgumentException} 异常
      *
      * @param expression      布尔表达式
      * @param messageSupplier 如果断言失败，则使用的异常消息的提供者
-     * @throws IllegalStateException 如果表达式为 {@code false}
+     * @throws IllegalArgumentException 如果表达式为 {@code false}
      */
     public static void isTrue(boolean expression, Supplier<String> messageSupplier) {
         if (!expression) {
@@ -70,11 +70,11 @@ public final class Assert {
     }
 
     /**
-     * 断言一个布尔表达式，如果表达式为 {@code true} 则抛出一个 {@link IllegalStateException} 异常
+     * 断言一个布尔表达式，如果表达式为 {@code true} 则抛出一个 {@link IllegalArgumentException} 异常
      *
      * @param expression 布尔表达式
      * @param message    断言失败时使用的异常消息
-     * @throws IllegalStateException 如果表达式为 {@code true}
+     * @throws IllegalArgumentException 如果表达式为 {@code true}
      */
     public static void isFalse(boolean expression, String message) {
         if (expression) {
@@ -83,11 +83,11 @@ public final class Assert {
     }
 
     /**
-     * 断言一个布尔表达式，如果表达式为 {@code true} 则抛出一个 {@link IllegalStateException} 异常
+     * 断言一个布尔表达式，如果表达式为 {@code true} 则抛出一个 {@link IllegalArgumentException} 异常
      *
      * @param expression      布尔表达式
      * @param messageSupplier 如果断言失败，则使用的异常消息的提供者
-     * @throws IllegalStateException 如果表达式为 {@code true}
+     * @throws IllegalArgumentException 如果表达式为 {@code true}
      */
     public static void isFalse(boolean expression, Supplier<String> messageSupplier) {
         if (expression) {

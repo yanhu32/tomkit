@@ -1,9 +1,11 @@
 package tomkit.core.io;
 
+import tomkit.core.error.TomkitException;
 import tomkit.core.lang.Assert;
 
 import java.io.*;
 import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 
 /**
  * I/O流工具类
@@ -17,10 +19,6 @@ public final class IOStreams {
      * 复制字节时使用的默认缓冲区大小
      */
     public static final int BUFFER_SIZE = 4096;
-    /**
-     * 空的字节数组
-     */
-    private static final byte[] EMPTY_CONTENT = new byte[0];
 
     private IOStreams() {
     }
@@ -34,14 +32,24 @@ public final class IOStreams {
      * @throws IOException 发生I/O错误时
      */
     public static byte[] copyToByteArray(InputStream in) throws IOException {
-        if (in == null) {
-            return new byte[0];
-        }
+        Assert.notNull(in, "输入流不能为空");
 
         try (ByteArrayOutputStream out = new ByteArrayOutputStream(BUFFER_SIZE)) {
             copy(in, out);
             return out.toByteArray();
         }
+    }
+
+    /**
+     * 将给定输入流的内容复制到一个字符串中，使用UTF-8编码
+     * <p>不对输入流做关闭处理
+     *
+     * @param in 要复制的流(可能是{@code null}或空)
+     * @return 被复制到(可能为空)的字符串
+     * @throws IOException 发生I/O错误时
+     */
+    public static String copyToString(InputStream in) throws IOException {
+        return copyToString(in, StandardCharsets.UTF_8);
     }
 
     /**
@@ -54,9 +62,8 @@ public final class IOStreams {
      * @throws IOException 发生I/O错误时
      */
     public static String copyToString(InputStream in, Charset charset) throws IOException {
-        if (in == null) {
-            return "";
-        }
+        Assert.notNull(in, "输入流不能为空");
+        Assert.notNull(charset, "字符编码不能为空");
 
         StringBuilder builder = new StringBuilder(BUFFER_SIZE);
         BufferedReader reader = new BufferedReader(new InputStreamReader(in, charset));
@@ -66,21 +73,6 @@ public final class IOStreams {
             builder.append(buffer, 0, readLen);
         }
         return builder.toString();
-    }
-
-    /**
-     * 将给定的字节输出流的内容复制到字符串中
-     * <p>不对输出流做关闭处理
-     *
-     * @param outputStream 要复制到字符串中的 {@code ByteArrayOutputStream}
-     * @param charset      用来解码字节的 {@link Charset}
-     * @return 被复制到(可能为空)的字符串
-     */
-    public static String copyToString(ByteArrayOutputStream outputStream, Charset charset) {
-        Assert.notNull(outputStream, "字节输出流不能为空");
-        Assert.notNull(charset, "字符编码不能为空");
-
-        return new String(outputStream.toByteArray(), charset);
     }
 
     /**
@@ -97,6 +89,18 @@ public final class IOStreams {
 
         out.write(in);
         out.flush();
+    }
+
+    /**
+     * 将给定字符串的内容复制到给定的输出流，使用UTF-8编码
+     * <p>不对流做关闭处理
+     *
+     * @param in  要复制的字符串
+     * @param out 要复制到的输出流
+     * @throws IOException 发生I/O错误时
+     */
+    public static void copy(String in, OutputStream out) throws IOException {
+        copy(in, StandardCharsets.UTF_8, out);
     }
 
     /**
@@ -171,22 +175,11 @@ public final class IOStreams {
         Assert.notNull(in, "输入流不能为空");
         Assert.notNull(outFile, "目标文件不能为空");
 
-        createParentFile(outFile);
-
+        if (!Files.mkdirsParentFile(outFile)) {
+            throw new TomkitException("创建文件父目录失败 file:" + outFile.getAbsolutePath());
+        }
         try (OutputStream out = new FileOutputStream(outFile)) {
             return copy(in, out);
-        }
-    }
-
-    /**
-     * 创建文件父目录
-     *
-     * @param file 给定文件
-     */
-    private static void createParentFile(File file) {
-        File parentFile = file.getParentFile();
-        if (!parentFile.exists() && !parentFile.mkdirs()) {
-            throw new RuntimeException("创建文件父目录失败 file:" + file.getAbsolutePath());
         }
     }
 
@@ -203,12 +196,9 @@ public final class IOStreams {
     public static long copy(File inFile, OutputStream out) throws IOException {
         Assert.notNull(inFile, "输入文件不能为空");
         Assert.notNull(out, "输出流不能为空");
+        Assert.state(inFile.exists(), "源文件不存在 file:" + inFile.getAbsolutePath());
 
-        if (!inFile.exists()) {
-            throw new RuntimeException("输入文件不存在 file:" + inFile.getAbsolutePath());
-        }
-
-        try (InputStream in = new FileInputStream(inFile)) {
+        try (InputStream in = new BufferedInputStream(new FileInputStream(inFile))) {
             return copy(in, out);
         }
     }
@@ -254,8 +244,8 @@ public final class IOStreams {
     }
 
     /**
-     * 将给定InputStream的内容范围复制到给定OutputStream
-     * <p>如果指定的范围超过了InputStream的长度，则复制到流的末尾，并返回实际复制的字节数
+     * 将给定输入流的内容范围复制到给定输出流
+     * <p>如果指定的范围超过了输入流的长度，则复制到流的末尾，并返回实际复制的字节数
      * <p>不对流做关闭处理
      *
      * @param in    要复制的InputStream
@@ -274,20 +264,17 @@ public final class IOStreams {
             throw new IOException("Skipped only " + skipped + " bytes out of " + start + " required");
         }
 
-        BufferedInputStream bin = new BufferedInputStream(in);
-        BufferedOutputStream bout = new BufferedOutputStream(out);
-
         long bytesToCopy = end - start + 1;
         byte[] buffer = new byte[(int) Math.min(IOStreams.BUFFER_SIZE, bytesToCopy)];
         while (bytesToCopy > 0) {
-            int bytesRead = bin.read(buffer);
+            int bytesRead = in.read(buffer);
             if (bytesRead == -1) {
                 break;
             } else if (bytesRead <= bytesToCopy) {
-                bout.write(buffer, 0, bytesRead);
+                out.write(buffer, 0, bytesRead);
                 bytesToCopy -= bytesRead;
             } else {
-                bout.write(buffer, 0, (int) bytesToCopy);
+                out.write(buffer, 0, (int) bytesToCopy);
                 bytesToCopy = 0;
             }
         }
@@ -295,7 +282,7 @@ public final class IOStreams {
     }
 
     /**
-     * 排干给定InputStream的剩余内容
+     * 排干给定输入流的剩余内容
      * <p>不对流做关闭处理
      *
      * @param in 要排干的输入流
@@ -312,15 +299,6 @@ public final class IOStreams {
             count += readLen;
         }
         return count;
-    }
-
-    /**
-     * 返回一个有效的空输入流
-     *
-     * @return 一个基于空字节数组的 {@link ByteArrayInputStream}
-     */
-    public static InputStream emptyInput() {
-        return new ByteArrayInputStream(EMPTY_CONTENT);
     }
 
 }
