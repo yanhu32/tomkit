@@ -42,6 +42,8 @@ public final class Files {
         Assert.notNull(in, "源文件不能为空");
         Assert.notNull(out, "目标文件不能为空");
         Assert.state(in.exists(), "源文件不存在");
+        Assert.state(in.canRead(), "源文件不可读");
+        Assert.state(in.isFile(), "源文件必传为文件类型");
 
         if (!mkdirsParentFile(out)) {
             throw new TomkitException("创建文件父目录失败 file:" + out.getAbsolutePath());

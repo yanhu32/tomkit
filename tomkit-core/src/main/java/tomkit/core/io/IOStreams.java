@@ -76,67 +76,6 @@ public final class IOStreams {
     }
 
     /**
-     * 将给定字节数组的内容复制到给定的输出流
-     * <p>不对输出流做关闭处理
-     *
-     * @param in  要从中复制的字节数组
-     * @param out 要复制到的输出流
-     * @throws IOException 发生I/O错误时
-     */
-    public static void copy(byte[] in, OutputStream out) throws IOException {
-        Assert.notNull(in, "输入字节数组不能为空");
-        Assert.notNull(out, "输出流不能为空");
-
-        out.write(in);
-        out.flush();
-    }
-
-    /**
-     * 将给定字符串的内容复制到给定的输出流，使用UTF-8编码
-     * <p>不对流做关闭处理
-     *
-     * @param in  要复制的字符串
-     * @param out 要复制到的输出流
-     * @throws IOException 发生I/O错误时
-     */
-    public static void copy(String in, OutputStream out) throws IOException {
-        copy(in, StandardCharsets.UTF_8, out);
-    }
-
-    /**
-     * 将给定字符串的内容复制到给定的输出流
-     * <p>不对流做关闭处理
-     *
-     * @param in      要复制的字符串
-     * @param charset 字节编码
-     * @param out     要复制到的输出流
-     * @throws IOException 发生I/O错误时
-     */
-    public static void copy(String in, Charset charset, OutputStream out) throws IOException {
-        Assert.notNull(in, "输入字符串不能为空");
-        Assert.notNull(charset, "字符编码不能为空");
-        Assert.notNull(out, "输出流不能为空");
-
-        Writer writer = new OutputStreamWriter(out, charset);
-        writer.write(in);
-        writer.flush();
-    }
-
-    /**
-     * 将给定输入流的内容复制到给定输出流
-     * <p>
-     * 不对流做关闭处理
-     *
-     * @param in  要复制的输入流
-     * @param out 要复制到的输出流
-     * @return 复制的字节数
-     * @throws IOException 发生I/O错误时
-     */
-    public static long copy(InputStream in, OutputStream out) throws IOException {
-        return copy(in, out, BUFFER_SIZE);
-    }
-
-    /**
      * 将给定输入流的内容复制到给定输出流
      * <p>
      * 不对流做关闭处理
@@ -153,13 +92,27 @@ public final class IOStreams {
 
         final byte[] buffer = new byte[bufferSize];
         long count = 0;
-        int read;
-        while ((read = in.read(buffer)) != -1) {
-            out.write(buffer, 0, read);
-            count += read;
+        int n;
+        while ((n = in.read(buffer)) != -1) {
+            out.write(buffer, 0, n);
+            count += n;
         }
         out.flush();
         return count;
+    }
+
+    /**
+     * 将给定输入流的内容复制到给定输出流
+     * <p>
+     * 不对流做关闭处理
+     *
+     * @param in  要复制的输入流
+     * @param out 要复制到的输出流
+     * @return 复制的字节数
+     * @throws IOException 发生I/O错误时
+     */
+    public static long copy(InputStream in, OutputStream out) throws IOException {
+        return copy(in, out, BUFFER_SIZE);
     }
 
     /**
@@ -194,9 +147,11 @@ public final class IOStreams {
      * @throws IOException 发生I/O异常时
      */
     public static long copy(File inFile, OutputStream out) throws IOException {
-        Assert.notNull(inFile, "输入文件不能为空");
+        Assert.notNull(inFile, "源文件不能为空");
         Assert.notNull(out, "输出流不能为空");
-        Assert.state(inFile.exists(), "源文件不存在 file:" + inFile.getAbsolutePath());
+        Assert.state(inFile.exists(), "源文件不存在");
+        Assert.state(inFile.canRead(), "源文件不可读");
+        Assert.state(inFile.isFile(), "源文件必传为文件类型");
 
         try (InputStream in = new BufferedInputStream(new FileInputStream(inFile))) {
             return copy(in, out);
@@ -204,29 +159,62 @@ public final class IOStreams {
     }
 
     /**
-     * 将字符输入流复制给字符输出流
-     * <p>
-     * 不对流做关闭处理
+     * 将给定字节数组的内容复制到给定的输出流
+     * <p>不对输出流做关闭处理
      *
-     * @param reader
-     * @param writer
-     * @return
-     * @throws IOException
+     * @param data 要从中复制的字节数组
+     * @param out  要复制到的输出流
+     * @throws IOException 发生I/O错误时
      */
-    public static long copy(Reader reader, Writer writer) throws IOException {
-        return copy(reader, writer, BUFFER_SIZE / 2);
+    public static void copy(byte[] data, OutputStream out) throws IOException {
+        Assert.notNull(data, "输入字节数组不能为空");
+        Assert.notNull(out, "输出流不能为空");
+
+        out.write(data);
+        out.flush();
     }
 
     /**
-     * 将字符输入流复制给字符输出流
+     * 将给定字符串的内容复制到给定的输出流
+     * <p>不对流做关闭处理
+     *
+     * @param data    要复制的字符串
+     * @param charset 字节编码
+     * @param out     要复制到的输出流
+     * @throws IOException 发生I/O错误时
+     */
+    public static void copy(String data, Charset charset, OutputStream out) throws IOException {
+        Assert.notNull(data, "输入字符串不能为空");
+        Assert.notNull(charset, "字符编码不能为空");
+        Assert.notNull(out, "输出流不能为空");
+
+        Writer writer = new OutputStreamWriter(out, charset);
+        writer.write(data);
+        writer.flush();
+    }
+
+    /**
+     * 将给定字符串的内容复制到给定的输出流，使用UTF-8编码
+     * <p>不对流做关闭处理
+     *
+     * @param in  要复制的字符串
+     * @param out 要复制到的输出流
+     * @throws IOException 发生I/O错误时
+     */
+    public static void copy(String in, OutputStream out) throws IOException {
+        copy(in, StandardCharsets.UTF_8, out);
+    }
+
+    /**
+     * 将字符输入流内容复制给字符输出流
      * <p>
      * 不对流做关闭处理
      *
-     * @param reader
-     * @param writer
-     * @param bufferSize
-     * @return
-     * @throws IOException
+     * @param reader     字符输入流
+     * @param writer     字符输出流
+     * @param bufferSize 复制使用的字符数组大小
+     * @return 复制的字符数
+     * @throws IOException 发生I/O错误时
      */
     public static long copy(Reader reader, Writer writer, int bufferSize) throws IOException {
         Assert.notNull(reader, "字符输入流不能为空");
@@ -235,12 +223,96 @@ public final class IOStreams {
         final char[] buffer = new char[bufferSize];
         long count = 0;
         int n;
-        while (-1 != (n = reader.read(buffer))) {
+        while ((n = reader.read(buffer)) != -1) {
             writer.write(buffer, 0, n);
             count += n;
         }
         writer.flush();
         return count;
+    }
+
+    /**
+     * 将字符输入流内容复制给字符输出流
+     * <p>
+     * 不对流做关闭处理
+     *
+     * @param reader 字符输入流
+     * @param writer 字符输出流
+     * @return 复制的字符数
+     * @throws IOException 发生I/O错误时
+     */
+    public static long copy(Reader reader, Writer writer) throws IOException {
+        return copy(reader, writer, BUFFER_SIZE / 2);
+    }
+
+    /**
+     * 将字符输入流内容复制给目标文件
+     *
+     * @param reader  字符输入流
+     * @param outFile 目标文件
+     * @return 复制的字符数
+     * @throws IOException 发生I/O错误时
+     */
+    public static long copy(Reader reader, File outFile) throws IOException {
+        Assert.notNull(reader, "字符输入流不能为空");
+        Assert.notNull(outFile, "目标文件不能为空");
+
+        if (!Files.mkdirsParentFile(outFile)) {
+            throw new TomkitException("创建文件父目录失败 file:" + outFile.getAbsolutePath());
+        }
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(outFile))) {
+            return copy(reader, writer);
+        }
+    }
+
+    /**
+     * 将文件内容复制给字符输出流
+     *
+     * @param inFile 源文件
+     * @param writer 字符输出流
+     * @return 复制的字符数
+     * @throws IOException 发生I/O错误时
+     */
+    public static long copy(File inFile, Writer writer) throws IOException {
+        Assert.notNull(inFile, "源文件不能为空");
+        Assert.notNull(writer, "字符输出流不能为空");
+        Assert.state(inFile.exists(), "源文件不存在");
+        Assert.state(inFile.canRead(), "源文件不可读");
+        Assert.state(inFile.isFile(), "源文件必传为文件类型");
+
+        try (BufferedReader reader = new BufferedReader(new FileReader(inFile))) {
+            return copy(reader, writer);
+        }
+    }
+
+    /**
+     * 将字符数组复制给字符输出流
+     *
+     * @param data   字符数组
+     * @param writer 字符输出流
+     * @throws IOException 发生I/O错误时
+     */
+    public static void copy(char[] data, Writer writer) throws IOException {
+        Assert.notNull(data, "字符数组不能为空");
+        Assert.notNull(writer, "字符输出流不能为空");
+
+        writer.write(data);
+        writer.flush();
+    }
+
+    /**
+     * 将字符串复制给字符输出流
+     *
+     * @param data   字符串
+     * @param writer 字符输出流
+     * @throws IOException 发生I/O错误时
+     */
+    public static void copy(String data, Writer writer) throws IOException {
+        Assert.notNull(data, "字符数组不能为空");
+        Assert.notNull(writer, "字符输出流不能为空");
+
+        writer.write(data);
+        writer.flush();
     }
 
     /**
@@ -289,7 +361,7 @@ public final class IOStreams {
      * @return 读取的字节数
      * @throws IOException 发生I/O错误时
      */
-    public static int drain(InputStream in) throws IOException {
+    public static long drain(InputStream in) throws IOException {
         Assert.notNull(in, "输入流不能为空");
 
         byte[] buffer = new byte[BUFFER_SIZE];
@@ -300,5 +372,14 @@ public final class IOStreams {
         }
         return count;
     }
+
+//    public static long copy(InputStream in , OutputStream os) throws IOException {
+//        ReadableByteChannel readableByteChannel = Channels.newChannel(in);
+//        WritableByteChannel writableByteChannel = Channels.newChannel(os);
+//        ByteBuffer.wrap();
+//        ByteBuffer buffer = ByteBuffer.allocate(1024);
+//        int read = readableByteChannel.read(buffer);
+//        writableByteChannel.write(buffer);
+//    }
 
 }
