@@ -21,7 +21,7 @@ compile 'io.github.yanhu32:tomkit-core:1.0.2'
 
 ## *License*
 
-```tex
+```
                                  Apache License
                            Version 2.0, January 2004
                         http://www.apache.org/licenses/
