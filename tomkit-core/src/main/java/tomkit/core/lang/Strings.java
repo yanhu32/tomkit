@@ -66,6 +66,10 @@ public final class Strings {
      * 填充常数可以扩展到的最大大小
      */
     private static final int PAD_LIMIT = 8192;
+    /**
+     * 默认字符编码
+     */
+    private static final Charset DEFAULT_CHARSET = StandardCharsets.UTF_8;
 
     private Strings() {
         throw new AssertionError("Strings cannot be instantiated!");
@@ -1812,7 +1816,7 @@ public final class Strings {
     }
 
     /**
-     * 将字符串转为字节数组，使用系统默认编码
+     * 将字符串转为字节数组，使用utf-8编码
      *
      * <p>source为 {@code null} 时返回 {@code null}</p>
      *
@@ -1820,7 +1824,7 @@ public final class Strings {
      * @return ByteBuffer
      */
     public static ByteBuffer getByteBuffer(final String source) {
-        return getByteBuffer(source, Charset.defaultCharset());
+        return getByteBuffer(source, DEFAULT_CHARSET);
     }
 
     /**
@@ -1848,22 +1852,10 @@ public final class Strings {
      * <p>source为 {@code null} 时返回 {@code null}</p>
      *
      * @param source a string
-     * @return ByteBuffer
-     */
-    public static ByteBuffer getByteBufferUtf8(final String source) {
-        return getByteBuffer(source, StandardCharsets.UTF_8);
-    }
-
-    /**
-     * 将字符串转为字节数组，使用系统默认编码
-     *
-     * <p>source为 {@code null} 时返回 {@code null}</p>
-     *
-     * @param source a string
      * @return byte[]
      */
     public static byte[] getBytes(final String source) {
-        return getBytes(source, Charset.defaultCharset());
+        return getBytes(source, DEFAULT_CHARSET);
     }
 
     /**
@@ -1883,55 +1875,27 @@ public final class Strings {
     }
 
     /**
-     * 将字符串转为字节数组，使用utf-8编码
+     * 字节数组转为字符串形式，使用utf-8编码
      *
-     * <p>source为 {@code null} 时返回 {@code null}</p>
-     *
-     * @param source a string
-     * @return 字节数组
+     * @param src 字节数组
+     * @return 字符串
      */
-    public static byte[] getBytesUtf8(final String source) {
-        return getBytes(source, StandardCharsets.UTF_8);
+    public static String toString(final byte[] src) {
+        return toString(src, DEFAULT_CHARSET);
     }
 
     /**
-     * 通过字节数组实例化字符串，使用当前系统默认编码
+     * 字节数组转为字符串形式
      *
-     * <p>bytes为 {@code null} 时返回 {@code null}</p>
-     *
-     * @param bytes 字节数组
-     * @return string
+     * @param src     字节数组
+     * @param charset 字符编码
+     * @return 字符串
      */
-    public static String newString(final byte[] bytes) {
-        return newString(bytes, Charset.defaultCharset());
-    }
+    public static String toString(final byte[] src, final Charset charset) {
+        Assert.notNull(src, "字节数组不能为空");
+        Assert.notNull(charset, "字符编码不能为空");
 
-    /**
-     * 通过字节数组实例化字符串
-     *
-     * <p>bytes为 {@code null} 时返回 {@code null}</p>
-     *
-     * @param bytes   字节数组
-     * @param charset 编码
-     * @return string
-     */
-    public static String newString(final byte[] bytes, final Charset charset) {
-        if (null == bytes) {
-            return null;
-        }
-        return new String(bytes, charset);
-    }
-
-    /**
-     * 通过字节数组实例化字符串，使用utf-8编码
-     *
-     * <p>bytes为 {@code null} 时返回 {@code null}</p>
-     *
-     * @param bytes 字节数组
-     * @return string
-     */
-    public static String newStringUtf8(final byte[] bytes) {
-        return newString(bytes, StandardCharsets.UTF_8);
+        return new String(src, 0, src.length, charset);
     }
 
     /**

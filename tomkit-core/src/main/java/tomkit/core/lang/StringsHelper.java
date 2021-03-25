@@ -23,13 +23,13 @@ public final class StringsHelper {
     }
 
     /**
-     * 通过字节数组实例化字符串，使用系统默认编码
+     * 通过字节数组实例化字符串，使用utf-8编码
      *
      * @param bytes 字节数组
      * @return 字符串构建器
      */
     public static Builder builder(final byte[] bytes) {
-        return new Builder(Strings.newString(bytes));
+        return new Builder(Strings.toString(bytes));
     }
 
     /**
@@ -40,17 +40,7 @@ public final class StringsHelper {
      * @return 字符串构建器
      */
     public static Builder builder(final byte[] bytes, final Charset charset) {
-        return new Builder(Strings.newString(bytes, charset));
-    }
-
-    /**
-     * 通过字节数组实例化字符串，使用utf-8编码
-     *
-     * @param bytes 字节数组
-     * @return 字符串构建器
-     */
-    public static Builder builderByUtf8(final byte[] bytes) {
-        return new Builder(Strings.newStringUtf8(bytes));
+        return new Builder(Strings.toString(bytes, charset));
     }
 
     public static class Builder {
@@ -776,7 +766,7 @@ public final class StringsHelper {
         }
 
         /**
-         * 将字符串转为字节数组，使用系统默认编码
+         * 将字符串转为字节数组，使用utf-8编码
          */
         public ByteBuffer getByteBuffer() {
             return Strings.getByteBuffer(value);
@@ -792,13 +782,6 @@ public final class StringsHelper {
         /**
          * 将字符串转为字节数组，使用utf-8编码
          */
-        public ByteBuffer getByteBufferUtf8() {
-            return Strings.getByteBufferUtf8(value);
-        }
-
-        /**
-         * 将字符串转为字节数组，使用系统默认编码
-         */
         public byte[] getBytes() {
             return Strings.getBytes(value);
         }
@@ -809,14 +792,6 @@ public final class StringsHelper {
         public byte[] getBytes(final Charset charset) {
             return Strings.getBytes(value, charset);
         }
-
-        /**
-         * 将字符串转为字节数组，使用utf-8编码
-         */
-        public byte[] getBytesUtf8() {
-            return Strings.getBytesUtf8(value);
-        }
-
 
         /**
          * 字符串长度

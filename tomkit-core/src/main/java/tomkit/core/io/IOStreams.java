@@ -20,6 +20,8 @@ public final class IOStreams {
      */
     public static final int BUFFER_SIZE = 4096;
 
+    private static final Charset DEFAULT_CHARSET = StandardCharsets.UTF_8;
+
     private IOStreams() {
     }
 
@@ -66,7 +68,7 @@ public final class IOStreams {
      * @throws IOException 发生I/O错误时
      */
     public static String copyToString(InputStream in) throws IOException {
-        return copyToString(in, StandardCharsets.UTF_8);
+        return copyToString(in, DEFAULT_CHARSET);
     }
 
     /**
@@ -234,7 +236,7 @@ public final class IOStreams {
      * @throws IOException 发生I/O错误时
      */
     public static void copy(String in, OutputStream out) throws IOException {
-        copy(in, StandardCharsets.UTF_8, out);
+        copy(in, DEFAULT_CHARSET, out);
     }
 
     /**
