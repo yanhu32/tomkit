@@ -63,6 +63,8 @@ public final class StringsHelper {
 
         /**
          * 返回双引号的字符串
+         *
+         * @return
          */
         public Builder doubleQuote() {
             value = Strings.doubleQuote(value);
@@ -71,6 +73,8 @@ public final class StringsHelper {
 
         /**
          * 返回单引号的字符串
+         *
+         * @return
          */
         public Builder quote() {
             value = Strings.quote(value);
@@ -79,6 +83,9 @@ public final class StringsHelper {
 
         /**
          * 两侧添加指定字符
+         *
+         * @param tag
+         * @return
          */
         public Builder twoFlanks(final String tag) {
             value = Strings.twoFlanks(value, tag);
@@ -87,6 +94,8 @@ public final class StringsHelper {
 
         /**
          * 去掉开头和结尾的空格 {@code '\u0020'}
+         *
+         * @return
          */
         public Builder trim() {
             value = Strings.trim(value);
@@ -376,6 +385,10 @@ public final class StringsHelper {
 
         /**
          * 左侧填充空格
+         *
+         * @param source
+         * @param size
+         * @return
          */
         public Builder lpad(String source, int size) {
             value = Strings.lpad(value, size);
@@ -384,6 +397,10 @@ public final class StringsHelper {
 
         /**
          * 左侧填充字符
+         *
+         * @param size
+         * @param padChar
+         * @return
          */
         public Builder lpad(final int size, final char padChar) {
             value = Strings.lpad(value, size, padChar);
@@ -392,6 +409,10 @@ public final class StringsHelper {
 
         /**
          * 左侧填充字符串
+         *
+         * @param size
+         * @param padStr
+         * @return
          */
         public Builder lpad(final int size, final String padStr) {
             value = Strings.lpad(value, size, padStr);
@@ -400,6 +421,8 @@ public final class StringsHelper {
 
         /**
          * 转大写
+         *
+         * @return
          */
         public Builder upperCase() {
             value = Strings.upperCase(value);
@@ -703,14 +726,14 @@ public final class StringsHelper {
         }
 
         /**
-         * 判断 a > b
+         * 判断a大于b
          */
         public boolean gt(final String b) {
             return Strings.gt(value, b);
         }
 
         /**
-         * 判断 a < b
+         * 判断a小于b
          */
         public boolean lt(final String b) {
             return Strings.lt(value, b);

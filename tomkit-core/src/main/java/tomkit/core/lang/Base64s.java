@@ -310,7 +310,7 @@ public final class Base64s {
      *     try (ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
      *          OutputStream os = Base64s.encodeWarp(outputStream)) {
      *         os.write(src.getBytes(StandardCharsets.UTF_8));
-     *         // 当源字符串长度不能被3整除时，调用包装流close方法后才会填充最后几位，可查看{@link Base64.EncOutputStream#close()}方法的实现
+     *         // 当源字符串长度不能被3整除时，调用包装流close方法后才会填充最后几位，可查看{@code Base64.EncOutputStream#close()}方法的实现
      *         os.close();
      *         System.out.println(outputStream.toString());   // MDEyMzQ1Njc4OQ==
      *     }
@@ -319,7 +319,6 @@ public final class Base64s {
      * @param outputStream 输出流
      * @return 编码包装后的输出流
      * @see Base64.Encoder#wrap(OutputStream)
-     * @see Base64.EncOutputStream#close()
      */
     public static OutputStream encodeWarp(OutputStream outputStream) {
         return Base64.getEncoder().wrap(outputStream);
