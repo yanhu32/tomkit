@@ -55,6 +55,90 @@ public final class Files {
     }
 
     /**
+     * 将给定输入流的内容复制到给定文件内
+     * 不对输入流做关闭处理
+     *
+     * @param in      输入流
+     * @param outFile 目标文件
+     * @return 复制的字节数
+     * @throws IOException 发生I/O错误时
+     */
+    public static long copy(InputStream in, File outFile) throws IOException {
+        Assert.notNull(in, "输入流不能为空");
+        Assert.notNull(outFile, "目标文件不能为空");
+
+        if (!Files.mkdirsParentFile(outFile)) {
+            throw new TomkitException("创建文件父目录失败");
+        }
+        try (OutputStream out = new FileOutputStream(outFile)) {
+            return IOStreams.copy(in, out);
+        }
+    }
+
+    /**
+     * 将给定文件内容复制给输出流
+     * 不对输出流做关闭处理
+     *
+     * @param inFile 输入文件
+     * @param out    输出流
+     * @return 复制的字节数
+     * @throws IOException 发生I/O异常时
+     */
+    public static long copy(File inFile, OutputStream out) throws IOException {
+        Assert.notNull(inFile, "源文件不能为空");
+        Assert.notNull(out, "输出流不能为空");
+        Assert.state(inFile.exists(), "源文件不存在");
+        Assert.state(inFile.canRead(), "源文件不可读");
+        Assert.state(inFile.isFile(), "源文件必传为文件类型");
+
+        try (InputStream in = new BufferedInputStream(new FileInputStream(inFile))) {
+            return IOStreams.copy(in, out);
+        }
+    }
+
+    /**
+     * 将字符输入流内容复制给目标文件
+     * 不对流做关闭处理
+     *
+     * @param reader  字符输入流
+     * @param outFile 目标文件
+     * @return 复制的字符数
+     * @throws IOException 发生I/O错误时
+     */
+    public static long copy(Reader reader, File outFile) throws IOException {
+        Assert.notNull(reader, "字符输入流不能为空");
+        Assert.notNull(outFile, "目标文件不能为空");
+
+        if (!Files.mkdirsParentFile(outFile)) {
+            throw new TomkitException("创建文件父目录失败");
+        }
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(outFile))) {
+            return IOStreams.copy(reader, writer);
+        }
+    }
+
+    /**
+     * 将文件内容复制给字符输出流
+     * 不对流做关闭处理
+     *
+     * @param inFile 源文件
+     * @param writer 字符输出流
+     * @return 复制的字符数
+     * @throws IOException 发生I/O错误时
+     */
+    public static long copy(File inFile, Writer writer) throws IOException {
+        Assert.notNull(inFile, "源文件不能为空");
+        Assert.notNull(writer, "字符输出流不能为空");
+        Assert.state(inFile.exists(), "源文件不存在");
+        Assert.state(inFile.canRead(), "源文件不可读");
+        Assert.state(inFile.isFile(), "源文件必传为文件类型");
+
+        try (BufferedReader reader = new BufferedReader(new FileReader(inFile))) {
+            return IOStreams.copy(reader, writer);
+        }
+    }
+
+    /**
      * 创建父文件夹
      *
      * @param file 文件

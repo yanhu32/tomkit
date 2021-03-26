@@ -1,6 +1,5 @@
 package tomkit.core.io;
 
-import tomkit.core.error.TomkitException;
 import tomkit.core.lang.Assert;
 
 import java.io.*;
@@ -27,7 +26,6 @@ public final class IOStreams {
 
     /**
      * 将给定输入流的内容复制到一个新的字节数组中
-     * <p>
      * 不对输入流做关闭处理
      *
      * @param in 要复制的流
@@ -45,7 +43,6 @@ public final class IOStreams {
 
     /**
      * 将给定字符输入流的内容复制到一个新的字符数组中
-     * <p>
      * 不对输入流做关闭处理
      *
      * @param reader 要复制的流
@@ -60,7 +57,6 @@ public final class IOStreams {
 
     /**
      * 将给定输入流的内容复制到一个字符串中，使用UTF-8编码
-     * <p>
      * 不对输入流做关闭处理
      *
      * @param in 要复制的流
@@ -73,7 +69,6 @@ public final class IOStreams {
 
     /**
      * 将给定输入流的内容复制到一个字符串中
-     * <p>
      * 不对输入流做关闭处理
      *
      * @param in      要复制的流
@@ -90,7 +85,6 @@ public final class IOStreams {
 
     /**
      * 将给定字符输入流的内容复制到一个字符串中
-     * <p>
      * 不对输入流做关闭处理
      *
      * @param reader 要复制的流
@@ -111,7 +105,6 @@ public final class IOStreams {
 
     /**
      * 将给定输入流的内容复制到给定输出流
-     * <p>
      * 不对流做关闭处理
      *
      * @param in         要复制的输入流
@@ -137,7 +130,6 @@ public final class IOStreams {
 
     /**
      * 将给定输入流的内容复制到给定输出流
-     * <p>
      * 不对流做关闭处理
      *
      * @param in  要复制的输入流
@@ -150,51 +142,8 @@ public final class IOStreams {
     }
 
     /**
-     * 将给定输入流的内容复制到给定文件内
-     * <p>不对输入流做关闭处理
-     *
-     * @param in      输入流
-     * @param outFile 目标文件
-     * @return 复制的字节数
-     * @throws IOException 发生I/O错误时
-     */
-    public static long copy(InputStream in, File outFile) throws IOException {
-        Assert.notNull(in, "输入流不能为空");
-        Assert.notNull(outFile, "目标文件不能为空");
-
-        if (!Files.mkdirsParentFile(outFile)) {
-            throw new TomkitException("创建文件父目录失败 file:" + outFile.getAbsolutePath());
-        }
-        try (OutputStream out = new FileOutputStream(outFile)) {
-            return copy(in, out);
-        }
-    }
-
-    /**
-     * 将给定文件内容复制给输出流
-     * <p>
-     * 不对输出流做关闭处理
-     *
-     * @param inFile 输入文件
-     * @param out    输出流
-     * @return 复制的字节数
-     * @throws IOException 发生I/O异常时
-     */
-    public static long copy(File inFile, OutputStream out) throws IOException {
-        Assert.notNull(inFile, "源文件不能为空");
-        Assert.notNull(out, "输出流不能为空");
-        Assert.state(inFile.exists(), "源文件不存在");
-        Assert.state(inFile.canRead(), "源文件不可读");
-        Assert.state(inFile.isFile(), "源文件必传为文件类型");
-
-        try (InputStream in = new BufferedInputStream(new FileInputStream(inFile))) {
-            return copy(in, out);
-        }
-    }
-
-    /**
      * 将给定字节数组的内容复制到给定的输出流
-     * <p>不对输出流做关闭处理
+     * 不对输出流做关闭处理
      *
      * @param data 要从中复制的字节数组
      * @param out  要复制到的输出流
@@ -210,7 +159,7 @@ public final class IOStreams {
 
     /**
      * 将给定字符串的内容复制到给定的输出流
-     * <p>不对流做关闭处理
+     * 不对流做关闭处理
      *
      * @param data    要复制的字符串
      * @param charset 字节编码
@@ -229,7 +178,7 @@ public final class IOStreams {
 
     /**
      * 将给定字符串的内容复制到给定的输出流，使用UTF-8编码
-     * <p>不对流做关闭处理
+     * 不对流做关闭处理
      *
      * @param in  要复制的字符串
      * @param out 要复制到的输出流
@@ -241,7 +190,6 @@ public final class IOStreams {
 
     /**
      * 将字符输入流内容复制给字符输出流
-     * <p>
      * 不对流做关闭处理
      *
      * @param reader     字符输入流
@@ -267,7 +215,6 @@ public final class IOStreams {
 
     /**
      * 将字符输入流内容复制给字符输出流
-     * <p>
      * 不对流做关闭处理
      *
      * @param reader 字符输入流
@@ -280,47 +227,8 @@ public final class IOStreams {
     }
 
     /**
-     * 将字符输入流内容复制给目标文件
-     *
-     * @param reader  字符输入流
-     * @param outFile 目标文件
-     * @return 复制的字符数
-     * @throws IOException 发生I/O错误时
-     */
-    public static long copy(Reader reader, File outFile) throws IOException {
-        Assert.notNull(reader, "字符输入流不能为空");
-        Assert.notNull(outFile, "目标文件不能为空");
-
-        if (!Files.mkdirsParentFile(outFile)) {
-            throw new TomkitException("创建文件父目录失败 file:" + outFile.getAbsolutePath());
-        }
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(outFile))) {
-            return copy(reader, writer);
-        }
-    }
-
-    /**
-     * 将文件内容复制给字符输出流
-     *
-     * @param inFile 源文件
-     * @param writer 字符输出流
-     * @return 复制的字符数
-     * @throws IOException 发生I/O错误时
-     */
-    public static long copy(File inFile, Writer writer) throws IOException {
-        Assert.notNull(inFile, "源文件不能为空");
-        Assert.notNull(writer, "字符输出流不能为空");
-        Assert.state(inFile.exists(), "源文件不存在");
-        Assert.state(inFile.canRead(), "源文件不可读");
-        Assert.state(inFile.isFile(), "源文件必传为文件类型");
-
-        try (BufferedReader reader = new BufferedReader(new FileReader(inFile))) {
-            return copy(reader, writer);
-        }
-    }
-
-    /**
      * 将字符数组复制给字符输出流
+     * 不对流做关闭处理
      *
      * @param data   字符数组
      * @param writer 字符输出流
@@ -336,6 +244,7 @@ public final class IOStreams {
 
     /**
      * 将字符串复制给字符输出流
+     * 不对流做关闭处理
      *
      * @param data   字符串
      * @param writer 字符输出流
@@ -351,8 +260,8 @@ public final class IOStreams {
 
     /**
      * 将给定输入流的内容范围复制到给定输出流
-     * <p>如果指定的范围超过了输入流的长度，则复制到流的末尾，并返回实际复制的字节数
-     * <p>不对流做关闭处理
+     * 如果指定的范围超过了输入流的长度，则复制到流的末尾，并返回实际复制的字节数
+     * 不对流做关闭处理
      *
      * @param in    要复制的InputStream
      * @param out   要复制到的输出流
@@ -389,7 +298,7 @@ public final class IOStreams {
 
     /**
      * 排干给定输入流的剩余内容
-     * <p>不对流做关闭处理
+     * 不对流做关闭处理
      *
      * @param in 要排干的输入流
      * @return 读取的字节数
