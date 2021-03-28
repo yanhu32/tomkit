@@ -97,16 +97,16 @@ public final class Files {
     }
 
     /**
-     * 将字符输入流内容复制给目标文件
+     * 将阅读器内容复制给目标文件
      * 不对流做关闭处理
      *
-     * @param reader  字符输入流
+     * @param reader  阅读器
      * @param outFile 目标文件
      * @return 复制的字符数
      * @throws IOException 发生I/O错误时
      */
     public static long copy(Reader reader, File outFile) throws IOException {
-        Assert.notNull(reader, "字符输入流不能为空");
+        Assert.notNull(reader, "阅读器不能为空");
         Assert.notNull(outFile, "目标文件不能为空");
 
         if (!Files.mkdirsParentFile(outFile)) {
@@ -118,17 +118,17 @@ public final class Files {
     }
 
     /**
-     * 将文件内容复制给字符输出流
+     * 将文件内容复制给读写器
      * 不对流做关闭处理
      *
      * @param inFile 源文件
-     * @param writer 字符输出流
+     * @param writer 读写器
      * @return 复制的字符数
      * @throws IOException 发生I/O错误时
      */
     public static long copy(File inFile, Writer writer) throws IOException {
         Assert.notNull(inFile, "源文件不能为空");
-        Assert.notNull(writer, "字符输出流不能为空");
+        Assert.notNull(writer, "读写器不能为空");
         Assert.state(inFile.exists(), "源文件不存在");
         Assert.state(inFile.canRead(), "源文件不可读");
         Assert.state(inFile.isFile(), "源文件必传为文件类型");
