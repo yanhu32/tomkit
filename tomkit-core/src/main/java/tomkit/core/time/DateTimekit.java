@@ -13,10 +13,12 @@ import java.util.GregorianCalendar;
 import java.util.TimeZone;
 
 /**
+ * 日期时间工具类
+ *
  * @author yh
  * @since 2021/2/15
  */
-public final class DateTimes {
+public final class DateTimekit {
     /**
      * 默认日期时间格式化
      */
@@ -49,7 +51,7 @@ public final class DateTimes {
     private static final DateTimeFormatter DEFAULT_TIME_FORMATTER =
             DateTimeFormatter.ofPattern(DEFAULT_TIME_STR).withZone(ZONE_ID);
 
-    private DateTimes() {
+    private DateTimekit() {
     }
 
     /**
