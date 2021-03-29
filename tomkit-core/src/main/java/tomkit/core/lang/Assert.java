@@ -153,10 +153,10 @@ public final class Assert {
      * @param text    要检查的字符串
      * @param message 断言失败时使用的异常消息
      * @throws IllegalArgumentException 如果text为空
-     * @see Strings#hasLength
+     * @see StringKit#hasLength
      */
     public static void hasLength(String text, String message) {
-        if (!Strings.hasLength(text)) {
+        if (!StringKit.hasLength(text)) {
             throw new IllegalArgumentException(message);
         }
     }
@@ -167,10 +167,10 @@ public final class Assert {
      * @param text            要检查的字符串
      * @param messageSupplier 如果断言失败，则使用的异常消息的提供者
      * @throws IllegalArgumentException 如果text为空
-     * @see Strings#hasLength
+     * @see StringKit#hasLength
      */
     public static void hasLength(String text, Supplier<String> messageSupplier) {
-        if (!Strings.hasLength(text)) {
+        if (!StringKit.hasLength(text)) {
             throw new IllegalArgumentException(nullSafeGet(messageSupplier));
         }
     }
@@ -181,10 +181,10 @@ public final class Assert {
      * @param text    要检查的字符串
      * @param message 断言失败时使用的异常消息
      * @throws IllegalArgumentException 如果文本不包含有效的文本内容
-     * @see Strings#hasText
+     * @see StringKit#hasText
      */
     public static void hasText(String text, String message) {
-        if (!Strings.hasText(text)) {
+        if (!StringKit.hasText(text)) {
             throw new IllegalArgumentException(message);
         }
     }
@@ -195,10 +195,10 @@ public final class Assert {
      * @param text            要检查的字符串
      * @param messageSupplier 如果断言失败，则使用的异常消息的提供者
      * @throws IllegalArgumentException 如果文本不包含有效的文本内容
-     * @see Strings#hasText
+     * @see StringKit#hasText
      */
     public static void hasText(String text, Supplier<String> messageSupplier) {
-        if (!Strings.hasText(text)) {
+        if (!StringKit.hasText(text)) {
             throw new IllegalArgumentException(nullSafeGet(messageSupplier));
         }
     }
@@ -212,7 +212,7 @@ public final class Assert {
      * @throws IllegalArgumentException 如果文本包含子字符串
      */
     public static void notContains(String textToSearch, String substring, String message) {
-        if (Strings.hasLength(textToSearch) && Strings.hasLength(substring) &&
+        if (StringKit.hasLength(textToSearch) && StringKit.hasLength(substring) &&
                 textToSearch.contains(substring)) {
             throw new IllegalArgumentException(message);
         }
@@ -227,7 +227,7 @@ public final class Assert {
      * @throws IllegalArgumentException 如果文本包含子字符串
      */
     public static void notContains(String textToSearch, String substring, Supplier<String> messageSupplier) {
-        if (Strings.hasLength(textToSearch) && Strings.hasLength(substring) &&
+        if (StringKit.hasLength(textToSearch) && StringKit.hasLength(substring) &&
                 textToSearch.contains(substring)) {
             throw new IllegalArgumentException(nullSafeGet(messageSupplier));
         }
@@ -241,7 +241,7 @@ public final class Assert {
      * @throws IllegalArgumentException 如果对象不为空
      */
     public static void isEmpty(Object object, String message) {
-        if (!Objects.isEmpty(object)) {
+        if (!ObjectKit.isEmpty(object)) {
             throw new IllegalArgumentException(message);
         }
     }
@@ -254,7 +254,7 @@ public final class Assert {
      * @throws IllegalArgumentException 如果对象不为空
      */
     public static void isEmpty(Object object, Supplier<String> messageSupplier) {
-        if (!Objects.isEmpty(object)) {
+        if (!ObjectKit.isEmpty(object)) {
             throw new IllegalArgumentException(nullSafeGet(messageSupplier));
         }
     }
@@ -267,7 +267,7 @@ public final class Assert {
      * @throws IllegalArgumentException 如果对象为空
      */
     public static void notEmpty(Object object, String message) {
-        if (Objects.isEmpty(object)) {
+        if (ObjectKit.isEmpty(object)) {
             throw new IllegalArgumentException(message);
         }
     }
@@ -280,7 +280,7 @@ public final class Assert {
      * @throws IllegalArgumentException 如果对象为空
      */
     public static void notEmpty(Object object, Supplier<String> messageSupplier) {
-        if (Objects.isEmpty(object)) {
+        if (ObjectKit.isEmpty(object)) {
             throw new IllegalArgumentException(nullSafeGet(messageSupplier));
         }
     }
@@ -293,7 +293,7 @@ public final class Assert {
      * @throws IllegalArgumentException 如果数组为空
      */
     public static void notEmpty(Object[] array, String message) {
-        if (Objects.isEmpty(array)) {
+        if (ObjectKit.isEmpty(array)) {
             throw new IllegalArgumentException(message);
         }
     }
@@ -306,7 +306,7 @@ public final class Assert {
      * @throws IllegalArgumentException 如果数组为空
      */
     public static void notEmpty(Object[] array, Supplier<String> messageSupplier) {
-        if (Objects.isEmpty(array)) {
+        if (ObjectKit.isEmpty(array)) {
             throw new IllegalArgumentException(nullSafeGet(messageSupplier));
         }
     }
@@ -353,7 +353,7 @@ public final class Assert {
      * @throws IllegalArgumentException 如果集合为空
      */
     public static void notEmpty(Collection<?> collection, String message) {
-        if (Objects.isEmpty(collection)) {
+        if (ObjectKit.isEmpty(collection)) {
             throw new IllegalArgumentException(message);
         }
     }
@@ -366,7 +366,7 @@ public final class Assert {
      * @throws IllegalArgumentException 如果集合为空
      */
     public static void notEmpty(Collection<?> collection, Supplier<String> messageSupplier) {
-        if (Objects.isEmpty(collection)) {
+        if (ObjectKit.isEmpty(collection)) {
             throw new IllegalArgumentException(nullSafeGet(messageSupplier));
         }
     }
@@ -415,7 +415,7 @@ public final class Assert {
      * @throws IllegalArgumentException 如果Map为空
      */
     public static void notEmpty(Map<?, ?> map, String message) {
-        if (Objects.isEmpty(map)) {
+        if (ObjectKit.isEmpty(map)) {
             throw new IllegalArgumentException(message);
         }
     }
@@ -428,7 +428,7 @@ public final class Assert {
      * @throws IllegalArgumentException 如果Map为空
      */
     public static void notEmpty(Map<?, ?> map, Supplier<String> messageSupplier) {
-        if (Objects.isEmpty(map)) {
+        if (ObjectKit.isEmpty(map)) {
             throw new IllegalArgumentException(nullSafeGet(messageSupplier));
         }
     }
@@ -527,7 +527,7 @@ public final class Assert {
         String className = (obj != null ? obj.getClass().getName() : "null");
         String result = "";
         boolean defaultMessage = true;
-        if (Strings.hasLength(msg)) {
+        if (StringKit.hasLength(msg)) {
             if (endsWithSeparator(msg)) {
                 result = msg + " ";
             } else {
@@ -544,7 +544,7 @@ public final class Assert {
     private static void assignableCheckFailed(Class<?> superType, Class<?> subType, String msg) {
         String result = "";
         boolean defaultMessage = true;
-        if (Strings.hasLength(msg)) {
+        if (StringKit.hasLength(msg)) {
             if (endsWithSeparator(msg)) {
                 result = msg + " ";
             } else {

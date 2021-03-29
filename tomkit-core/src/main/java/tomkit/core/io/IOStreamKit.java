@@ -1,7 +1,7 @@
 package tomkit.core.io;
 
 import tomkit.core.lang.ArrayKit;
-import tomkit.core.lang.Collections;
+import tomkit.core.lang.CollectionKit;
 
 import java.io.*;
 import java.net.HttpURLConnection;
@@ -20,10 +20,12 @@ import java.util.Objects;
 import java.util.function.Consumer;
 
 /**
+ * I/O流工具类
+ *
  * @author yh
  * @since 2021/3/27
  */
-public class IOStreams {
+public class IOStreamKit {
 
     /**
      * 复制方法中使用的默认缓冲区大小
@@ -1490,7 +1492,7 @@ public class IOStreams {
         Objects.requireNonNull(output, "output");
         Objects.requireNonNull(charset, "charset");
 
-        if (Collections.isEmpty(lines)) {
+        if (CollectionKit.isEmpty(lines)) {
             return;
         }
 
@@ -1529,7 +1531,7 @@ public class IOStreams {
         Objects.requireNonNull(lineSeparator, "lineSeparator");
         Objects.requireNonNull(writer, "writer");
 
-        if (Collections.isEmpty(lines)) {
+        if (CollectionKit.isEmpty(lines)) {
             return;
         }
 
@@ -1594,7 +1596,7 @@ public class IOStreams {
      * @throws IOException 如果出现I/O错误
      */
     public static URL resourceToURL(final String name, final ClassLoader classLoader) throws IOException {
-        final URL resource = classLoader == null ? IOStreams.class.getResource(name) : classLoader.getResource(name);
+        final URL resource = classLoader == null ? IOStreamKit.class.getResource(name) : classLoader.getResource(name);
         if (resource == null) {
             throw new IOException("Resource not found: " + name);
         }

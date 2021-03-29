@@ -11,7 +11,7 @@ import java.util.Optional;
  * @author yh
  * @since 2021/1/12
  */
-enum JavaType {
+enum InitJavaType {
     /**
      *
      */
@@ -37,16 +37,16 @@ enum JavaType {
 
     private final Class<?>[] classes;
 
-    JavaType(Class<?> cls) {
+    InitJavaType(Class<?> cls) {
         this.classes = new Class[]{cls};
     }
 
-    JavaType(Class<?> cls0, Class<?> cls1) {
+    InitJavaType(Class<?> cls0, Class<?> cls1) {
         this.classes = new Class[]{cls0, cls1};
     }
 
-    public static Optional<JavaType> get(Class<?> clazz) {
-        return Arrays.stream(JavaType.values())
+    public static Optional<InitJavaType> get(Class<?> clazz) {
+        return Arrays.stream(InitJavaType.values())
                 .filter(type -> type.has(clazz))
                 .findAny();
     }

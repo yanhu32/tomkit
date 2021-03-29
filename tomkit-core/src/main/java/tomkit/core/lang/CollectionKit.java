@@ -8,7 +8,7 @@ import java.util.Collection;
  * @author yh
  * @since 2021/3/26
  */
-public class Collections {
+public class CollectionKit {
 
     public static <E> boolean isEmpty(Collection<E> collection) {
         return null == collection || collection.isEmpty();

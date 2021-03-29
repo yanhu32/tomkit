@@ -11,7 +11,7 @@ import static java.nio.charset.StandardCharsets.*;
  * @author yh
  * @since 2021/3/26
  */
-public class Charsets {
+public class CharsetKit {
 
     public static final Charset SYSTEM_DEFAULT_CHARSET = Charset.defaultCharset();
 

@@ -12,11 +12,11 @@ import java.util.Base64;
  * @author yh
  * @since 2021/3/25
  */
-public final class Base64s {
+public final class Base64Kit {
 
     private static final Charset DEFAULT_CHARSET = StandardCharsets.UTF_8;
 
-    private Base64s() {
+    private Base64Kit() {
     }
 
     /**

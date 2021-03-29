@@ -1,7 +1,7 @@
 package tomkit.core.bean.init;
 
 
-import tomkit.core.lang.Strings;
+import tomkit.core.lang.StringKit;
 import tomkit.core.function.StringConverter;
 
 import java.beans.PropertyDescriptor;
@@ -74,9 +74,9 @@ public final class InitHelper {
             Class<? extends StringConverter<? extends Serializable>> converter = def.converter();
             if (converter == AutoConverter.class) {
                 String format = def.format();
-                JavaType javaType = JavaType.get(field.getType()).orElse(JavaType.VOID);
+                InitJavaType initJavaType = InitJavaType.get(field.getType()).orElse(InitJavaType.VOID);
                 DateTimeFormatter formatter;
-                switch (javaType) {
+                switch (initJavaType) {
 
                     case BOOLEAN:
                         return Boolean.valueOf(value);
@@ -112,24 +112,24 @@ public final class InitHelper {
                         return new BigInteger(value);
 
                     case DATE:
-                        formatter = DateTimeFormatter.ofPattern(Strings.defaultIfEmpty(format, DEFAULT_DATE_TIME_FORMAT));
+                        formatter = DateTimeFormatter.ofPattern(StringKit.defaultIfEmpty(format, DEFAULT_DATE_TIME_FORMAT));
                         return Date.from(LocalDateTime.parse(value, formatter).atZone(ZoneId.systemDefault()).toInstant());
 
                     case LOCAL_DATE:
-                        return LocalDate.parse(value, DateTimeFormatter.ofPattern(Strings.defaultIfEmpty(format, DEFAULT_DATE_FORMAT)));
+                        return LocalDate.parse(value, DateTimeFormatter.ofPattern(StringKit.defaultIfEmpty(format, DEFAULT_DATE_FORMAT)));
 
                     case LOCAL_TIME:
-                        return LocalTime.parse(value, DateTimeFormatter.ofPattern(Strings.defaultIfEmpty(format, DEFAULT_TIME_FORMAT)));
+                        return LocalTime.parse(value, DateTimeFormatter.ofPattern(StringKit.defaultIfEmpty(format, DEFAULT_TIME_FORMAT)));
 
                     case LOCAL_DATE_TIME:
-                        return LocalDateTime.parse(value, DateTimeFormatter.ofPattern(Strings.defaultIfEmpty(format, DEFAULT_DATE_TIME_FORMAT)));
+                        return LocalDateTime.parse(value, DateTimeFormatter.ofPattern(StringKit.defaultIfEmpty(format, DEFAULT_DATE_TIME_FORMAT)));
 
                     case ZONED_DATE_TIME:
-                        formatter = DateTimeFormatter.ofPattern(Strings.defaultIfEmpty(format, DEFAULT_DATE_TIME_FORMAT));
+                        formatter = DateTimeFormatter.ofPattern(StringKit.defaultIfEmpty(format, DEFAULT_DATE_TIME_FORMAT));
                         return ZonedDateTime.of(LocalDateTime.parse(value, formatter), ZoneId.systemDefault());
 
                     case OFFSET_DATE_TIME:
-                        formatter = DateTimeFormatter.ofPattern(Strings.defaultIfEmpty(format, DEFAULT_DATE_TIME_FORMAT));
+                        formatter = DateTimeFormatter.ofPattern(StringKit.defaultIfEmpty(format, DEFAULT_DATE_TIME_FORMAT));
                         return ZonedDateTime.of(LocalDateTime.parse(value, formatter), ZoneId.systemDefault()).toOffsetDateTime();
                     default:
                 }

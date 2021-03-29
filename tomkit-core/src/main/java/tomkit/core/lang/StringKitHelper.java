@@ -13,9 +13,9 @@ import java.util.function.Predicate;
  * @author yh
  * @since 2021/2/4
  */
-public final class StringsHelper {
+public final class StringKitHelper {
 
-    private StringsHelper() {
+    private StringKitHelper() {
     }
 
     public static Builder builder(String value) {
@@ -29,7 +29,7 @@ public final class StringsHelper {
      * @return 字符串构建器
      */
     public static Builder builder(final byte[] bytes) {
-        return new Builder(Strings.toString(bytes));
+        return new Builder(StringKit.toString(bytes));
     }
 
     /**
@@ -40,7 +40,7 @@ public final class StringsHelper {
      * @return 字符串构建器
      */
     public static Builder builder(final byte[] bytes, final Charset charset) {
-        return new Builder(Strings.toString(bytes, charset));
+        return new Builder(StringKit.toString(bytes, charset));
     }
 
     public static class Builder {
@@ -67,7 +67,7 @@ public final class StringsHelper {
          * @return
          */
         public Builder doubleQuote() {
-            value = Strings.doubleQuote(value);
+            value = StringKit.doubleQuote(value);
             return this;
         }
 
@@ -77,7 +77,7 @@ public final class StringsHelper {
          * @return
          */
         public Builder quote() {
-            value = Strings.quote(value);
+            value = StringKit.quote(value);
             return this;
         }
 
@@ -88,7 +88,7 @@ public final class StringsHelper {
          * @return
          */
         public Builder twoFlanks(final String tag) {
-            value = Strings.twoFlanks(value, tag);
+            value = StringKit.twoFlanks(value, tag);
             return this;
         }
 
@@ -98,7 +98,7 @@ public final class StringsHelper {
          * @return
          */
         public Builder trim() {
-            value = Strings.trim(value);
+            value = StringKit.trim(value);
             return this;
         }
 
@@ -121,7 +121,7 @@ public final class StringsHelper {
          * </ul>
          */
         public Builder strip() {
-            value = Strings.strip(value);
+            value = StringKit.strip(value);
             return this;
         }
 
@@ -145,7 +145,7 @@ public final class StringsHelper {
          * </ul>
          */
         public Builder stripAll() {
-            value = Strings.stripAll(value);
+            value = StringKit.stripAll(value);
             return this;
         }
 
@@ -169,7 +169,7 @@ public final class StringsHelper {
          * </ul>
          */
         public Builder stripStart() {
-            value = Strings.stripStart(value);
+            value = StringKit.stripStart(value);
             return this;
         }
 
@@ -193,7 +193,7 @@ public final class StringsHelper {
          * </ul>
          */
         public Builder stripEnd() {
-            value = Strings.stripEnd(value);
+            value = StringKit.stripEnd(value);
             return this;
         }
 
@@ -201,7 +201,7 @@ public final class StringsHelper {
          * 返回传入的字符串，如果为 {@code null} 则返回空串
          */
         public Builder defaultStr() {
-            value = Strings.defaultStr(value);
+            value = StringKit.defaultStr(value);
             return this;
         }
 
@@ -209,7 +209,7 @@ public final class StringsHelper {
          * 返回传入的字符串，如果为 {@code null} 则返回默认值
          */
         public Builder defaultIfNull(final String defaultStr) {
-            value = Strings.defaultIfNull(value, defaultStr);
+            value = StringKit.defaultIfNull(value, defaultStr);
             return this;
         }
 
@@ -217,7 +217,7 @@ public final class StringsHelper {
          * 返回传入的字符串，如果为 {@code null} 或 {@code ""} 则返回默认值
          */
         public Builder defaultIfEmpty(final String defaultStr) {
-            value = Strings.defaultIfEmpty(value, defaultStr);
+            value = StringKit.defaultIfEmpty(value, defaultStr);
             return this;
         }
 
@@ -241,7 +241,7 @@ public final class StringsHelper {
          * </ul>
          */
         public Builder defaultIfBlank(String defaultStr) {
-            value = Strings.defaultIfBlank(value, defaultStr);
+            value = StringKit.defaultIfBlank(value, defaultStr);
             return this;
         }
 
@@ -249,7 +249,7 @@ public final class StringsHelper {
          * 获取字符串中最左边的len个字符
          */
         public Builder left(final int len) {
-            value = Strings.left(value, len);
+            value = StringKit.left(value, len);
             return this;
         }
 
@@ -257,7 +257,7 @@ public final class StringsHelper {
          * 获取字符串中最右边的len个字符
          */
         public Builder right(final int len) {
-            value = Strings.right(value, len);
+            value = StringKit.right(value, len);
             return this;
         }
 
@@ -265,7 +265,7 @@ public final class StringsHelper {
          * 获取字符串中从pos开始len个字符
          */
         public Builder mid(final int pos, final int len) {
-            value = Strings.mid(value, pos, len);
+            value = StringKit.mid(value, pos, len);
             return this;
         }
 
@@ -273,7 +273,7 @@ public final class StringsHelper {
          * 替换字符
          */
         public Builder replace(final char target, final char replacement) {
-            value = Strings.replace(value, target, replacement);
+            value = StringKit.replace(value, target, replacement);
             return this;
         }
 
@@ -281,7 +281,7 @@ public final class StringsHelper {
          * 替换字符序列
          */
         public Builder replace(final CharSequence target, final CharSequence replacement) {
-            value = Strings.replace(value, target, replacement);
+            value = StringKit.replace(value, target, replacement);
             return this;
         }
 
@@ -289,7 +289,7 @@ public final class StringsHelper {
          * 替换满足指定正则的字符序列
          */
         public Builder replaceAll(final String regex, final String replacement) {
-            value = Strings.replaceAll(value, regex, replacement);
+            value = StringKit.replaceAll(value, regex, replacement);
             return this;
         }
 
@@ -297,7 +297,7 @@ public final class StringsHelper {
          * 替换符合的第一个字符序列
          */
         public Builder replaceFirst(final String regex, final String replacement) {
-            value = Strings.replaceFirst(value, regex, replacement);
+            value = StringKit.replaceFirst(value, regex, replacement);
             return this;
         }
 
@@ -305,7 +305,7 @@ public final class StringsHelper {
          * 去除指定字符序列
          */
         public Builder remove(final CharSequence str) {
-            value = Strings.remove(value, str);
+            value = StringKit.remove(value, str);
             return this;
         }
 
@@ -313,7 +313,7 @@ public final class StringsHelper {
          * 去除满足指定正则的字符序列
          */
         public Builder removeAll(final String regex) {
-            value = Strings.removeAll(value, regex);
+            value = StringKit.removeAll(value, regex);
             return this;
         }
 
@@ -321,7 +321,7 @@ public final class StringsHelper {
          * 去除第一个满足指定正则的字符序列
          */
         public Builder removeFirst(final String regex) {
-            value = Strings.removeFirst(value, regex);
+            value = StringKit.removeFirst(value, regex);
             return this;
         }
 
@@ -329,7 +329,7 @@ public final class StringsHelper {
          * 去除最后一个满足指定的字符序列
          */
         public Builder removeLast(final String str) {
-            value = Strings.removeLast(value, str);
+            value = StringKit.removeLast(value, str);
             return this;
         }
 
@@ -337,7 +337,7 @@ public final class StringsHelper {
          * 截取最后一个"."后的部分
          */
         public Builder suffix() {
-            value = Strings.suffix(value);
+            value = StringKit.suffix(value);
             return this;
         }
 
@@ -345,7 +345,7 @@ public final class StringsHelper {
          * 获取最后一个指定字符后的部分
          */
         public Builder suffix(final char separator) {
-            value = Strings.suffix(value, separator);
+            value = StringKit.suffix(value, separator);
             return this;
         }
 
@@ -354,7 +354,7 @@ public final class StringsHelper {
          * 重复一个字符串多次生成一个新字符串
          */
         public Builder repeat(int repeat) {
-            value = Strings.repeat(value, repeat);
+            value = StringKit.repeat(value, repeat);
             return this;
         }
 
@@ -362,7 +362,7 @@ public final class StringsHelper {
          * 右侧填充空格
          */
         public Builder rpad(final int size) {
-            value = Strings.rpad(value, size);
+            value = StringKit.rpad(value, size);
             return this;
         }
 
@@ -370,7 +370,7 @@ public final class StringsHelper {
          * 右侧填充字符
          */
         public Builder rpad(final int size, final char padChar) {
-            value = Strings.rpad(value, size, padChar);
+            value = StringKit.rpad(value, size, padChar);
             return this;
         }
 
@@ -378,7 +378,7 @@ public final class StringsHelper {
          * 右侧填充字符串
          */
         public Builder rpad(final int size, final String padStr) {
-            value = Strings.rpad(value, size, padStr);
+            value = StringKit.rpad(value, size, padStr);
             return this;
         }
 
@@ -391,7 +391,7 @@ public final class StringsHelper {
          * @return
          */
         public Builder lpad(String source, int size) {
-            value = Strings.lpad(value, size);
+            value = StringKit.lpad(value, size);
             return this;
         }
 
@@ -403,7 +403,7 @@ public final class StringsHelper {
          * @return
          */
         public Builder lpad(final int size, final char padChar) {
-            value = Strings.lpad(value, size, padChar);
+            value = StringKit.lpad(value, size, padChar);
             return this;
         }
 
@@ -415,7 +415,7 @@ public final class StringsHelper {
          * @return
          */
         public Builder lpad(final int size, final String padStr) {
-            value = Strings.lpad(value, size, padStr);
+            value = StringKit.lpad(value, size, padStr);
             return this;
         }
 
@@ -425,7 +425,7 @@ public final class StringsHelper {
          * @return
          */
         public Builder upperCase() {
-            value = Strings.upperCase(value);
+            value = StringKit.upperCase(value);
             return this;
         }
 
@@ -433,7 +433,7 @@ public final class StringsHelper {
          * 转大写
          */
         public Builder upperCase(Locale locale) {
-            value = Strings.upperCase(value, locale);
+            value = StringKit.upperCase(value, locale);
             return this;
         }
 
@@ -441,7 +441,7 @@ public final class StringsHelper {
          * 转小写
          */
         public Builder lowerCase() {
-            value = Strings.lowerCase(value);
+            value = StringKit.lowerCase(value);
             return this;
         }
 
@@ -449,7 +449,7 @@ public final class StringsHelper {
          * 转小写
          */
         public Builder lowerCase(final Locale locale) {
-            value = Strings.lowerCase(value, locale);
+            value = StringKit.lowerCase(value, locale);
             return this;
         }
 
@@ -457,7 +457,7 @@ public final class StringsHelper {
          * 大小写互换，大写转小写，小写转大写
          */
         public Builder swapCase() {
-            value = Strings.swapCase(value);
+            value = StringKit.swapCase(value);
             return this;
         }
 
@@ -465,7 +465,7 @@ public final class StringsHelper {
          * 首字母大写
          */
         public Builder capitalize() {
-            value = Strings.capitalize(value);
+            value = StringKit.capitalize(value);
             return this;
         }
 
@@ -473,7 +473,7 @@ public final class StringsHelper {
          * 首字母小写
          */
         public Builder uncapitalize() {
-            value = Strings.uncapitalize(value);
+            value = StringKit.uncapitalize(value);
             return this;
         }
 
@@ -481,7 +481,7 @@ public final class StringsHelper {
          * 下划线命名转驼峰命名，字符串长度需大于2
          */
         public Builder underscoreToCamelCase() {
-            value = Strings.underscoreToCamelCase(value);
+            value = StringKit.underscoreToCamelCase(value);
             return this;
         }
 
@@ -489,7 +489,7 @@ public final class StringsHelper {
          * 驼峰命名转下划线命名，字符串长度需大于2
          */
         public Builder camelToUnderscoreCase() {
-            value = Strings.camelToUnderscoreCase(value);
+            value = StringKit.camelToUnderscoreCase(value);
             return this;
         }
 
@@ -497,7 +497,7 @@ public final class StringsHelper {
          * 反转字符串
          */
         public Builder reverse() {
-            value = Strings.reverse(value);
+            value = StringKit.reverse(value);
             return this;
         }
 
@@ -505,7 +505,7 @@ public final class StringsHelper {
          * 省略字符串
          */
         public Builder abbreviate(final int maxWidth) {
-            value = Strings.abbreviate(value, maxWidth);
+            value = StringKit.abbreviate(value, maxWidth);
             return this;
         }
 
@@ -513,7 +513,7 @@ public final class StringsHelper {
          * 返回规范化的空格参数字符串，删除开头和结尾的空格，然后用单个空格替换空白字符序列。
          */
         public Builder normalizeSpace() {
-            value = Strings.normalizeSpace(value);
+            value = StringKit.normalizeSpace(value);
             return this;
         }
 
@@ -537,14 +537,14 @@ public final class StringsHelper {
          * 判断字符序列是否为 {@code null} 或 {@code ""}
          */
         public boolean isEmpty() {
-            return Strings.isEmpty(value);
+            return StringKit.isEmpty(value);
         }
 
         /**
          * 判断字符序列是否不为 {@code null} 或 {@code ""}
          */
         public boolean isNotEmpty() {
-            return Strings.isNotEmpty(value);
+            return StringKit.isNotEmpty(value);
         }
 
         /**
@@ -552,7 +552,7 @@ public final class StringsHelper {
          * {@code LINE_SEPARATOR}, {@code PARAGRAPH_SEPARATOR})
          */
         public boolean isSpace() {
-            return Strings.isSpace(value);
+            return StringKit.isSpace(value);
         }
 
         /**
@@ -560,7 +560,7 @@ public final class StringsHelper {
          * {@code LINE_SEPARATOR}, {@code PARAGRAPH_SEPARATOR})
          */
         public boolean isNotSpace() {
-            return Strings.isNotSpace(value);
+            return StringKit.isNotSpace(value);
         }
 
         /**
@@ -583,7 +583,7 @@ public final class StringsHelper {
          * </ul>
          */
         public boolean isBlank() {
-            return Strings.isBlank(value);
+            return StringKit.isBlank(value);
         }
 
         /**
@@ -606,14 +606,14 @@ public final class StringsHelper {
          * </ul>
          */
         public boolean isNotBlank() {
-            return Strings.isNotBlank(value);
+            return StringKit.isNotBlank(value);
         }
 
         /**
          * 判断字符序列是否存在非空白字符
          */
         public boolean hasText() {
-            return Strings.hasText(value);
+            return StringKit.hasText(value);
         }
 
         /**
@@ -638,266 +638,266 @@ public final class StringsHelper {
          * </ul>
          */
         public boolean hasWhitespace() {
-            return Strings.hasWhitespace(value);
+            return StringKit.hasWhitespace(value);
         }
 
         /**
          * 判断字符序列长度是否大于
          */
         public boolean hasLength() {
-            return Strings.hasLength(value);
+            return StringKit.hasLength(value);
         }
 
         /**
          * 判断是否符合给定谓语表达式
          */
         public boolean test(final Predicate<String> predicate) {
-            return Strings.test(value, predicate);
+            return StringKit.test(value, predicate);
         }
 
         /**
          * 判断目标字符串是否包含指定字符序列
          */
         public boolean contains(final CharSequence x) {
-            return Strings.contains(value, x);
+            return StringKit.contains(value, x);
         }
 
         /**
          * 是否含有指定字符
          */
         public boolean contains(final char c) {
-            return Strings.contains(value, c);
+            return StringKit.contains(value, c);
         }
 
         /**
          * 是否匹配正则表达式
          */
         public boolean matches(final String regex) {
-            return Strings.matches(value, regex);
+            return StringKit.matches(value, regex);
         }
 
         /**
          * 以...开始
          */
         public boolean startsWith(final String prefix) {
-            return Strings.startsWith(value, prefix);
+            return StringKit.startsWith(value, prefix);
         }
 
         /**
          * 以...开始（不区分大小写）
          */
         public boolean startsWithIgnoreCase(final String prefix) {
-            return Strings.startsWithIgnoreCase(value, prefix);
+            return StringKit.startsWithIgnoreCase(value, prefix);
         }
 
         /**
          * 以...结尾
          */
         public boolean endsWith(final String suffix) {
-            return Strings.endsWith(value, suffix);
+            return StringKit.endsWith(value, suffix);
         }
 
         /**
          * 以...结束（不区分大小写）
          */
         public boolean endsWithIgnoreCase(final String suffix) {
-            return Strings.endsWithIgnoreCase(value, suffix);
+            return StringKit.endsWithIgnoreCase(value, suffix);
         }
 
         /**
          * 判断a是否等于b
          */
         public boolean equals(final CharSequence b) {
-            return Strings.equals(value, b);
+            return StringKit.equals(value, b);
         }
 
         /**
          * 判断a是否等于b，不区分大小写
          */
         public boolean equalsIgnoreCase(final String b) {
-            return Strings.equalsIgnoreCase(value, b);
+            return StringKit.equalsIgnoreCase(value, b);
         }
 
         /**
          * 判断a是否不等于b
          */
         public boolean notEquals(final String b) {
-            return Strings.notEquals(value, b);
+            return StringKit.notEquals(value, b);
         }
 
         /**
          * 判断a大于b
          */
         public boolean gt(final String b) {
-            return Strings.gt(value, b);
+            return StringKit.gt(value, b);
         }
 
         /**
          * 判断a小于b
          */
         public boolean lt(final String b) {
-            return Strings.lt(value, b);
+            return StringKit.lt(value, b);
         }
 
         /**
          * 判断a的长度等于b的长度
          */
         public boolean lengthEq(final CharSequence b) {
-            return Strings.lengthEq(value, b);
+            return StringKit.lengthEq(value, b);
         }
 
         /**
          * 判断a的长度大于b的长度
          */
         public boolean lengthGt(final CharSequence b) {
-            return Strings.lengthGt(value, b);
+            return StringKit.lengthGt(value, b);
         }
 
         /**
          * 判断a的长度大于等于b的长度
          */
         public boolean lengthGte(final CharSequence b) {
-            return Strings.lengthGte(value, b);
+            return StringKit.lengthGte(value, b);
         }
 
         /**
          * 判断a的长度小于b的长度
          */
         public boolean lengthLt(final CharSequence b) {
-            return Strings.lengthLt(value, b);
+            return StringKit.lengthLt(value, b);
         }
 
         /**
          * 判断a的长度小于等于b的长度
          */
         public boolean lengthLte(final CharSequence b) {
-            return Strings.lengthLte(value, b);
+            return StringKit.lengthLte(value, b);
         }
 
         /**
          * 字符串转换其他对象
          */
         public <T> Optional<T> map(final Function<String, T> fun) {
-            return Strings.map(value, fun);
+            return StringKit.map(value, fun);
         }
 
         /**
          * 字符串转换数字
          */
         public <N extends Number> Optional<N> toNumber(final Function<String, N> fun) {
-            return Strings.toNumber(value, fun);
+            return StringKit.toNumber(value, fun);
         }
 
         /**
          * 将字符串转为字节数组，使用utf-8编码
          */
         public ByteBuffer getByteBuffer() {
-            return Strings.getByteBuffer(value);
+            return StringKit.getByteBuffer(value);
         }
 
         /**
          * 将字符串转为字节数组
          */
         public ByteBuffer getByteBuffer(final Charset charset) {
-            return Strings.getByteBuffer(value, charset);
+            return StringKit.getByteBuffer(value, charset);
         }
 
         /**
          * 将字符串转为字节数组，使用utf-8编码
          */
         public byte[] getBytes() {
-            return Strings.getBytes(value);
+            return StringKit.getBytes(value);
         }
 
         /**
          * 将字符串转为字节数组
          */
         public byte[] getBytes(final Charset charset) {
-            return Strings.getBytes(value, charset);
+            return StringKit.getBytes(value, charset);
         }
 
         /**
          * 字符串长度
          */
         public int length() {
-            return Strings.length(value);
+            return StringKit.length(value);
         }
 
         /**
          * 子字符串出现的次数
          */
         public int countMatches(final String sub) {
-            return Strings.countMatches(value, sub);
+            return StringKit.countMatches(value, sub);
         }
 
         /**
          * 检查字符串是否以指定字符串数组中的任何一个结尾
          */
         public boolean endsWithAny(final String[] searchStrings) {
-            return Strings.endsWithAny(value, searchStrings);
+            return StringKit.endsWithAny(value, searchStrings);
         }
 
         /**
          * 判断字符序列的所有字符是否满足给定判断条件
          */
         public boolean isCharPredicate(final Predicate<Character> predicate) {
-            return Strings.isCharPredicate(value, predicate);
+            return StringKit.isCharPredicate(value, predicate);
         }
 
         /**
          * 是否只包含小写字符
          */
         public boolean isLowerCase() {
-            return Strings.isLowerCase(value);
+            return StringKit.isLowerCase(value);
         }
 
         /**
          * 是否只包含大写字符
          */
         public boolean isUpperCase() {
-            return Strings.isUpperCase(value);
+            return StringKit.isUpperCase(value);
         }
 
         /**
          * 检查字符串是否只包含unicode字母
          */
         public boolean isLetter() {
-            return Strings.isLetter(value);
+            return StringKit.isLetter(value);
         }
 
         /**
          * 检查字符串是否只包含unicode数字，小数点不是unicode数字并返回 {@code false}
          */
         public boolean isDigit() {
-            return Strings.isDigit(value);
+            return StringKit.isDigit(value);
         }
 
         /**
          * 检查字符串是否只包含unicode字母或数字
          */
         public boolean isLetterOrDigit() {
-            return Strings.isLetterOrDigit(value);
+            return StringKit.isLetterOrDigit(value);
         }
 
         /**
          * 检查字符串是否只包含unicode空格
          */
         public boolean isSpaceChar() {
-            return Strings.isSpaceChar(value);
+            return StringKit.isSpaceChar(value);
         }
 
         /**
          * 检查字符串是否只包含ASCII可打印字符
          */
         public boolean isAsciiPrintable() {
-            return Strings.isAsciiPrintable(value);
+            return StringKit.isAsciiPrintable(value);
         }
 
         /**
          * 检查字符串是否只包含ASCII控制字符
          */
         public boolean isAsciiControl() {
-            return Strings.isAsciiControl(value);
+            return StringKit.isAsciiControl(value);
         }
 
         /**
@@ -922,14 +922,14 @@ public final class StringsHelper {
          * </ul>
          */
         public boolean isWhitespace() {
-            return Strings.isWhitespace(value);
+            return StringKit.isWhitespace(value);
         }
 
         /**
          * 判断字符序列内所有字符是否都在Unicode中有定义
          */
         public boolean isDefined() {
-            return Strings.isDefined(value);
+            return StringKit.isDefined(value);
         }
 
     }
