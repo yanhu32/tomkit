@@ -335,7 +335,7 @@ public class IOStreamkit {
      */
     public static long copy(final Reader reader, final Writer writer)
             throws IOException {
-        return copy(reader, writer, new char[DEFAULT_BUFFER_SIZE / 2]);
+        return copy(reader, writer, new char[DEFAULT_BUFFER_SIZE]);
     }
 
     /**
@@ -396,7 +396,7 @@ public class IOStreamkit {
      */
     public static long copy(final Reader reader, final Writer writer, final long inputOffset, final long length)
             throws IOException {
-        return copy(reader, writer, inputOffset, length, new char[DEFAULT_BUFFER_SIZE / 2]);
+        return copy(reader, writer, inputOffset, length, new char[DEFAULT_BUFFER_SIZE]);
     }
 
     /**
@@ -457,7 +457,7 @@ public class IOStreamkit {
      * @throws IOException          如果出现I/O错误
      */
     public static long copy(final Reader reader, final Appendable appendable) throws IOException {
-        return copy(reader, appendable, CharBuffer.allocate(DEFAULT_BUFFER_SIZE / 2));
+        return copy(reader, appendable, CharBuffer.allocate(DEFAULT_BUFFER_SIZE));
     }
 
     /**
@@ -553,8 +553,8 @@ public class IOStreamkit {
     public static String copyToString(final Reader reader) throws IOException {
         Objects.requireNonNull(reader, "reader");
 
-        StringBuilder builder = new StringBuilder(DEFAULT_BUFFER_SIZE / 2);
-        char[] buffer = new char[DEFAULT_BUFFER_SIZE / 2];
+        StringBuilder builder = new StringBuilder(DEFAULT_BUFFER_SIZE);
+        char[] buffer = new char[DEFAULT_BUFFER_SIZE];
         int readLen;
         while ((readLen = reader.read(buffer)) != EOF) {
             builder.append(buffer, 0, readLen);
@@ -1088,7 +1088,7 @@ public class IOStreamkit {
 
     /**
      * 消耗Reader阅读器的内容并忽略内容
-     * 缓冲区大小为{@link #DEFAULT_BUFFER_SIZE}/2
+     * 缓冲区大小为{@link #DEFAULT_BUFFER_SIZE}
      *
      * @param reader 要读取的阅读器
      * @return 复制的字节数，如果input为null则返回0
@@ -1099,7 +1099,7 @@ public class IOStreamkit {
 
         long count = 0;
         int n;
-        char[] chars = new char[DEFAULT_BUFFER_SIZE / 2];
+        char[] chars = new char[DEFAULT_BUFFER_SIZE];
         while ((n = reader.read(chars)) != EOF) {
             count += n;
         }
@@ -1457,7 +1457,7 @@ public class IOStreamkit {
             int length = data.length;
             int offset = 0;
             while (length > 0) {
-                final int chunk = Math.min(length, DEFAULT_BUFFER_SIZE / 2);
+                final int chunk = Math.min(length, DEFAULT_BUFFER_SIZE);
                 output.write(data, offset, chunk);
                 length -= chunk;
                 offset += chunk;
