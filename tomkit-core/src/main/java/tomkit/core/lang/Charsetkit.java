@@ -11,7 +11,7 @@ import static java.nio.charset.StandardCharsets.*;
  * @author yh
  * @since 2021/3/26
  */
-public class CharsetKit {
+public class Charsetkit {
 
     public static final Charset SYSTEM_DEFAULT_CHARSET = Charset.defaultCharset();
 
@@ -106,7 +106,7 @@ public class CharsetKit {
      * @param charsetName 字符编码名称
      * @return 字符编码名称是否合法
      */
-    public static boolean isCharset(String charsetName) {
+    public static boolean isCharset(final String charsetName) {
         if (null == charsetName) {
             return false;
         }

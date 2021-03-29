@@ -1,7 +1,7 @@
 package tomkit.core.io;
 
-import tomkit.core.lang.ArrayKit;
-import tomkit.core.lang.CollectionKit;
+import tomkit.core.lang.Arraykit;
+import tomkit.core.lang.Collectionkit;
 
 import java.io.*;
 import java.net.HttpURLConnection;
@@ -25,7 +25,7 @@ import java.util.function.Consumer;
  * @author yh
  * @since 2021/3/27
  */
-public class IOStreamKit {
+public class IOStreamkit {
 
     /**
      * 复制方法中使用的默认缓冲区大小
@@ -1423,7 +1423,7 @@ public class IOStreamKit {
             throws IOException {
         Objects.requireNonNull(output, "output");
 
-        if (ArrayKit.isNotEmpty(data)) {
+        if (Arraykit.isNotEmpty(data)) {
             int length = data.length;
             int offset = 0;
             while (length > 0) {
@@ -1449,7 +1449,7 @@ public class IOStreamKit {
             throws IOException {
         Objects.requireNonNull(output, "output");
 
-        if (ArrayKit.isNotEmpty(data)) {
+        if (Arraykit.isNotEmpty(data)) {
             int length = data.length;
             int offset = 0;
             while (length > 0) {
@@ -1492,7 +1492,7 @@ public class IOStreamKit {
         Objects.requireNonNull(output, "output");
         Objects.requireNonNull(charset, "charset");
 
-        if (CollectionKit.isEmpty(lines)) {
+        if (Collectionkit.isEmpty(lines)) {
             return;
         }
 
@@ -1531,7 +1531,7 @@ public class IOStreamKit {
         Objects.requireNonNull(lineSeparator, "lineSeparator");
         Objects.requireNonNull(writer, "writer");
 
-        if (CollectionKit.isEmpty(lines)) {
+        if (Collectionkit.isEmpty(lines)) {
             return;
         }
 
@@ -1596,7 +1596,7 @@ public class IOStreamKit {
      * @throws IOException 如果出现I/O错误
      */
     public static URL resourceToURL(final String name, final ClassLoader classLoader) throws IOException {
-        final URL resource = classLoader == null ? IOStreamKit.class.getResource(name) : classLoader.getResource(name);
+        final URL resource = classLoader == null ? IOStreamkit.class.getResource(name) : classLoader.getResource(name);
         if (resource == null) {
             throw new IOException("Resource not found: " + name);
         }

@@ -13,9 +13,9 @@ import java.util.function.Predicate;
  * @author yh
  * @since 2021/2/4
  */
-public final class StringKitHelper {
+public final class StringkitHelper {
 
-    private StringKitHelper() {
+    private StringkitHelper() {
     }
 
     public static Builder builder(String value) {
@@ -29,7 +29,7 @@ public final class StringKitHelper {
      * @return 字符串构建器
      */
     public static Builder builder(final byte[] bytes) {
-        return new Builder(StringKit.toString(bytes));
+        return new Builder(Stringkit.toString(bytes));
     }
 
     /**
@@ -40,7 +40,7 @@ public final class StringKitHelper {
      * @return 字符串构建器
      */
     public static Builder builder(final byte[] bytes, final Charset charset) {
-        return new Builder(StringKit.toString(bytes, charset));
+        return new Builder(Stringkit.toString(bytes, charset));
     }
 
     public static class Builder {
@@ -67,7 +67,7 @@ public final class StringKitHelper {
          * @return
          */
         public Builder doubleQuote() {
-            value = StringKit.doubleQuote(value);
+            value = Stringkit.doubleQuote(value);
             return this;
         }
 
@@ -77,7 +77,7 @@ public final class StringKitHelper {
          * @return
          */
         public Builder quote() {
-            value = StringKit.quote(value);
+            value = Stringkit.quote(value);
             return this;
         }
 
@@ -88,7 +88,7 @@ public final class StringKitHelper {
          * @return
          */
         public Builder twoFlanks(final String tag) {
-            value = StringKit.twoFlanks(value, tag);
+            value = Stringkit.twoFlanks(value, tag);
             return this;
         }
 
@@ -98,7 +98,7 @@ public final class StringKitHelper {
          * @return
          */
         public Builder trim() {
-            value = StringKit.trim(value);
+            value = Stringkit.trim(value);
             return this;
         }
 
@@ -121,7 +121,7 @@ public final class StringKitHelper {
          * </ul>
          */
         public Builder strip() {
-            value = StringKit.strip(value);
+            value = Stringkit.strip(value);
             return this;
         }
 
@@ -145,7 +145,7 @@ public final class StringKitHelper {
          * </ul>
          */
         public Builder stripAll() {
-            value = StringKit.stripAll(value);
+            value = Stringkit.stripAll(value);
             return this;
         }
 
@@ -169,7 +169,7 @@ public final class StringKitHelper {
          * </ul>
          */
         public Builder stripStart() {
-            value = StringKit.stripStart(value);
+            value = Stringkit.stripStart(value);
             return this;
         }
 
@@ -193,7 +193,7 @@ public final class StringKitHelper {
          * </ul>
          */
         public Builder stripEnd() {
-            value = StringKit.stripEnd(value);
+            value = Stringkit.stripEnd(value);
             return this;
         }
 
@@ -201,7 +201,7 @@ public final class StringKitHelper {
          * 返回传入的字符串，如果为 {@code null} 则返回空串
          */
         public Builder defaultStr() {
-            value = StringKit.defaultStr(value);
+            value = Stringkit.defaultStr(value);
             return this;
         }
 
@@ -209,7 +209,7 @@ public final class StringKitHelper {
          * 返回传入的字符串，如果为 {@code null} 则返回默认值
          */
         public Builder defaultIfNull(final String defaultStr) {
-            value = StringKit.defaultIfNull(value, defaultStr);
+            value = Stringkit.defaultIfNull(value, defaultStr);
             return this;
         }
 
@@ -217,7 +217,7 @@ public final class StringKitHelper {
          * 返回传入的字符串，如果为 {@code null} 或 {@code ""} 则返回默认值
          */
         public Builder defaultIfEmpty(final String defaultStr) {
-            value = StringKit.defaultIfEmpty(value, defaultStr);
+            value = Stringkit.defaultIfEmpty(value, defaultStr);
             return this;
         }
 
@@ -241,7 +241,7 @@ public final class StringKitHelper {
          * </ul>
          */
         public Builder defaultIfBlank(String defaultStr) {
-            value = StringKit.defaultIfBlank(value, defaultStr);
+            value = Stringkit.defaultIfBlank(value, defaultStr);
             return this;
         }
 
@@ -249,7 +249,7 @@ public final class StringKitHelper {
          * 获取字符串中最左边的len个字符
          */
         public Builder left(final int len) {
-            value = StringKit.left(value, len);
+            value = Stringkit.left(value, len);
             return this;
         }
 
@@ -257,7 +257,7 @@ public final class StringKitHelper {
          * 获取字符串中最右边的len个字符
          */
         public Builder right(final int len) {
-            value = StringKit.right(value, len);
+            value = Stringkit.right(value, len);
             return this;
         }
 
@@ -265,7 +265,7 @@ public final class StringKitHelper {
          * 获取字符串中从pos开始len个字符
          */
         public Builder mid(final int pos, final int len) {
-            value = StringKit.mid(value, pos, len);
+            value = Stringkit.mid(value, pos, len);
             return this;
         }
 
@@ -273,7 +273,7 @@ public final class StringKitHelper {
          * 替换字符
          */
         public Builder replace(final char target, final char replacement) {
-            value = StringKit.replace(value, target, replacement);
+            value = Stringkit.replace(value, target, replacement);
             return this;
         }
 
@@ -281,7 +281,7 @@ public final class StringKitHelper {
          * 替换字符序列
          */
         public Builder replace(final CharSequence target, final CharSequence replacement) {
-            value = StringKit.replace(value, target, replacement);
+            value = Stringkit.replace(value, target, replacement);
             return this;
         }
 
@@ -289,7 +289,7 @@ public final class StringKitHelper {
          * 替换满足指定正则的字符序列
          */
         public Builder replaceAll(final String regex, final String replacement) {
-            value = StringKit.replaceAll(value, regex, replacement);
+            value = Stringkit.replaceAll(value, regex, replacement);
             return this;
         }
 
@@ -297,7 +297,7 @@ public final class StringKitHelper {
          * 替换符合的第一个字符序列
          */
         public Builder replaceFirst(final String regex, final String replacement) {
-            value = StringKit.replaceFirst(value, regex, replacement);
+            value = Stringkit.replaceFirst(value, regex, replacement);
             return this;
         }
 
@@ -305,7 +305,7 @@ public final class StringKitHelper {
          * 去除指定字符序列
          */
         public Builder remove(final CharSequence str) {
-            value = StringKit.remove(value, str);
+            value = Stringkit.remove(value, str);
             return this;
         }
 
@@ -313,7 +313,7 @@ public final class StringKitHelper {
          * 去除满足指定正则的字符序列
          */
         public Builder removeAll(final String regex) {
-            value = StringKit.removeAll(value, regex);
+            value = Stringkit.removeAll(value, regex);
             return this;
         }
 
@@ -321,7 +321,7 @@ public final class StringKitHelper {
          * 去除第一个满足指定正则的字符序列
          */
         public Builder removeFirst(final String regex) {
-            value = StringKit.removeFirst(value, regex);
+            value = Stringkit.removeFirst(value, regex);
             return this;
         }
 
@@ -329,7 +329,7 @@ public final class StringKitHelper {
          * 去除最后一个满足指定的字符序列
          */
         public Builder removeLast(final String str) {
-            value = StringKit.removeLast(value, str);
+            value = Stringkit.removeLast(value, str);
             return this;
         }
 
@@ -337,7 +337,7 @@ public final class StringKitHelper {
          * 截取最后一个"."后的部分
          */
         public Builder suffix() {
-            value = StringKit.suffix(value);
+            value = Stringkit.suffix(value);
             return this;
         }
 
@@ -345,7 +345,7 @@ public final class StringKitHelper {
          * 获取最后一个指定字符后的部分
          */
         public Builder suffix(final char separator) {
-            value = StringKit.suffix(value, separator);
+            value = Stringkit.suffix(value, separator);
             return this;
         }
 
@@ -354,7 +354,7 @@ public final class StringKitHelper {
          * 重复一个字符串多次生成一个新字符串
          */
         public Builder repeat(int repeat) {
-            value = StringKit.repeat(value, repeat);
+            value = Stringkit.repeat(value, repeat);
             return this;
         }
 
@@ -362,7 +362,7 @@ public final class StringKitHelper {
          * 右侧填充空格
          */
         public Builder rpad(final int size) {
-            value = StringKit.rpad(value, size);
+            value = Stringkit.rpad(value, size);
             return this;
         }
 
@@ -370,7 +370,7 @@ public final class StringKitHelper {
          * 右侧填充字符
          */
         public Builder rpad(final int size, final char padChar) {
-            value = StringKit.rpad(value, size, padChar);
+            value = Stringkit.rpad(value, size, padChar);
             return this;
         }
 
@@ -378,7 +378,7 @@ public final class StringKitHelper {
          * 右侧填充字符串
          */
         public Builder rpad(final int size, final String padStr) {
-            value = StringKit.rpad(value, size, padStr);
+            value = Stringkit.rpad(value, size, padStr);
             return this;
         }
 
@@ -391,7 +391,7 @@ public final class StringKitHelper {
          * @return
          */
         public Builder lpad(String source, int size) {
-            value = StringKit.lpad(value, size);
+            value = Stringkit.lpad(value, size);
             return this;
         }
 
@@ -403,7 +403,7 @@ public final class StringKitHelper {
          * @return
          */
         public Builder lpad(final int size, final char padChar) {
-            value = StringKit.lpad(value, size, padChar);
+            value = Stringkit.lpad(value, size, padChar);
             return this;
         }
 
@@ -415,7 +415,7 @@ public final class StringKitHelper {
          * @return
          */
         public Builder lpad(final int size, final String padStr) {
-            value = StringKit.lpad(value, size, padStr);
+            value = Stringkit.lpad(value, size, padStr);
             return this;
         }
 
@@ -425,7 +425,7 @@ public final class StringKitHelper {
          * @return
          */
         public Builder upperCase() {
-            value = StringKit.upperCase(value);
+            value = Stringkit.upperCase(value);
             return this;
         }
 
@@ -433,7 +433,7 @@ public final class StringKitHelper {
          * 转大写
          */
         public Builder upperCase(Locale locale) {
-            value = StringKit.upperCase(value, locale);
+            value = Stringkit.upperCase(value, locale);
             return this;
         }
 
@@ -441,7 +441,7 @@ public final class StringKitHelper {
          * 转小写
          */
         public Builder lowerCase() {
-            value = StringKit.lowerCase(value);
+            value = Stringkit.lowerCase(value);
             return this;
         }
 
@@ -449,7 +449,7 @@ public final class StringKitHelper {
          * 转小写
          */
         public Builder lowerCase(final Locale locale) {
-            value = StringKit.lowerCase(value, locale);
+            value = Stringkit.lowerCase(value, locale);
             return this;
         }
 
@@ -457,7 +457,7 @@ public final class StringKitHelper {
          * 大小写互换，大写转小写，小写转大写
          */
         public Builder swapCase() {
-            value = StringKit.swapCase(value);
+            value = Stringkit.swapCase(value);
             return this;
         }
 
@@ -465,7 +465,7 @@ public final class StringKitHelper {
          * 首字母大写
          */
         public Builder capitalize() {
-            value = StringKit.capitalize(value);
+            value = Stringkit.capitalize(value);
             return this;
         }
 
@@ -473,7 +473,7 @@ public final class StringKitHelper {
          * 首字母小写
          */
         public Builder uncapitalize() {
-            value = StringKit.uncapitalize(value);
+            value = Stringkit.uncapitalize(value);
             return this;
         }
 
@@ -481,7 +481,7 @@ public final class StringKitHelper {
          * 下划线命名转驼峰命名，字符串长度需大于2
          */
         public Builder underscoreToCamelCase() {
-            value = StringKit.underscoreToCamelCase(value);
+            value = Stringkit.underscoreToCamelCase(value);
             return this;
         }
 
@@ -489,7 +489,7 @@ public final class StringKitHelper {
          * 驼峰命名转下划线命名，字符串长度需大于2
          */
         public Builder camelToUnderscoreCase() {
-            value = StringKit.camelToUnderscoreCase(value);
+            value = Stringkit.camelToUnderscoreCase(value);
             return this;
         }
 
@@ -497,7 +497,7 @@ public final class StringKitHelper {
          * 反转字符串
          */
         public Builder reverse() {
-            value = StringKit.reverse(value);
+            value = Stringkit.reverse(value);
             return this;
         }
 
@@ -505,7 +505,7 @@ public final class StringKitHelper {
          * 省略字符串
          */
         public Builder abbreviate(final int maxWidth) {
-            value = StringKit.abbreviate(value, maxWidth);
+            value = Stringkit.abbreviate(value, maxWidth);
             return this;
         }
 
@@ -513,7 +513,7 @@ public final class StringKitHelper {
          * 返回规范化的空格参数字符串，删除开头和结尾的空格，然后用单个空格替换空白字符序列。
          */
         public Builder normalizeSpace() {
-            value = StringKit.normalizeSpace(value);
+            value = Stringkit.normalizeSpace(value);
             return this;
         }
 
@@ -537,14 +537,14 @@ public final class StringKitHelper {
          * 判断字符序列是否为 {@code null} 或 {@code ""}
          */
         public boolean isEmpty() {
-            return StringKit.isEmpty(value);
+            return Stringkit.isEmpty(value);
         }
 
         /**
          * 判断字符序列是否不为 {@code null} 或 {@code ""}
          */
         public boolean isNotEmpty() {
-            return StringKit.isNotEmpty(value);
+            return Stringkit.isNotEmpty(value);
         }
 
         /**
@@ -552,7 +552,7 @@ public final class StringKitHelper {
          * {@code LINE_SEPARATOR}, {@code PARAGRAPH_SEPARATOR})
          */
         public boolean isSpace() {
-            return StringKit.isSpace(value);
+            return Stringkit.isSpace(value);
         }
 
         /**
@@ -560,7 +560,7 @@ public final class StringKitHelper {
          * {@code LINE_SEPARATOR}, {@code PARAGRAPH_SEPARATOR})
          */
         public boolean isNotSpace() {
-            return StringKit.isNotSpace(value);
+            return Stringkit.isNotSpace(value);
         }
 
         /**
@@ -583,7 +583,7 @@ public final class StringKitHelper {
          * </ul>
          */
         public boolean isBlank() {
-            return StringKit.isBlank(value);
+            return Stringkit.isBlank(value);
         }
 
         /**
@@ -606,14 +606,14 @@ public final class StringKitHelper {
          * </ul>
          */
         public boolean isNotBlank() {
-            return StringKit.isNotBlank(value);
+            return Stringkit.isNotBlank(value);
         }
 
         /**
          * 判断字符序列是否存在非空白字符
          */
         public boolean hasText() {
-            return StringKit.hasText(value);
+            return Stringkit.hasText(value);
         }
 
         /**
@@ -638,266 +638,266 @@ public final class StringKitHelper {
          * </ul>
          */
         public boolean hasWhitespace() {
-            return StringKit.hasWhitespace(value);
+            return Stringkit.hasWhitespace(value);
         }
 
         /**
          * 判断字符序列长度是否大于
          */
         public boolean hasLength() {
-            return StringKit.hasLength(value);
+            return Stringkit.hasLength(value);
         }
 
         /**
          * 判断是否符合给定谓语表达式
          */
         public boolean test(final Predicate<String> predicate) {
-            return StringKit.test(value, predicate);
+            return Stringkit.test(value, predicate);
         }
 
         /**
          * 判断目标字符串是否包含指定字符序列
          */
         public boolean contains(final CharSequence x) {
-            return StringKit.contains(value, x);
+            return Stringkit.contains(value, x);
         }
 
         /**
          * 是否含有指定字符
          */
         public boolean contains(final char c) {
-            return StringKit.contains(value, c);
+            return Stringkit.contains(value, c);
         }
 
         /**
          * 是否匹配正则表达式
          */
         public boolean matches(final String regex) {
-            return StringKit.matches(value, regex);
+            return Stringkit.matches(value, regex);
         }
 
         /**
          * 以...开始
          */
         public boolean startsWith(final String prefix) {
-            return StringKit.startsWith(value, prefix);
+            return Stringkit.startsWith(value, prefix);
         }
 
         /**
          * 以...开始（不区分大小写）
          */
         public boolean startsWithIgnoreCase(final String prefix) {
-            return StringKit.startsWithIgnoreCase(value, prefix);
+            return Stringkit.startsWithIgnoreCase(value, prefix);
         }
 
         /**
          * 以...结尾
          */
         public boolean endsWith(final String suffix) {
-            return StringKit.endsWith(value, suffix);
+            return Stringkit.endsWith(value, suffix);
         }
 
         /**
          * 以...结束（不区分大小写）
          */
         public boolean endsWithIgnoreCase(final String suffix) {
-            return StringKit.endsWithIgnoreCase(value, suffix);
+            return Stringkit.endsWithIgnoreCase(value, suffix);
         }
 
         /**
          * 判断a是否等于b
          */
         public boolean equals(final CharSequence b) {
-            return StringKit.equals(value, b);
+            return Stringkit.equals(value, b);
         }
 
         /**
          * 判断a是否等于b，不区分大小写
          */
         public boolean equalsIgnoreCase(final String b) {
-            return StringKit.equalsIgnoreCase(value, b);
+            return Stringkit.equalsIgnoreCase(value, b);
         }
 
         /**
          * 判断a是否不等于b
          */
         public boolean notEquals(final String b) {
-            return StringKit.notEquals(value, b);
+            return Stringkit.notEquals(value, b);
         }
 
         /**
          * 判断a大于b
          */
         public boolean gt(final String b) {
-            return StringKit.gt(value, b);
+            return Stringkit.gt(value, b);
         }
 
         /**
          * 判断a小于b
          */
         public boolean lt(final String b) {
-            return StringKit.lt(value, b);
+            return Stringkit.lt(value, b);
         }
 
         /**
          * 判断a的长度等于b的长度
          */
         public boolean lengthEq(final CharSequence b) {
-            return StringKit.lengthEq(value, b);
+            return Stringkit.lengthEq(value, b);
         }
 
         /**
          * 判断a的长度大于b的长度
          */
         public boolean lengthGt(final CharSequence b) {
-            return StringKit.lengthGt(value, b);
+            return Stringkit.lengthGt(value, b);
         }
 
         /**
          * 判断a的长度大于等于b的长度
          */
         public boolean lengthGte(final CharSequence b) {
-            return StringKit.lengthGte(value, b);
+            return Stringkit.lengthGte(value, b);
         }
 
         /**
          * 判断a的长度小于b的长度
          */
         public boolean lengthLt(final CharSequence b) {
-            return StringKit.lengthLt(value, b);
+            return Stringkit.lengthLt(value, b);
         }
 
         /**
          * 判断a的长度小于等于b的长度
          */
         public boolean lengthLte(final CharSequence b) {
-            return StringKit.lengthLte(value, b);
+            return Stringkit.lengthLte(value, b);
         }
 
         /**
          * 字符串转换其他对象
          */
         public <T> Optional<T> map(final Function<String, T> fun) {
-            return StringKit.map(value, fun);
+            return Stringkit.map(value, fun);
         }
 
         /**
          * 字符串转换数字
          */
         public <N extends Number> Optional<N> toNumber(final Function<String, N> fun) {
-            return StringKit.toNumber(value, fun);
+            return Stringkit.toNumber(value, fun);
         }
 
         /**
          * 将字符串转为字节数组，使用utf-8编码
          */
         public ByteBuffer getByteBuffer() {
-            return StringKit.getByteBuffer(value);
+            return Stringkit.getByteBuffer(value);
         }
 
         /**
          * 将字符串转为字节数组
          */
         public ByteBuffer getByteBuffer(final Charset charset) {
-            return StringKit.getByteBuffer(value, charset);
+            return Stringkit.getByteBuffer(value, charset);
         }
 
         /**
          * 将字符串转为字节数组，使用utf-8编码
          */
         public byte[] getBytes() {
-            return StringKit.getBytes(value);
+            return Stringkit.getBytes(value);
         }
 
         /**
          * 将字符串转为字节数组
          */
         public byte[] getBytes(final Charset charset) {
-            return StringKit.getBytes(value, charset);
+            return Stringkit.getBytes(value, charset);
         }
 
         /**
          * 字符串长度
          */
         public int length() {
-            return StringKit.length(value);
+            return Stringkit.length(value);
         }
 
         /**
          * 子字符串出现的次数
          */
         public int countMatches(final String sub) {
-            return StringKit.countMatches(value, sub);
+            return Stringkit.countMatches(value, sub);
         }
 
         /**
          * 检查字符串是否以指定字符串数组中的任何一个结尾
          */
         public boolean endsWithAny(final String[] searchStrings) {
-            return StringKit.endsWithAny(value, searchStrings);
+            return Stringkit.endsWithAny(value, searchStrings);
         }
 
         /**
          * 判断字符序列的所有字符是否满足给定判断条件
          */
         public boolean isCharPredicate(final Predicate<Character> predicate) {
-            return StringKit.isCharPredicate(value, predicate);
+            return Stringkit.isCharPredicate(value, predicate);
         }
 
         /**
          * 是否只包含小写字符
          */
         public boolean isLowerCase() {
-            return StringKit.isLowerCase(value);
+            return Stringkit.isLowerCase(value);
         }
 
         /**
          * 是否只包含大写字符
          */
         public boolean isUpperCase() {
-            return StringKit.isUpperCase(value);
+            return Stringkit.isUpperCase(value);
         }
 
         /**
          * 检查字符串是否只包含unicode字母
          */
         public boolean isLetter() {
-            return StringKit.isLetter(value);
+            return Stringkit.isLetter(value);
         }
 
         /**
          * 检查字符串是否只包含unicode数字，小数点不是unicode数字并返回 {@code false}
          */
         public boolean isDigit() {
-            return StringKit.isDigit(value);
+            return Stringkit.isDigit(value);
         }
 
         /**
          * 检查字符串是否只包含unicode字母或数字
          */
         public boolean isLetterOrDigit() {
-            return StringKit.isLetterOrDigit(value);
+            return Stringkit.isLetterOrDigit(value);
         }
 
         /**
          * 检查字符串是否只包含unicode空格
          */
         public boolean isSpaceChar() {
-            return StringKit.isSpaceChar(value);
+            return Stringkit.isSpaceChar(value);
         }
 
         /**
          * 检查字符串是否只包含ASCII可打印字符
          */
         public boolean isAsciiPrintable() {
-            return StringKit.isAsciiPrintable(value);
+            return Stringkit.isAsciiPrintable(value);
         }
 
         /**
          * 检查字符串是否只包含ASCII控制字符
          */
         public boolean isAsciiControl() {
-            return StringKit.isAsciiControl(value);
+            return Stringkit.isAsciiControl(value);
         }
 
         /**
@@ -922,14 +922,14 @@ public final class StringKitHelper {
          * </ul>
          */
         public boolean isWhitespace() {
-            return StringKit.isWhitespace(value);
+            return Stringkit.isWhitespace(value);
         }
 
         /**
          * 判断字符序列内所有字符是否都在Unicode中有定义
          */
         public boolean isDefined() {
-            return StringKit.isDefined(value);
+            return Stringkit.isDefined(value);
         }
 
     }

@@ -8,7 +8,7 @@ import java.util.concurrent.ThreadLocalRandom;
  * @author yh
  * @since 2021/3/23
  */
-public final class RandomKit {
+public final class Randomkit {
 
     static final char[] CHARS = {
             '0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
@@ -19,7 +19,7 @@ public final class RandomKit {
             'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X',
             'Y', 'Z'};
 
-    private RandomKit() {
+    private Randomkit() {
     }
 
     public static int nextInt() {
@@ -101,7 +101,7 @@ public final class RandomKit {
      * @return
      */
     public static String randomDigit(int len) {
-        return randomStr(len, RandomKit::nextDigit);
+        return randomStr(len, Randomkit::nextDigit);
     }
 
     /**
@@ -111,7 +111,7 @@ public final class RandomKit {
      * @return
      */
     public static String randomLetter(int len) {
-        return randomStr(len, RandomKit::nextLetter);
+        return randomStr(len, Randomkit::nextLetter);
     }
 
     /**
@@ -121,7 +121,7 @@ public final class RandomKit {
      * @return
      */
     public static String randomStr(int len) {
-        return randomStr(len, RandomKit::nextChar);
+        return randomStr(len, Randomkit::nextChar);
     }
 
     /**
@@ -131,7 +131,7 @@ public final class RandomKit {
      * @return
      */
     public static String randomHanzi(int len) {
-        return randomStr(len, RandomKit::nextHanzi);
+        return randomStr(len, Randomkit::nextHanzi);
     }
 
     /**

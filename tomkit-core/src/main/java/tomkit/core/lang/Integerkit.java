@@ -8,9 +8,9 @@ import java.util.function.BiPredicate;
  * @author yh
  * @since 2021/3/23
  */
-public final class IntegerKit {
+public final class Integerkit {
 
-    private IntegerKit() {
+    private Integerkit() {
     }
 
     /**

@@ -20,7 +20,7 @@ import java.util.function.Predicate;
  * @author yh
  * @since 2021/1/29
  */
-public final class StringKit {
+public final class Stringkit {
 
     /**
      * 空字符串
@@ -66,12 +66,8 @@ public final class StringKit {
      * 填充常数可以扩展到的最大大小
      */
     private static final int PAD_LIMIT = 8192;
-    /**
-     * 默认字符编码
-     */
-    private static final Charset DEFAULT_CHARSET = StandardCharsets.UTF_8;
 
-    private StringKit() {
+    private Stringkit() {
         throw new AssertionError("Strings cannot be instantiated!");
     }
 
@@ -79,8 +75,8 @@ public final class StringKit {
      * 字符序列是否为 {@code null}
      *
      * <pre class="code">
-     *     Strings.isNull(null) = true
-     *     Strings.isNull("")   = false
+     *     Stringkit.isNull(null) = true
+     *     Stringkit.isNull("")   = false
      * </pre>
      *
      * @param source 字符序列
@@ -94,8 +90,8 @@ public final class StringKit {
      * 判断传入的所有字符序列是否都为 {@code null}
      *
      * <pre class="code">
-     *     Strings.isAllNull(null, null) = true
-     *     Strings.isAllNull(null, "")   = false
+     *     Stringkit.isAllNull(null, null) = true
+     *     Stringkit.isAllNull(null, "")   = false
      * </pre>
      *
      * @param sources 字符序列列表
@@ -114,8 +110,8 @@ public final class StringKit {
      * 字符序列是否非 {@code null}
      *
      * <pre class="code">
-     *     Strings.isNotNull(null) = false
-     *     Strings.isNotNull("")   = true
+     *     Stringkit.isNotNull(null) = false
+     *     Stringkit.isNotNull("")   = true
      * </pre>
      *
      * @param source 字符序列
@@ -129,9 +125,9 @@ public final class StringKit {
      * 判断传入的字符序列是否都非 {@code null}
      *
      * <pre class="code">
-     *     Strings.isAllNotNull(null, null) = false
-     *     Strings.isAllNotNull(null, "")   = false
-     *     Strings.isAllNotNull("", "")     = true
+     *     Stringkit.isAllNotNull(null, null) = false
+     *     Stringkit.isAllNotNull(null, "")   = false
+     *     Stringkit.isAllNotNull("", "")     = true
      * </pre>
      *
      * @param sources 字符序列列表
@@ -150,9 +146,9 @@ public final class StringKit {
      * 判断传入的字符序列里是否含有 {@code null}
      *
      * <pre class="code">
-     *     Strings.hasNull(null, null) = true
-     *     Strings.hasNull(null, "")   = true
-     *     Strings.hasNull("", "")     = false
+     *     Stringkit.hasNull(null, null) = true
+     *     Stringkit.hasNull(null, "")   = true
+     *     Stringkit.hasNull("", "")     = false
      * </pre>
      *
      * @param sources 字符序列列表
@@ -171,9 +167,9 @@ public final class StringKit {
      * 判断传入的字符序列里是否含非 {@code null}
      *
      * <pre class="code">
-     *     Strings.hasNotNull(null, null) = false
-     *     Strings.hasNotNull(null, "")   = true
-     *     Strings.hasNotNull("", "")     = true
+     *     Stringkit.hasNotNull(null, null) = false
+     *     Stringkit.hasNotNull(null, "")   = true
+     *     Stringkit.hasNotNull("", "")     = true
      * </pre>
      *
      * @param sources 字符序列列表
@@ -192,9 +188,9 @@ public final class StringKit {
      * 判断字符序列是否为 {@code null} 或 {@code ""}
      *
      * <pre class="code">
-     *     Strings.isEmpty(null) = true
-     *     Strings.isEmpty("")   = true
-     *     Strings.isEmpty("1")  = false
+     *     Stringkit.isEmpty(null) = true
+     *     Stringkit.isEmpty("")   = true
+     *     Stringkit.isEmpty("1")  = false
      * </pre>
      *
      * @param source 字符序列
@@ -208,9 +204,9 @@ public final class StringKit {
      * 判断传入字符序列是否都为 {@code null} 或 {@code ""}
      *
      * <pre class="code">
-     *     Strings.isAllEmpty(null, null) = true
-     *     Strings.isAllEmpty(null, "")   = true
-     *     Strings.isAllEmpty("", "1")    = false
+     *     Stringkit.isAllEmpty(null, null) = true
+     *     Stringkit.isAllEmpty(null, "")   = true
+     *     Stringkit.isAllEmpty("", "1")    = false
      * </pre>
      *
      * @param sources 字符序列列表
@@ -230,9 +226,9 @@ public final class StringKit {
      * 判断字符序列是否不为 {@code null} 或 {@code ""}
      *
      * <pre class="code">
-     *     Strings.isNotEmpty(null) = false
-     *     Strings.isNotEmpty("")   = false
-     *     Strings.isNotEmpty("1")  = true
+     *     Stringkit.isNotEmpty(null) = false
+     *     Stringkit.isNotEmpty("")   = false
+     *     Stringkit.isNotEmpty("1")  = true
      * </pre>
      *
      * @param source 字符序列
@@ -247,10 +243,10 @@ public final class StringKit {
      * 判断传入字符序列是否都不为 {@code null} 或 {@code ""}
      *
      * <pre class="code">
-     *     Strings.isAllNotEmpty(null, null) = false
-     *     Strings.isAllNotEmpty(null, "")   = false
-     *     Strings.isAllNotEmpty("", "1")    = false
-     *     Strings.isAllNotEmpty("1", "2")   = true
+     *     Stringkit.isAllNotEmpty(null, null) = false
+     *     Stringkit.isAllNotEmpty(null, "")   = false
+     *     Stringkit.isAllNotEmpty("", "1")    = false
+     *     Stringkit.isAllNotEmpty("1", "2")   = true
      * </pre>
      *
      * @param sources 字符序列列表
@@ -269,10 +265,10 @@ public final class StringKit {
      * 判断传入字符序列是否存在 {@code null} 或 {@code ""}
      *
      * <pre class="code">
-     *     Strings.hasEmpty(null, null) = true
-     *     Strings.hasEmpty(null, "")   = true
-     *     Strings.hasEmpty("", "1")    = true
-     *     Strings.hasEmpty("1", "2")   = false
+     *     Stringkit.hasEmpty(null, null) = true
+     *     Stringkit.hasEmpty(null, "")   = true
+     *     Stringkit.hasEmpty("", "1")    = true
+     *     Stringkit.hasEmpty("1", "2")   = false
      * </pre>
      *
      * @param sources 字符序列列表
@@ -291,9 +287,9 @@ public final class StringKit {
      * 判断传入字符序列是否存在不为 {@code null} 或 {@code ""}
      *
      * <pre class="code">
-     *     Strings.hasNotEmpty(null, null) = false
-     *     Strings.hasNotEmpty(null, "")   = false
-     *     Strings.hasNotEmpty("", "1")    = true
+     *     Stringkit.hasNotEmpty(null, null) = false
+     *     Stringkit.hasNotEmpty(null, "")   = false
+     *     Stringkit.hasNotEmpty("", "1")    = true
      * </pre>
      *
      * @param sources 字符序列列表
@@ -313,11 +309,11 @@ public final class StringKit {
      * {@code LINE_SEPARATOR}, {@code PARAGRAPH_SEPARATOR})
      *
      * <pre class="code">
-     *     Strings.isSpace(null)   = true
-     *     Strings.isSpace("")     = true
-     *     Strings.isSpace("  ")   = true
-     *     Strings.isSpace("\n\t") = false
-     *     Strings.isSpace("a")    = false
+     *     Stringkit.isSpace(null)   = true
+     *     Stringkit.isSpace("")     = true
+     *     Stringkit.isSpace("  ")   = true
+     *     Stringkit.isSpace("\n\t") = false
+     *     Stringkit.isSpace("a")    = false
      * </pre>
      *
      * @param sequence 字符序列
@@ -342,11 +338,11 @@ public final class StringKit {
      * {@code LINE_SEPARATOR}, {@code PARAGRAPH_SEPARATOR})
      *
      * <pre class="code">
-     *     Strings.isNotSpace(null)   = false
-     *     Strings.isNotSpace("")     = false
-     *     Strings.isNotSpace("  ")   = false
-     *     Strings.isNotSpace("\n\t") = true
-     *     Strings.isNotSpace("a")    = true
+     *     Stringkit.isNotSpace(null)   = false
+     *     Stringkit.isNotSpace("")     = false
+     *     Stringkit.isNotSpace("  ")   = false
+     *     Stringkit.isNotSpace("\n\t") = true
+     *     Stringkit.isNotSpace("a")    = true
      * </pre>
      *
      * @param sequence 字符序列
@@ -377,11 +373,11 @@ public final class StringKit {
      * </ul>
      *
      * <pre class="code">
-     *     Strings.isBlank(null)    = true
-     *     Strings.isBlank("")      = true
-     *     Strings.isBlank(" ")     = true
-     *     Strings.isBlank(" \t\n") = true
-     *     Strings.isBlank("1")     = false
+     *     Stringkit.isBlank(null)    = true
+     *     Stringkit.isBlank("")      = true
+     *     Stringkit.isBlank(" ")     = true
+     *     Stringkit.isBlank(" \t\n") = true
+     *     Stringkit.isBlank("1")     = false
      * </pre>
      *
      * @param source 字符序列
@@ -413,11 +409,11 @@ public final class StringKit {
      * </ul>
      *
      * <pre class="code">
-     *     Strings.isNotBlank(null)    = false
-     *     Strings.isNotBlank("")      = false
-     *     Strings.isNotBlank(" ")     = false
-     *     Strings.isNotBlank(" \t\n") = false
-     *     Strings.isNotBlank("1")     = true
+     *     Stringkit.isNotBlank(null)    = false
+     *     Stringkit.isNotBlank("")      = false
+     *     Stringkit.isNotBlank(" ")     = false
+     *     Stringkit.isNotBlank(" \t\n") = false
+     *     Stringkit.isNotBlank("1")     = true
      * </pre>
      *
      * @param source 字符序列
@@ -436,11 +432,11 @@ public final class StringKit {
      * <p>source为 {@code null} 或 {@code ""} 时返回 {@code false}</p>
      *
      * <pre class="code">
-     *     Strings.hasText(null)    = false
-     *     Strings.hasText("")      = false
-     *     Strings.hasText(" ")     = false
-     *     Strings.hasText(" \t\n") = false
-     *     Strings.hasText("1")     = true
+     *     Stringkit.hasText(null)    = false
+     *     Stringkit.hasText("")      = false
+     *     Stringkit.hasText(" ")     = false
+     *     Stringkit.hasText(" \t\n") = false
+     *     Stringkit.hasText("1")     = true
      * </pre>
      *
      * @param source 字符序列
@@ -483,11 +479,11 @@ public final class StringKit {
      * </ul>
      *
      * <pre class="code">
-     *     Strings.hasWhitespace(null)    = false
-     *     Strings.hasWhitespace("")      = false
-     *     Strings.hasWhitespace(" ")     = true
-     *     Strings.hasWhitespace(" \t\n") = true
-     *     Strings.hasWhitespace("1")     = false
+     *     Stringkit.hasWhitespace(null)    = false
+     *     Stringkit.hasWhitespace("")      = false
+     *     Stringkit.hasWhitespace(" ")     = true
+     *     Stringkit.hasWhitespace(" \t\n") = true
+     *     Stringkit.hasWhitespace("1")     = false
      * </pre>
      *
      * @param source a string
@@ -514,9 +510,9 @@ public final class StringKit {
      * <p>source为 {@code null} 或 {@code ""} 时返回 {@code false}</p>
      *
      * <pre class="code">
-     *     Strings.hasLength(null) = false
-     *     Strings.hasLength("")   = false
-     *     Strings.hasLength(" ")  = true
+     *     Stringkit.hasLength(null) = false
+     *     Stringkit.hasLength("")   = false
+     *     Stringkit.hasLength(" ")  = true
      * </pre>
      *
      * @param source 字符序列
@@ -534,7 +530,7 @@ public final class StringKit {
      * <p>生成的uuid字符串会去除'-'</p>
      *
      * <pre class="code">
-     *     Strings.uuid() = 99c68bcb50b849c99bbe41628e6aec32
+     *     Stringkit.uuid() = 99c68bcb50b849c99bbe41628e6aec32
      * </pre>
      *
      * @return 无连接符uuid
@@ -555,7 +551,7 @@ public final class StringKit {
      * 生成带连接符uuid
      *
      * <pre class="code">
-     *     Strings.uuidL() = 134bed0f-0275-4452-a9a2-710981fea61e
+     *     Stringkit.uuidL() = 134bed0f-0275-4452-a9a2-710981fea61e
      * </pre>
      *
      * @return 带连接符uuid
@@ -666,9 +662,9 @@ public final class StringKit {
      * 返回双引号的字符串
      *
      * <pre class="code">
-     *     Strings.doubleQuote(null) = "null"
-     *     Strings.doubleQuote("")   = ""
-     *     Strings.doubleQuote("1")  = "1"
+     *     Stringkit.doubleQuote(null) = "null"
+     *     Stringkit.doubleQuote("")   = ""
+     *     Stringkit.doubleQuote("1")  = "1"
      * </pre>
      *
      * @param source a string
@@ -682,9 +678,9 @@ public final class StringKit {
      * 返回单引号的字符串
      *
      * <pre class="code">
-     *     Strings.quote(null) = 'null'
-     *     Strings.quote("")   = ''
-     *     Strings.quote("1")  = '1'
+     *     Stringkit.quote(null) = 'null'
+     *     Stringkit.quote("")   = ''
+     *     Stringkit.quote("1")  = '1'
      * </pre>
      *
      * @param source a string
@@ -698,7 +694,7 @@ public final class StringKit {
      * 两侧添加指定字符
      *
      * <pre class="code">
-     *     Strings.twoFlanks("a", "-") = -a-
+     *     Stringkit.twoFlanks("a", "-") = -a-
      * </pre>
      *
      * @param source a string
@@ -715,7 +711,7 @@ public final class StringKit {
      * <p>source或predicate为 {@code null} 时返回 {@code false}</p>
      *
      * <pre class="code">
-     *     Strings.test("a", String::isEmpty) = false
+     *     Stringkit.test("a", String::isEmpty) = false
      * </pre>
      *
      * @param source    a string
@@ -732,8 +728,8 @@ public final class StringKit {
      * 当source不为 {@code null} 时调用 {@link Function#apply(Object)}
      *
      * <pre class="code">
-     *     Strings.map(null, Integer::valueOf) = Optional.empty
-     *     Strings.map("11", Integer::valueOf) = Optional[2]
+     *     Stringkit.map(null, Integer::valueOf) = Optional.empty
+     *     Stringkit.map("11", Integer::valueOf) = Optional[2]
      * </pre>
      *
      * @param source   a string
@@ -752,8 +748,8 @@ public final class StringKit {
      * 当source不为 {@code null} 时调用 {@link Function#apply(Object)}
      *
      * <pre class="code">
-     *     Strings.toNumber(null, Integer::new) = Optional.empty
-     *     Strings.toNumber("1", Integer::new)  = Optional[1]
+     *     Stringkit.toNumber(null, Integer::new) = Optional.empty
+     *     Stringkit.toNumber("1", Integer::new)  = Optional[1]
      * </pre>
      *
      * @param source   a string
@@ -775,11 +771,11 @@ public final class StringKit {
      * source的长度需大于等于x的长度</p>
      *
      * <pre class="code">
-     *     Strings.contains(null, null)  = false
-     *     Strings.contains(null, "1")   = false
-     *     Strings.contains("1", "1111") = false
-     *     Strings.contains("1111", "2") = false
-     *     Strings.contains("1111", "1") = true
+     *     Stringkit.contains(null, null)  = false
+     *     Stringkit.contains(null, "1")   = false
+     *     Stringkit.contains("1", "1111") = false
+     *     Stringkit.contains("1111", "2") = false
+     *     Stringkit.contains("1111", "1") = true
      * </pre>
      *
      * @param source a string
@@ -797,10 +793,10 @@ public final class StringKit {
      * <p>source为 {@code null} 或 {@code ""} 时返回 {@code false}</p>
      *
      * <pre class="code">
-     *     Strings.contains(null, '1')   = false
-     *     Strings.contains("1111", '2') = false
-     *     Strings.contains("1", '1')    = true
-     *     Strings.contains("1111", '1') = true
+     *     Stringkit.contains(null, '1')   = false
+     *     Stringkit.contains("1111", '2') = false
+     *     Stringkit.contains("1", '1')    = true
+     *     Stringkit.contains("1111", '1') = true
      * </pre>
      *
      * @param source a string
@@ -827,8 +823,8 @@ public final class StringKit {
      * <p>source或regex为 {@code null} 或 {@code ""} 时返回 {@code false}</p>
      *
      * <pre class="code">
-     *     Strings.matches("abc", "^[a-z]+$") = true
-     *     Strings.matches("abc123", "\\d+")  = false
+     *     Stringkit.matches("abc", "^[a-z]+$") = true
+     *     Stringkit.matches("abc123", "\\d+")  = false
      * </pre>
      *
      * @param source a string
@@ -847,9 +843,9 @@ public final class StringKit {
      * source的长度需大于等于prefix的长度</p>
      *
      * <pre class="code">
-     *     Strings.startsWith(null, "a")  = false
-     *     Strings.startsWith("abc", "b") = false
-     *     Strings.startsWith("abc", "a") = true
+     *     Stringkit.startsWith(null, "a")  = false
+     *     Stringkit.startsWith("abc", "b") = false
+     *     Stringkit.startsWith("abc", "a") = true
      * </pre>
      *
      * @param source a string
@@ -867,9 +863,9 @@ public final class StringKit {
      * source的长度需大于等于prefix的长度</p>
      *
      * <pre class="code">
-     *     Strings.startsWithIgnoreCase("abc", "b") = false
-     *     Strings.startsWithIgnoreCase("abc", "a") = true
-     *     Strings.startsWithIgnoreCase("Abc", "a") = true
+     *     Stringkit.startsWithIgnoreCase("abc", "b") = false
+     *     Stringkit.startsWithIgnoreCase("abc", "a") = true
+     *     Stringkit.startsWithIgnoreCase("Abc", "a") = true
      * </pre>
      *
      * @param source a string
@@ -887,9 +883,9 @@ public final class StringKit {
      * source的长度需大于等于suffix的长度</p>
      *
      * <pre class="code">
-     *     Strings.endsWith(null, "a")  = false
-     *     Strings.endsWith("abc", "b") = false
-     *     Strings.endsWith("abc", "c") = true
+     *     Stringkit.endsWith(null, "a")  = false
+     *     Stringkit.endsWith("abc", "b") = false
+     *     Stringkit.endsWith("abc", "c") = true
      * </pre>
      *
      * @param source a string
@@ -907,9 +903,9 @@ public final class StringKit {
      * source的长度需大于等于suffix的长度</p>
      *
      * <pre class="code">
-     *     Strings.endsWithIgnoreCase("abc", "b") = false
-     *     Strings.endsWithIgnoreCase("abc", "c") = true
-     *     Strings.endsWithIgnoreCase("abC", "c") = true
+     *     Stringkit.endsWithIgnoreCase("abc", "b") = false
+     *     Stringkit.endsWithIgnoreCase("abc", "c") = true
+     *     Stringkit.endsWithIgnoreCase("abC", "c") = true
      * </pre>
      *
      * @param source a string
@@ -926,10 +922,10 @@ public final class StringKit {
      * <p>a和b同时为 {@code null} 时返回 {@code true}</p>
      *
      * <pre class="code">
-     *     Strings.equals(null, null) = true
-     *     Strings.equals("ab", null) = false
-     *     Strings.equals("ab", "a")  = false
-     *     Strings.equals("ab", "ab") = true
+     *     Stringkit.equals(null, null) = true
+     *     Stringkit.equals("ab", null) = false
+     *     Stringkit.equals("ab", "a")  = false
+     *     Stringkit.equals("ab", "ab") = true
      * </pre>
      *
      * @param a a string
@@ -953,11 +949,11 @@ public final class StringKit {
      * <p>a和b同时为 {@code null} 时返回 {@code true}</p>
      *
      * <pre class="code">
-     *     Strings.equals(null, null) = true
-     *     Strings.equals("ab", null) = false
-     *     Strings.equals("ab", "a")  = false
-     *     Strings.equals("ab", "ab") = true
-     *     Strings.equals("AB", "ab") = true
+     *     Stringkit.equals(null, null) = true
+     *     Stringkit.equals("ab", null) = false
+     *     Stringkit.equals("ab", "a")  = false
+     *     Stringkit.equals("ab", "ab") = true
+     *     Stringkit.equals("AB", "ab") = true
      * </pre>
      *
      * @param a a string
@@ -979,10 +975,10 @@ public final class StringKit {
      * 判断a是否不等于b
      *
      * <pre class="code">
-     *     Strings.notEquals(null, null) = false
-     *     Strings.notEquals("ab", null) = true
-     *     Strings.notEquals("ab", "a")  = true
-     *     Strings.notEquals("ab", "ab") = false
+     *     Stringkit.notEquals(null, null) = false
+     *     Stringkit.notEquals("ab", null) = true
+     *     Stringkit.notEquals("ab", "a")  = true
+     *     Stringkit.notEquals("ab", "ab") = false
      * </pre>
      *
      * @param a a string
@@ -1000,9 +996,9 @@ public final class StringKit {
      * <p>a或b为 {@code null} 时返回 {@code false}</p>
      *
      * <pre class="code">
-     *     Strings.gt(null, null)  = false
-     *     Strings.gt("ab", "a")   = true
-     *     Strings.gt("ab", "abc") = false
+     *     Stringkit.gt(null, null)  = false
+     *     Stringkit.gt("ab", "a")   = true
+     *     Stringkit.gt("ab", "abc") = false
      * </pre>
      *
      * @param a a string
@@ -1019,9 +1015,9 @@ public final class StringKit {
      * <p>a或b为 {@code null} 时返回 {@code false}</p>
      *
      * <pre class="code">
-     *     Strings.gt(null, null)  = false
-     *     Strings.gt("ab", "a")   = false
-     *     Strings.gt("ab", "abc") = true
+     *     Stringkit.gt(null, null)  = false
+     *     Stringkit.gt("ab", "a")   = false
+     *     Stringkit.gt("ab", "abc") = true
      * </pre>
      *
      * @param a a string
@@ -1038,10 +1034,10 @@ public final class StringKit {
      * <p>a或b为 {@code null} 时返回 {@code false}</p>
      *
      * <pre class="code">
-     *     Strings.lengthEq("ab", null)  = false
-     *     Strings.lengthEq("ab", "a")   = false
-     *     Strings.lengthEq("ab", "ac")  = true
-     *     Strings.lengthEq("ab", "ace") = false
+     *     Stringkit.lengthEq("ab", null)  = false
+     *     Stringkit.lengthEq("ab", "a")   = false
+     *     Stringkit.lengthEq("ab", "ac")  = true
+     *     Stringkit.lengthEq("ab", "ace") = false
      * </pre>
      *
      * @param a a string
@@ -1058,10 +1054,10 @@ public final class StringKit {
      * <p>a或b为 {@code null} 时返回 {@code false}</p>
      *
      * <pre class="code">
-     *     Strings.lengthGt("ab", null)  = false
-     *     Strings.lengthGt("ab", "a")   = true
-     *     Strings.lengthGt("ab", "ac")  = false
-     *     Strings.lengthGt("ab", "ace") = false
+     *     Stringkit.lengthGt("ab", null)  = false
+     *     Stringkit.lengthGt("ab", "a")   = true
+     *     Stringkit.lengthGt("ab", "ac")  = false
+     *     Stringkit.lengthGt("ab", "ace") = false
      * </pre>
      *
      * @param a a string
@@ -1078,10 +1074,10 @@ public final class StringKit {
      * <p>a或b为 {@code null} 时返回 {@code false}</p>
      *
      * <pre class="code">
-     *     Strings.lengthGte("ab", null)  = false
-     *     Strings.lengthGte("ab", "a")   = true
-     *     Strings.lengthGte("ab", "ac")  = true
-     *     Strings.lengthGte("ab", "ace") = false
+     *     Stringkit.lengthGte("ab", null)  = false
+     *     Stringkit.lengthGte("ab", "a")   = true
+     *     Stringkit.lengthGte("ab", "ac")  = true
+     *     Stringkit.lengthGte("ab", "ace") = false
      * </pre>
      *
      * @param a a string
@@ -1098,10 +1094,10 @@ public final class StringKit {
      * <p>a或b为 {@code null} 时返回 {@code false}</p>
      *
      * <pre class="code">
-     *     Strings.lengthLt("ab", null)  = false
-     *     Strings.lengthLt("ab", "a")   = false
-     *     Strings.lengthLt("ab", "ac")  = false
-     *     Strings.lengthLt("ab", "ace") = true
+     *     Stringkit.lengthLt("ab", null)  = false
+     *     Stringkit.lengthLt("ab", "a")   = false
+     *     Stringkit.lengthLt("ab", "ac")  = false
+     *     Stringkit.lengthLt("ab", "ace") = true
      * </pre>
      *
      * @param a a string
@@ -1118,10 +1114,10 @@ public final class StringKit {
      * <p>a或b为 {@code null} 时返回 {@code false}</p>
      *
      * <pre class="code">
-     *     Strings.lengthLte("ab", null)  = false
-     *     Strings.lengthLte("ab", "a")   = false
-     *     Strings.lengthLte("ab", "ac")  = true
-     *     Strings.lengthLte("ab", "ace") = true
+     *     Stringkit.lengthLte("ab", null)  = false
+     *     Stringkit.lengthLte("ab", "a")   = false
+     *     Stringkit.lengthLte("ab", "ac")  = true
+     *     Stringkit.lengthLte("ab", "ace") = true
      * </pre>
      *
      * @param a a string
@@ -1136,10 +1132,10 @@ public final class StringKit {
      * 根据delimiter作为分隔符将elements所有字符序列拼接在一起
      *
      * <pre>
-     *     Strings.join(",", null, "b")    = "null,b"
-     *     Strings.join(",", "1", "b")     = "1,b"
-     *     Strings.join("", "1", "b")      = "1b"
-     *     Strings.join(",", "1", "", "2") = "1,,2"
+     *     Stringkit.join(",", null, "b")    = "null,b"
+     *     Stringkit.join(",", "1", "b")     = "1,b"
+     *     Stringkit.join("", "1", "b")      = "1b"
+     *     Stringkit.join(",", "1", "", "2") = "1,,2"
      * </pre>
      *
      * @param delimiter 分隔每个元素的分隔符
@@ -1173,11 +1169,11 @@ public final class StringKit {
      * 格式化字符串
      *
      * <pre>
-     *     Strings.format(null)         = java.lang.IllegalArgumentException: format cannot be null
-     *     Strings.format("")           = ""
-     *     Strings.format("%dAB")       = java.util.MissingFormatArgumentException: Format specifier '%d'
-     *     Strings.format("%dAB", null) = "nullAB"
-     *     Strings.format("%dAB", 1)    = "1AB"
+     *     Stringkit.format(null)         = java.lang.IllegalArgumentException: format cannot be null
+     *     Stringkit.format("")           = ""
+     *     Stringkit.format("%dAB")       = java.util.MissingFormatArgumentException: Format specifier '%d'
+     *     Stringkit.format("%dAB", null) = "nullAB"
+     *     Stringkit.format("%dAB", 1)    = "1AB"
      * </pre>
      *
      * @param format 格式
@@ -1207,11 +1203,11 @@ public final class StringKit {
      * 去掉开头和结尾的空格 {@code '\u0020'}
      *
      * <pre class="code">
-     *     Strings.trim(null)   = null
-     *     Strings.trim("")     = ""
-     *     Strings.trim(" ")    = ""
-     *     Strings.trim("ab")   = "ab"
-     *     Strings.trim(" ab ") = "ab"
+     *     Stringkit.trim(null)   = null
+     *     Stringkit.trim("")     = ""
+     *     Stringkit.trim(" ")    = ""
+     *     Stringkit.trim("ab")   = "ab"
+     *     Stringkit.trim(" ab ") = "ab"
      * </pre>
      *
      * @param source a string
@@ -1241,11 +1237,11 @@ public final class StringKit {
      * </ul>
      *
      * <pre class="code">
-     *     Strings.strip(null)     = null
-     *     Strings.strip("")       = ""
-     *     Strings.strip(" ")      = ""
-     *     Strings.strip("ab")     = "ab"
-     *     Strings.strip(" ab\n ") = "ab"
+     *     Stringkit.strip(null)     = null
+     *     Stringkit.strip("")       = ""
+     *     Stringkit.strip(" ")      = ""
+     *     Stringkit.strip("ab")     = "ab"
+     *     Stringkit.strip(" ab\n ") = "ab"
      * </pre>
      *
      * @param source a string
@@ -1291,11 +1287,11 @@ public final class StringKit {
      * </ul>
      *
      * <pre class="code">
-     *     Strings.stripAll(null)      = null
-     *     Strings.stripAll("")        = ""
-     *     Strings.stripAll(" ")       = ""
-     *     Strings.stripAll("ab a")    = "aba"
-     *     Strings.stripAll(" ab\n a") = "aba"
+     *     Stringkit.stripAll(null)      = null
+     *     Stringkit.stripAll("")        = ""
+     *     Stringkit.stripAll(" ")       = ""
+     *     Stringkit.stripAll("ab a")    = "aba"
+     *     Stringkit.stripAll(" ab\n a") = "aba"
      * </pre>
      *
      * @param source a string
@@ -1338,11 +1334,11 @@ public final class StringKit {
      * </ul>
      *
      * <pre class="code">
-     *     Strings.stripStart(null)    = null
-     *     Strings.stripStart("")      = ""
-     *     Strings.stripStart(" ")     = ""
-     *     Strings.stripStart("ab a")  = "ab a"
-     *     Strings.stripStart(" ab\n") = "ab\n"
+     *     Stringkit.stripStart(null)    = null
+     *     Stringkit.stripStart("")      = ""
+     *     Stringkit.stripStart(" ")     = ""
+     *     Stringkit.stripStart("ab a")  = "ab a"
+     *     Stringkit.stripStart(" ab\n") = "ab\n"
      * </pre>
      *
      * @param source a string
@@ -1381,11 +1377,11 @@ public final class StringKit {
      * </ul>
      *
      * <pre class="code">
-     *     Strings.stripEnd(null)    = null
-     *     Strings.stripEnd("")      = ""
-     *     Strings.stripEnd(" ")     = ""
-     *     Strings.stripEnd("ab a")  = "ab a"
-     *     Strings.stripEnd(" ab\n") = " ab"
+     *     Stringkit.stripEnd(null)    = null
+     *     Stringkit.stripEnd("")      = ""
+     *     Stringkit.stripEnd(" ")     = ""
+     *     Stringkit.stripEnd("ab a")  = "ab a"
+     *     Stringkit.stripEnd(" ab\n") = " ab"
      * </pre>
      *
      * @param source a string
@@ -1408,9 +1404,9 @@ public final class StringKit {
      * 返回传入的字符串，如果为 {@code null} 则返回空串
      *
      * <pre class="code">
-     *     Strings.defaultStr(null) = ""
-     *     Strings.defaultStr("")   = ""
-     *     Strings.defaultStr("a")  = "a"
+     *     Stringkit.defaultStr(null) = ""
+     *     Stringkit.defaultStr("")   = ""
+     *     Stringkit.defaultStr("a")  = "a"
      * </pre>
      *
      * @param source a string
@@ -1424,9 +1420,9 @@ public final class StringKit {
      * 返回传入的字符串，如果为 {@code null} 则返回默认值
      *
      * <pre class="code">
-     *     Strings.defaultIfNull(null, "v") = "v"
-     *     Strings.defaultIfNull("", "v")   = ""
-     *     Strings.defaultIfNull("a", "v")  = "a"
+     *     Stringkit.defaultIfNull(null, "v") = "v"
+     *     Stringkit.defaultIfNull("", "v")   = ""
+     *     Stringkit.defaultIfNull("a", "v")  = "a"
      * </pre>
      *
      * @param source     a string
@@ -1441,10 +1437,10 @@ public final class StringKit {
      * 返回传入的字符串，如果为 {@code null} 或 {@code ""} 则返回默认值
      *
      * <pre class="code">
-     *     Strings.defaultIfEmpty(null, "v") = "v"
-     *     Strings.defaultIfEmpty("", "v")   = "v"
-     *     Strings.defaultIfEmpty("\n", "v") = "\n"
-     *     Strings.defaultIfEmpty("a", "v")  = "a"
+     *     Stringkit.defaultIfEmpty(null, "v") = "v"
+     *     Stringkit.defaultIfEmpty("", "v")   = "v"
+     *     Stringkit.defaultIfEmpty("\n", "v") = "\n"
+     *     Stringkit.defaultIfEmpty("a", "v")  = "a"
      * </pre>
      *
      * @param source     a string
@@ -1475,11 +1471,11 @@ public final class StringKit {
      * </ul>
      *
      * <pre class="code">
-     *     Strings.defaultIfBlank(null, "v") = "v"
-     *     Strings.defaultIfBlank("", "v")   = "v"
-     *     Strings.defaultIfBlank(" ", "v")  = "v"
-     *     Strings.defaultIfBlank("\n", "v") = "v"
-     *     Strings.defaultIfBlank("a", "v")  = "a"
+     *     Stringkit.defaultIfBlank(null, "v") = "v"
+     *     Stringkit.defaultIfBlank("", "v")   = "v"
+     *     Stringkit.defaultIfBlank(" ", "v")  = "v"
+     *     Stringkit.defaultIfBlank("\n", "v") = "v"
+     *     Stringkit.defaultIfBlank("a", "v")  = "a"
      * </pre>
      *
      * @param source     a string
@@ -1496,12 +1492,12 @@ public final class StringKit {
      * <p>source为 {@code null} 时返回 {@code null}, len小于等于0时返回 {@code ""}</p>
      *
      * <pre class="code">
-     *     Strings.right(null, *)  = null
-     *     Strings.right(*, -ve)   = ""
-     *     Strings.right("", *)    = ""
-     *     Strings.right("abc", 0) = ""
-     *     Strings.right("abc", 2) = "ab"
-     *     Strings.right("abc", 4) = "abc"
+     *     Stringkit.right(null, *)  = null
+     *     Stringkit.right(*, -ve)   = ""
+     *     Stringkit.right("", *)    = ""
+     *     Stringkit.right("abc", 0) = ""
+     *     Stringkit.right("abc", 2) = "ab"
+     *     Stringkit.right("abc", 4) = "abc"
      * </pre>
      *
      * @param source a string
@@ -1529,12 +1525,12 @@ public final class StringKit {
      * <p>source为 {@code null} 时返回 {@code null}, len小于等于0时返回 {@code ""}</p>
      *
      * <pre class="code">
-     *     Strings.right(null, *)  = null
-     *     Strings.right(*, -ve)   = ""
-     *     Strings.right("", *)    = ""
-     *     Strings.right("abc", 0) = ""
-     *     Strings.right("abc", 2) = "bc"
-     *     Strings.right("abc", 4) = "abc"
+     *     Stringkit.right(null, *)  = null
+     *     Stringkit.right(*, -ve)   = ""
+     *     Stringkit.right("", *)    = ""
+     *     Stringkit.right("abc", 0) = ""
+     *     Stringkit.right("abc", 2) = "bc"
+     *     Stringkit.right("abc", 4) = "abc"
      * </pre>
      *
      * @param source a string
@@ -1562,15 +1558,15 @@ public final class StringKit {
      * <p>source为 {@code null} 时返回 {@code null}, len小于等于0时返回 {@code ""}</p>
      *
      * <pre class="code">
-     *     Strings.mid(null, *, *)   = null
-     *     Strings.mid(*, *, -ve)    = ""
-     *     Strings.mid("", 0, *)     = ""
-     *     Strings.mid("abc", 0, 2)  = "ab"
-     *     Strings.mid("abc", 0, 4)  = "abc"
-     *     Strings.mid("abc", 2, 4)  = "c"
-     *     Strings.mid("abc", 2, 0)  = ""
-     *     Strings.mid("abc", 4, 2)  = ""
-     *     Strings.mid("abc", -2, 2) = "ab"
+     *     Stringkit.mid(null, *, *)   = null
+     *     Stringkit.mid(*, *, -ve)    = ""
+     *     Stringkit.mid("", 0, *)     = ""
+     *     Stringkit.mid("abc", 0, 2)  = "ab"
+     *     Stringkit.mid("abc", 0, 4)  = "abc"
+     *     Stringkit.mid("abc", 2, 4)  = "c"
+     *     Stringkit.mid("abc", 2, 0)  = ""
+     *     Stringkit.mid("abc", 4, 2)  = ""
+     *     Stringkit.mid("abc", -2, 2) = "ab"
      * </pre>
      *
      * @param source a string
@@ -1602,8 +1598,8 @@ public final class StringKit {
      * <p>source不为 {@code null} 或 {@code ""} 时才能执行替换</p>
      *
      * <pre class="code">
-     *     Strings.replace(null, 'A', 'B')  = null
-     *     Strings.replace("ACA", 'A', 'B') = "BCB"
+     *     Stringkit.replace(null, 'A', 'B')  = null
+     *     Stringkit.replace("ACA", 'A', 'B') = "BCB"
      * </pre>
      *
      * @param source      源字符串
@@ -1621,10 +1617,10 @@ public final class StringKit {
      * <p>source, target, replacement不为 {@code null} 时才执行替换</p>
      *
      * <pre class="code">
-     *     Strings.replace(null, "A", "B")  = null
-     *     Strings.replace("A", null, "B")  = "A"
-     *     Strings.replace("A", "A", null)  = "A"
-     *     Strings.replace("ACA", "A", "B") = "BCB"
+     *     Stringkit.replace(null, "A", "B")  = null
+     *     Stringkit.replace("A", null, "B")  = "A"
+     *     Stringkit.replace("A", "A", null)  = "A"
+     *     Stringkit.replace("ACA", "A", "B") = "BCB"
      * </pre>
      *
      * @param source      源字符串
@@ -1642,10 +1638,10 @@ public final class StringKit {
      * <p>source, regex, replacement不为 {@code null} 时才执行替换</p>
      *
      * <pre class="code">
-     *     Strings.replaceAll(null, "A", "B")       = null
-     *     Strings.replaceAll("A", null, "B")       = "A"
-     *     Strings.replaceAll("A", "A", null)       = "A"
-     *     Strings.replaceAll("A1B2C", "\\d+", "-") = "A-B-C"
+     *     Stringkit.replaceAll(null, "A", "B")       = null
+     *     Stringkit.replaceAll("A", null, "B")       = "A"
+     *     Stringkit.replaceAll("A", "A", null)       = "A"
+     *     Stringkit.replaceAll("A1B2C", "\\d+", "-") = "A-B-C"
      * </pre>
      *
      * @param source      源字符串
@@ -1663,10 +1659,10 @@ public final class StringKit {
      * <p>source, regex, replacement不为 {@code null} 时才执行替换</p>
      *
      * <pre class="code">
-     *     Strings.replaceFirst(null, "A", "B")       = null
-     *     Strings.replaceFirst("A", null, "B")       = "A"
-     *     Strings.replaceFirst("A", "A", null)       = "A"
-     *     Strings.replaceFirst("A1B2C", "\\d+", "-") = "A-B2C"
+     *     Stringkit.replaceFirst(null, "A", "B")       = null
+     *     Stringkit.replaceFirst("A", null, "B")       = "A"
+     *     Stringkit.replaceFirst("A", "A", null)       = "A"
+     *     Stringkit.replaceFirst("A1B2C", "\\d+", "-") = "A-B2C"
      * </pre>
      *
      * @param source      源字符串
@@ -1684,9 +1680,9 @@ public final class StringKit {
      * <p>source, str不为 {@code null} 或 {@code ""} 时才执行去除</p>
      *
      * <pre class="code">
-     *     Strings.remove(null, "A")  = null
-     *     Strings.remove("A", null)  = "A"
-     *     Strings.remove("AAC", "A") = "C"
+     *     Stringkit.remove(null, "A")  = null
+     *     Stringkit.remove("A", null)  = "A"
+     *     Stringkit.remove("AAC", "A") = "C"
      * </pre>
      *
      * @param source 源字符串
@@ -1703,9 +1699,9 @@ public final class StringKit {
      * <p>source, regex不为 {@code null} 或 {@code ""} 时才执行去除</p>
      *
      * <pre class="code">
-     *     Strings.removeAll(null, "A")      = null
-     *     Strings.removeAll("A", null)      = "A"
-     *     Strings.removeAll("A1B2", "\\d+") = "AB"
+     *     Stringkit.removeAll(null, "A")      = null
+     *     Stringkit.removeAll("A", null)      = "A"
+     *     Stringkit.removeAll("A1B2", "\\d+") = "AB"
      * </pre>
      *
      * @param source 源字符串
@@ -1722,9 +1718,9 @@ public final class StringKit {
      * <p>source, regex不为 {@code null} 或 {@code ""} 时才执行去除</p>
      *
      * <pre class="code">
-     *     Strings.removeFirst(null, "A")      = null
-     *     Strings.removeFirst("A", null)      = "A"
-     *     Strings.removeFirst("A1B2", "\\d+") = "AB2"
+     *     Stringkit.removeFirst(null, "A")      = null
+     *     Stringkit.removeFirst("A", null)      = "A"
+     *     Stringkit.removeFirst("A1B2", "\\d+") = "AB2"
      * </pre>
      *
      * @param source 源字符串
@@ -1741,9 +1737,9 @@ public final class StringKit {
      * <p>source, str不为 {@code null} 或 {@code ""} 时才执行去除</p>
      *
      * <pre class="code">
-     *     Strings.removeLast(null, "A")      = null
-     *     Strings.removeLast("A", null)      = "A"
-     *     Strings.removeLast("A1B2", "\\d+") = "AB"
+     *     Stringkit.removeLast(null, "A")      = null
+     *     Stringkit.removeLast("A", null)      = "A"
+     *     Stringkit.removeLast("A1B2", "\\d+") = "AB"
      * </pre>
      *
      * @param source 源字符串
@@ -1782,9 +1778,9 @@ public final class StringKit {
      * <p>qualifiedName为 {@code null} 或 {@code ""} 时直接返回qualifiedName</p>
      *
      * <pre class="code">
-     *     Strings.suffix(null)    = null
-     *     Strings.suffix("")      = ""
-     *     Strings.suffix("a.b.c") = ".c"
+     *     Stringkit.suffix(null)    = null
+     *     Stringkit.suffix("")      = ""
+     *     Stringkit.suffix("a.b.c") = ".c"
      * </pre>
      *
      * @param qualifiedName a string
@@ -1800,9 +1796,9 @@ public final class StringKit {
      * <p>qualifiedName为 {@code null} 或 {@code ""} 时直接返回qualifiedName</p>
      *
      * <pre class="code">
-     *     Strings.suffix(null, '.')    = null
-     *     Strings.suffix("", '.')      = ""
-     *     Strings.suffix("a.b.c", '.') = ".c"
+     *     Stringkit.suffix(null, '.')    = null
+     *     Stringkit.suffix("", '.')      = ""
+     *     Stringkit.suffix("a.b.c", '.') = ".c"
      * </pre>
      *
      * @param qualifiedName a string
@@ -1824,7 +1820,7 @@ public final class StringKit {
      * @return ByteBuffer
      */
     public static ByteBuffer getByteBuffer(final String source) {
-        return getByteBuffer(source, DEFAULT_CHARSET);
+        return getByteBuffer(source, StandardCharsets.UTF_8);
     }
 
     /**
@@ -1855,7 +1851,7 @@ public final class StringKit {
      * @return byte[]
      */
     public static byte[] getBytes(final String source) {
-        return getBytes(source, DEFAULT_CHARSET);
+        return getBytes(source, StandardCharsets.UTF_8);
     }
 
     /**
@@ -1881,7 +1877,7 @@ public final class StringKit {
      * @return 字符串
      */
     public static String toString(final byte[] src) {
-        return toString(src, DEFAULT_CHARSET);
+        return toString(src, StandardCharsets.UTF_8);
     }
 
     /**
@@ -1904,11 +1900,11 @@ public final class StringKit {
      * <p>source为 {@code null} 或 {@code ""} 时直接返回source, repeat小于等于0时返回 {@code ""}</p>
      *
      * <pre class="code">
-     *     Strings.repeat(null, 2)  = null
-     *     Strings.repeat("", 2)    = ""
-     *     Strings.repeat("ab", -1) = ""
-     *     Strings.repeat("ab", 0)  = ""
-     *     Strings.repeat("ab", 2)  = "abab"
+     *     Stringkit.repeat(null, 2)  = null
+     *     Stringkit.repeat("", 2)    = ""
+     *     Stringkit.repeat("ab", -1) = ""
+     *     Stringkit.repeat("ab", 0)  = ""
+     *     Stringkit.repeat("ab", 2)  = "abab"
      * </pre>
      *
      * @param source a string
@@ -1962,9 +1958,9 @@ public final class StringKit {
      * 使用指定分隔符重复到给定长度填充。
      *
      * <pre class="code">
-     *     Strings.padding(0, 'e')  = ""
-     *     Strings.padding(3, 'e')  = "eee"
-     *     Strings.padding(-2, 'e') = IndexOutOfBoundsException
+     *     Stringkit.padding(0, 'e')  = ""
+     *     Stringkit.padding(3, 'e')  = "eee"
+     *     Stringkit.padding(-2, 'e') = IndexOutOfBoundsException
      * </pre>
      *
      * @param repeat  重复次数
@@ -1986,11 +1982,11 @@ public final class StringKit {
      * 右侧填充空格
      *
      * <pre class="code">
-     *     Strings.rpad(null, 2)  = null
-     *     Strings.rpad("", 2)    = ""
-     *     Strings.rpad("ab", -1) = "ab"
-     *     Strings.rpad("ab", 2)  = "ab"
-     *     Strings.rpad("ab", 3)  = "ab "
+     *     Stringkit.rpad(null, 2)  = null
+     *     Stringkit.rpad("", 2)    = ""
+     *     Stringkit.rpad("ab", -1) = "ab"
+     *     Stringkit.rpad("ab", 2)  = "ab"
+     *     Stringkit.rpad("ab", 3)  = "ab "
      * </pre>
      *
      * @param source a string
@@ -2005,11 +2001,11 @@ public final class StringKit {
      * 右侧填充字符
      *
      * <pre class="code">
-     *     Strings.rpad(null, 2, 'z')  = null
-     *     Strings.rpad("", 2, 'z')    = "zz"
-     *     Strings.rpad("ab", -1, 'z') = "ab"
-     *     Strings.rpad("ab", 2, 'z')  = "ab"
-     *     Strings.rpad("ab", 3, 'z')  = "abz"
+     *     Stringkit.rpad(null, 2, 'z')  = null
+     *     Stringkit.rpad("", 2, 'z')    = "zz"
+     *     Stringkit.rpad("ab", -1, 'z') = "ab"
+     *     Stringkit.rpad("ab", 2, 'z')  = "ab"
+     *     Stringkit.rpad("ab", 3, 'z')  = "abz"
      * </pre>
      *
      * @param source  a string
@@ -2035,11 +2031,11 @@ public final class StringKit {
      * 右侧填充字符串
      *
      * <pre class="code">
-     *     Strings.rpad(null, 2, "zy")   = null
-     *     Strings.rpad("", 2, "zy")     = "zy"
-     *     Strings.rpad("abc", -1, "zy") = "abc"
-     *     Strings.rpad("abc", 3, "zy")  = "abc"
-     *     Strings.rpad("abc", 6, "zy")  = "abczyz"
+     *     Stringkit.rpad(null, 2, "zy")   = null
+     *     Stringkit.rpad("", 2, "zy")     = "zy"
+     *     Stringkit.rpad("abc", -1, "zy") = "abc"
+     *     Stringkit.rpad("abc", 3, "zy")  = "abc"
+     *     Stringkit.rpad("abc", 6, "zy")  = "abczyz"
      * </pre>
      *
      * @param source a string
@@ -2083,11 +2079,11 @@ public final class StringKit {
      * 左侧填充空格
      *
      * <pre class="code">
-     *     Strings.lpad(null, 2)  = null
-     *     Strings.lpad("", 2)    = ""
-     *     Strings.lpad("ab", -1) = "ab"
-     *     Strings.lpad("ab", 2)  = "ab"
-     *     Strings.lpad("ab", 3)  = " ab"
+     *     Stringkit.lpad(null, 2)  = null
+     *     Stringkit.lpad("", 2)    = ""
+     *     Stringkit.lpad("ab", -1) = "ab"
+     *     Stringkit.lpad("ab", 2)  = "ab"
+     *     Stringkit.lpad("ab", 3)  = " ab"
      * </pre>
      *
      * @param source a string
@@ -2102,11 +2098,11 @@ public final class StringKit {
      * 左侧填充字符
      *
      * <pre class="code">
-     *     Strings.lpad(null, 2, 'z')  = null
-     *     Strings.lpad("", 2, 'z')    = "zz"
-     *     Strings.lpad("ab", -1, 'z') = "ab"
-     *     Strings.lpad("ab", 2, 'z')  = "ab"
-     *     Strings.lpad("ab", 3, 'z')  = "zab"
+     *     Stringkit.lpad(null, 2, 'z')  = null
+     *     Stringkit.lpad("", 2, 'z')    = "zz"
+     *     Stringkit.lpad("ab", -1, 'z') = "ab"
+     *     Stringkit.lpad("ab", 2, 'z')  = "ab"
+     *     Stringkit.lpad("ab", 3, 'z')  = "zab"
      * </pre>
      *
      * @param source  a string
@@ -2132,11 +2128,11 @@ public final class StringKit {
      * 左侧填充字符串
      *
      * <pre class="code">
-     *     Strings.lpad(null, 2, "zy")   = null
-     *     Strings.lpad("", 2, "zy")     = "zy"
-     *     Strings.lpad("abc", -1, "zy") = "abc"
-     *     Strings.lpad("abc", 3, "zy")  = "abc"
-     *     Strings.lpad("abc", 6, "zy")  = "zyzabc"
+     *     Stringkit.lpad(null, 2, "zy")   = null
+     *     Stringkit.lpad("", 2, "zy")     = "zy"
+     *     Stringkit.lpad("abc", -1, "zy") = "abc"
+     *     Stringkit.lpad("abc", 3, "zy")  = "abc"
+     *     Stringkit.lpad("abc", 6, "zy")  = "zyzabc"
      * </pre>
      *
      * @param source a string
@@ -2181,9 +2177,9 @@ public final class StringKit {
      * <p>source为 {@code null} 时返回 {@code 0}</p>
      *
      * <pre class="code">
-     *     Strings.length(null) = 0
-     *     Strings.length("")   = 0
-     *     Strings.length("aa") = 2
+     *     Stringkit.length(null) = 0
+     *     Stringkit.length("")   = 0
+     *     Stringkit.length("aa") = 2
      * </pre>
      *
      * @param source a string
@@ -2199,9 +2195,9 @@ public final class StringKit {
      * <p>source为 {@code null} 或 {@code ""} 时直接返回source</p>
      *
      * <pre class="code">
-     *     Strings.upperCase(null)  = null
-     *     Strings.upperCase("")    = ""
-     *     Strings.upperCase("aBc") = "ABC"
+     *     Stringkit.upperCase(null)  = null
+     *     Stringkit.upperCase("")    = ""
+     *     Stringkit.upperCase("aBc") = "ABC"
      * </pre>
      *
      * @param source a string
@@ -2220,9 +2216,9 @@ public final class StringKit {
      * <p>source为 {@code null} 或 {@code ""} 时直接返回source</p>
      *
      * <pre class="code">
-     *     Strings.upperCase(null, Locale.ENGLISH)  = null
-     *     Strings.upperCase("", Locale.ENGLISH)    = ""
-     *     Strings.upperCase("aBc", Locale.ENGLISH) = "ABC"
+     *     Stringkit.upperCase(null, Locale.ENGLISH)  = null
+     *     Stringkit.upperCase("", Locale.ENGLISH)    = ""
+     *     Stringkit.upperCase("aBc", Locale.ENGLISH) = "ABC"
      * </pre>
      *
      * @param source a string
@@ -2246,9 +2242,9 @@ public final class StringKit {
      * <p>source为 {@code null} 或 {@code ""} 时直接返回source</p>
      *
      * <pre class="code">
-     *     Strings.lowerCase(null)  = null
-     *     Strings.lowerCase("")    = ""
-     *     Strings.lowerCase("aBc") = "abc"
+     *     Stringkit.lowerCase(null)  = null
+     *     Stringkit.lowerCase("")    = ""
+     *     Stringkit.lowerCase("aBc") = "abc"
      * </pre>
      *
      * @param source a string
@@ -2267,9 +2263,9 @@ public final class StringKit {
      * <p>source为 {@code null} 或 {@code ""} 时直接返回source</p>
      *
      * <pre class="code">
-     *     Strings.lowerCase(null, Locale.ENGLISH)  = null
-     *     Strings.lowerCase("", Locale.ENGLISH)    = ""
-     *     Strings.lowerCase("aBc", Locale.ENGLISH) = "abc"
+     *     Stringkit.lowerCase(null, Locale.ENGLISH)  = null
+     *     Stringkit.lowerCase("", Locale.ENGLISH)    = ""
+     *     Stringkit.lowerCase("aBc", Locale.ENGLISH) = "abc"
      * </pre>
      *
      * @param source a string
@@ -2293,9 +2289,9 @@ public final class StringKit {
      * <p>source为 {@code null} 或 {@code ""} 时直接返回source</p>
      *
      * <pre class="code">
-     *     Strings.swapCase(null)                 = null
-     *     Strings.swapCase("")                   = ""
-     *     Strings.swapCase("The dog has a BONE") = "tHE DOG HAS A bone"
+     *     Stringkit.swapCase(null)                 = null
+     *     Stringkit.swapCase("")                   = ""
+     *     Stringkit.swapCase("The dog has a BONE") = "tHE DOG HAS A bone"
      * </pre>
      *
      * @param source a string
@@ -2328,10 +2324,10 @@ public final class StringKit {
      * <p>source为 {@code null} 或 {@code ""} 时直接返回source</p>
      *
      * <pre class="code">
-     *     Strings.capitalize(null)  = null
-     *     Strings.capitalize("")    = ""
-     *     Strings.capitalize("cat") = "Cat"
-     *     Strings.capitalize("cAt") = "CAt"
+     *     Stringkit.capitalize(null)  = null
+     *     Stringkit.capitalize("")    = ""
+     *     Stringkit.capitalize("cat") = "Cat"
+     *     Stringkit.capitalize("cAt") = "CAt"
      * </pre>
      *
      * @param source a string
@@ -2347,10 +2343,10 @@ public final class StringKit {
      * <p>source为 {@code null} 或 {@code ""} 时直接返回source</p>
      *
      * <pre class="code">
-     *     Strings.uncapitalize(null)  = null
-     *     Strings.uncapitalize("")    = ""
-     *     Strings.uncapitalize("Cat") = "cat"
-     *     Strings.uncapitalize("CAt") = "cAt"
+     *     Stringkit.uncapitalize(null)  = null
+     *     Stringkit.uncapitalize("")    = ""
+     *     Stringkit.uncapitalize("Cat") = "cat"
+     *     Stringkit.uncapitalize("CAt") = "cAt"
      * </pre>
      *
      * @param source a string
@@ -2387,12 +2383,12 @@ public final class StringKit {
      * <p>source为 {@code null} 或 {@code ""} 时直接返回source</p>
      *
      * <pre class="code">
-     *     Strings.underscoreToCamelCase(null)   = null
-     *     Strings.underscoreToCamelCase("")     = ""
-     *     Strings.underscoreToCamelCase("_ab")  = "_ab"
-     *     Strings.underscoreToCamelCase("ab_")  = "ab_"
-     *     Strings.underscoreToCamelCase("a_b")  = "aB"
-     *     Strings.underscoreToCamelCase("a1_b") = "a1B"
+     *     Stringkit.underscoreToCamelCase(null)   = null
+     *     Stringkit.underscoreToCamelCase("")     = ""
+     *     Stringkit.underscoreToCamelCase("_ab")  = "_ab"
+     *     Stringkit.underscoreToCamelCase("ab_")  = "ab_"
+     *     Stringkit.underscoreToCamelCase("a_b")  = "aB"
+     *     Stringkit.underscoreToCamelCase("a1_b") = "a1B"
      * </pre>
      *
      * @param source 下划线命名字符串
@@ -2416,7 +2412,7 @@ public final class StringKit {
     }
 
     private static boolean isUnderscoreCaseRequired(final char before, final char current, final char after) {
-        return ((Character.isLowerCase(before) || CharKit.isAsciiNumeric(before)) && current == UNDERLINE && Character.isLowerCase(after));
+        return ((Character.isLowerCase(before) || Charkit.isAsciiNumeric(before)) && current == UNDERLINE && Character.isLowerCase(after));
     }
 
     /**
@@ -2425,14 +2421,14 @@ public final class StringKit {
      * <p>source为 {@code null} 或 {@code ""} 时直接返回source</p>
      *
      * <pre class="code">
-     *     Strings.camelToUnderscoreCase(null)   = null
-     *     Strings.camelToUnderscoreCase("")     = ""
-     *     Strings.camelToUnderscoreCase("Abc")  = "Abc"
-     *     Strings.camelToUnderscoreCase("abC")  = "abC"
-     *     Strings.camelToUnderscoreCase("ABc")  = "ABc"
-     *     Strings.camelToUnderscoreCase("aBC")  = "aBC"
-     *     Strings.camelToUnderscoreCase("aBc")  = "a_bc"
-     *     Strings.camelToUnderscoreCase("a1Bc") = "a1_bc"
+     *     Stringkit.camelToUnderscoreCase(null)   = null
+     *     Stringkit.camelToUnderscoreCase("")     = ""
+     *     Stringkit.camelToUnderscoreCase("Abc")  = "Abc"
+     *     Stringkit.camelToUnderscoreCase("abC")  = "abC"
+     *     Stringkit.camelToUnderscoreCase("ABc")  = "ABc"
+     *     Stringkit.camelToUnderscoreCase("aBC")  = "aBC"
+     *     Stringkit.camelToUnderscoreCase("aBc")  = "a_bc"
+     *     Stringkit.camelToUnderscoreCase("a1Bc") = "a1_bc"
      * </pre>
      *
      * @param source 驼峰命名字符串
@@ -2457,18 +2453,18 @@ public final class StringKit {
     }
 
     private static boolean isCamelCaseRequired(final char before, final char current, final char after) {
-        return ((Character.isLowerCase(before) || CharKit.isAsciiNumeric(before)) && Character.isUpperCase(current) && Character.isLowerCase(after));
+        return ((Character.isLowerCase(before) || Charkit.isAsciiNumeric(before)) && Character.isUpperCase(current) && Character.isLowerCase(after));
     }
 
     /**
      * 子字符串出现的次数
      *
      * <pre class="code">
-     *     Strings.countMatches(null, "A")      = 0
-     *     Strings.countMatches("A", null)      = 0
-     *     Strings.countMatches("", "A")        = 0
-     *     Strings.countMatches("AAA_AA", "AB") = 0
-     *     Strings.countMatches("AAA_AA", "AA") = 2
+     *     Stringkit.countMatches(null, "A")      = 0
+     *     Stringkit.countMatches("A", null)      = 0
+     *     Stringkit.countMatches("", "A")        = 0
+     *     Stringkit.countMatches("AAA_AA", "AB") = 0
+     *     Stringkit.countMatches("AAA_AA", "AA") = 2
      * </pre>
      *
      * @param source a string
@@ -2492,9 +2488,9 @@ public final class StringKit {
      * 反转字符串
      *
      * <pre class="code">
-     *     Strings.reverse(null)  = null
-     *     Strings.reverse("")    = ""
-     *     Strings.reverse("bat") = "tab"
+     *     Stringkit.reverse(null)  = null
+     *     Stringkit.reverse("")    = ""
+     *     Stringkit.reverse("bat") = "tab"
      * </pre>
      *
      * @param source a string
@@ -2512,12 +2508,12 @@ public final class StringKit {
      * 省略字符串
      *
      * <pre class="code">
-     *     Strings.abbreviate(null, 4)     = null
-     *     Strings.abbreviate("", 4)       = ""
-     *     Strings.abbreviate("abcdef", 4) = "a..."
-     *     Strings.abbreviate("abcdef", 5) = "ab..."
-     *     Strings.abbreviate("abcdef", 7) = "abcdef"
-     *     Strings.abbreviate("abcdef", 3) = IllegalArgumentException
+     *     Stringkit.abbreviate(null, 4)     = null
+     *     Stringkit.abbreviate("", 4)       = ""
+     *     Stringkit.abbreviate("abcdef", 4) = "a..."
+     *     Stringkit.abbreviate("abcdef", 5) = "ab..."
+     *     Stringkit.abbreviate("abcdef", 7) = "abcdef"
+     *     Stringkit.abbreviate("abcdef", 3) = IllegalArgumentException
      * </pre>
      *
      * @param source   a string
@@ -2539,10 +2535,10 @@ public final class StringKit {
      * 返回规范化的空格参数字符串，删除开头和结尾的空格，然后用单个空格替换空白字符序列。
      *
      * <pre class="code">
-     *     Strings.normalizeSpace(null)                  = null
-     *     Strings.normalizeSpace("")                    = ""
-     *     Strings.normalizeSpace(" \n\r\t")             = ""
-     *     Strings.normalizeSpace(" This\t \nis a test") = "This is a test"
+     *     Stringkit.normalizeSpace(null)                  = null
+     *     Stringkit.normalizeSpace("")                    = ""
+     *     Stringkit.normalizeSpace(" \n\r\t")             = ""
+     *     Stringkit.normalizeSpace(" This\t \nis a test") = "This is a test"
      * </pre>
      *
      * @param source a string
@@ -2572,12 +2568,12 @@ public final class StringKit {
      * 检查字符串是否以指定字符串数组中的任何一个结尾
      *
      * <pre class="code">
-     *     Strings.endsWithAny(null, null)                                 = false
-     *     Strings.endsWithAny(null, new String[] {"xyz"})                 = false
-     *     Strings.endsWithAny("abc.cn", null)                             = false
-     *     Strings.endsWithAny("abc.cn", new String[] {""})                = true
-     *     Strings.endsWithAny("abc.cn", new String[] {"cn"})              = true
-     *     Strings.endsWithAny("abc.cn", new String[] {null, "cn", "com"}) = true
+     *     Stringkit.endsWithAny(null, null)                                 = false
+     *     Stringkit.endsWithAny(null, new String[] {"xyz"})                 = false
+     *     Stringkit.endsWithAny("abc.cn", null)                             = false
+     *     Stringkit.endsWithAny("abc.cn", new String[] {""})                = true
+     *     Stringkit.endsWithAny("abc.cn", new String[] {"cn"})              = true
+     *     Stringkit.endsWithAny("abc.cn", new String[] {null, "cn", "com"}) = true
      * </pre>
      *
      * @param source        a string
@@ -2602,9 +2598,9 @@ public final class StringKit {
      * <p>字符序列为 {@code null} 和 {@code ""} 返回 {@code false}</p>
      *
      * <pre class="code">
-     *     Strings.isCharPredicate(null, Character::isLowerCase)  = false
-     *     Strings.isCharPredicate("", Character::isLowerCase)    = false
-     *     Strings.isCharPredicate("ABC", Character::isLowerCase) = true
+     *     Stringkit.isCharPredicate(null, Character::isLowerCase)  = false
+     *     Stringkit.isCharPredicate("", Character::isLowerCase)    = false
+     *     Stringkit.isCharPredicate("ABC", Character::isLowerCase) = true
      * </pre>
      *
      * @param sequence  字符序列
@@ -2630,11 +2626,11 @@ public final class StringKit {
      * <p>字符序列为 {@code null} 和 {@code ""} 返回 {@code false}</p>
      *
      * <pre class="code">
-     *     Strings.isLowerCase(null)  = false
-     *     Strings.isLowerCase("")    = false
-     *     Strings.isLowerCase("  ")  = false
-     *     Strings.isLowerCase("abc") = true
-     *     Strings.isLowerCase("abC") = false
+     *     Stringkit.isLowerCase(null)  = false
+     *     Stringkit.isLowerCase("")    = false
+     *     Stringkit.isLowerCase("  ")  = false
+     *     Stringkit.isLowerCase("abc") = true
+     *     Stringkit.isLowerCase("abC") = false
      * </pre>
      *
      * @param source a string
@@ -2652,11 +2648,11 @@ public final class StringKit {
      * <p>字符序列为 {@code null} 和 {@code ""} 返回 {@code false}</p>
      *
      * <pre class="code">
-     *     Strings.isUpperCase(null)  = false
-     *     Strings.isUpperCase("")    = false
-     *     Strings.isUpperCase("  ")  = false
-     *     Strings.isUpperCase("ABC") = true
-     *     Strings.isUpperCase("aBC") = false
+     *     Stringkit.isUpperCase(null)  = false
+     *     Stringkit.isUpperCase("")    = false
+     *     Stringkit.isUpperCase("  ")  = false
+     *     Stringkit.isUpperCase("ABC") = true
+     *     Stringkit.isUpperCase("aBC") = false
      * </pre>
      *
      * @param source a string
@@ -2682,12 +2678,12 @@ public final class StringKit {
      * </ul>
      *
      * <pre class="code">
-     *     Strings.isLetter(null)  = false
-     *     Strings.isLetter("")    = false
-     *     Strings.isLetter(" ")   = false
-     *     Strings.isLetter("Ab2") = false
-     *     Strings.isLetter("Ab-") = false
-     *     Strings.isLetter("Abc") = true
+     *     Stringkit.isLetter(null)  = false
+     *     Stringkit.isLetter("")    = false
+     *     Stringkit.isLetter(" ")   = false
+     *     Stringkit.isLetter("Ab2") = false
+     *     Stringkit.isLetter("Ab-") = false
+     *     Stringkit.isLetter("Abc") = true
      * </pre>
      *
      * @param source a string
@@ -2705,14 +2701,14 @@ public final class StringKit {
      * <p>字符序列为 {@code null} 和 {@code ""} 返回 {@code false}</p>
      *
      * <pre class="code">
-     *     Strings.isDigit(null)   = false
-     *     Strings.isDigit("")     = false
-     *     Strings.isDigit("  ")   = false
-     *     Strings.isDigit("123")  = true
-     *     Strings.isDigit("12 3") = false
-     *     Strings.isDigit("ab2c") = false
-     *     Strings.isDigit("12-3") = false
-     *     Strings.isDigit("12.3") = false
+     *     Stringkit.isDigit(null)   = false
+     *     Stringkit.isDigit("")     = false
+     *     Stringkit.isDigit("  ")   = false
+     *     Stringkit.isDigit("123")  = true
+     *     Stringkit.isDigit("12 3") = false
+     *     Stringkit.isDigit("ab2c") = false
+     *     Stringkit.isDigit("12-3") = false
+     *     Stringkit.isDigit("12.3") = false
      * </pre>
      *
      * @param source a string
@@ -2730,14 +2726,14 @@ public final class StringKit {
      * <p>字符序列为 {@code null} 和 {@code ""} 返回 {@code false}</p>
      *
      * <pre class="code">
-     *     Strings.isLetterOrDigit(null)   = false
-     *     Strings.isLetterOrDigit("")     = false
-     *     Strings.isLetterOrDigit(" ")    = false
-     *     Strings.isLetterOrDigit("Ab c") = false
-     *     Strings.isLetterOrDigit("Ab-c") = false
-     *     Strings.isLetterOrDigit("Abc")  = true
-     *     Strings.isLetterOrDigit("1234") = true
-     *     Strings.isLetterOrDigit("Ab2c") = true
+     *     Stringkit.isLetterOrDigit(null)   = false
+     *     Stringkit.isLetterOrDigit("")     = false
+     *     Stringkit.isLetterOrDigit(" ")    = false
+     *     Stringkit.isLetterOrDigit("Ab c") = false
+     *     Stringkit.isLetterOrDigit("Ab-c") = false
+     *     Stringkit.isLetterOrDigit("Abc")  = true
+     *     Stringkit.isLetterOrDigit("1234") = true
+     *     Stringkit.isLetterOrDigit("Ab2c") = true
      * </pre>
      *
      * @param source a string
@@ -2760,11 +2756,11 @@ public final class StringKit {
      * </ul>
      *
      * <pre class="code">
-     *     Strings.isSpaceChar(null)   = false
-     *     Strings.isSpaceChar("")     = false
-     *     Strings.isSpaceChar("  ")   = true
-     *     Strings.isSpaceChar("123")  = false
-     *     Strings.isSpaceChar("Abc")  = false
+     *     Stringkit.isSpaceChar(null)   = false
+     *     Stringkit.isSpaceChar("")     = false
+     *     Stringkit.isSpaceChar("  ")   = true
+     *     Stringkit.isSpaceChar("123")  = false
+     *     Stringkit.isSpaceChar("Abc")  = false
      * </pre>
      *
      * @param source a string
@@ -2782,26 +2778,26 @@ public final class StringKit {
      * <p>字符序列为 {@code null} 和 {@code ""} 返回 {@code false}</p>
      *
      * <pre class="code">
-     *     Strings.isAsciiPrintable(null)                   = false
-     *     Strings.isAsciiPrintable("")                     = false
-     *     Strings.isAsciiPrintable(" ")                    = true
-     *     Strings.isAsciiPrintable("Ceki")                 = true
-     *     Strings.isAsciiPrintable("ab2c")                 = true
-     *     Strings.isAsciiPrintable("!ab-c~")               = true
-     *     Strings.isAsciiPrintable("\u0020")               = true
-     *     Strings.isAsciiPrintable("\u0021")               = true
-     *     Strings.isAsciiPrintable("\u007e")               = true
-     *     Strings.isAsciiPrintable("\u007f")               = false
-     *     Strings.isAsciiPrintable("Ceki G\u00fclc\u00fc") = false
+     *     Stringkit.isAsciiPrintable(null)                   = false
+     *     Stringkit.isAsciiPrintable("")                     = false
+     *     Stringkit.isAsciiPrintable(" ")                    = true
+     *     Stringkit.isAsciiPrintable("Ceki")                 = true
+     *     Stringkit.isAsciiPrintable("ab2c")                 = true
+     *     Stringkit.isAsciiPrintable("!ab-c~")               = true
+     *     Stringkit.isAsciiPrintable("\u0020")               = true
+     *     Stringkit.isAsciiPrintable("\u0021")               = true
+     *     Stringkit.isAsciiPrintable("\u007e")               = true
+     *     Stringkit.isAsciiPrintable("\u007f")               = false
+     *     Stringkit.isAsciiPrintable("Ceki G\u00fclc\u00fc") = false
      * </pre>
      *
      * @param source a string
      * @return boolean
      * @see #isCharPredicate(CharSequence, Predicate)
-     * @see CharKit#isAsciiPrintable(char)
+     * @see Charkit#isAsciiPrintable(char)
      */
     public static boolean isAsciiPrintable(final CharSequence source) {
-        return isCharPredicate(source, CharKit::isAsciiPrintable);
+        return isCharPredicate(source, Charkit::isAsciiPrintable);
     }
 
     /**
@@ -2810,23 +2806,23 @@ public final class StringKit {
      * <p>字符序列为 {@code null} 和 {@code ""} 返回 {@code false}</p>
      *
      * <pre class="code">
-     *     Strings.isAsciiControl(null)     = false
-     *     Strings.isAsciiControl("")       = false
-     *     Strings.isAsciiControl(" ")      = false
-     *     Strings.isAsciiControl("Ab2c")   = false
-     *     Strings.isAsciiControl("!ab-c~") = false
-     *     Strings.isAsciiControl("\u0000") = true
-     *     Strings.isAsciiControl("\u007E") = false
-     *     Strings.isAsciiControl("\u007F") = true
+     *     Stringkit.isAsciiControl(null)     = false
+     *     Stringkit.isAsciiControl("")       = false
+     *     Stringkit.isAsciiControl(" ")      = false
+     *     Stringkit.isAsciiControl("Ab2c")   = false
+     *     Stringkit.isAsciiControl("!ab-c~") = false
+     *     Stringkit.isAsciiControl("\u0000") = true
+     *     Stringkit.isAsciiControl("\u007E") = false
+     *     Stringkit.isAsciiControl("\u007F") = true
      * </pre>
      *
      * @param source a string
      * @return boolean
      * @see #isCharPredicate(CharSequence, Predicate)
-     * @see CharKit#isAsciiControl(char)
+     * @see Charkit#isAsciiControl(char)
      */
     public static boolean isAsciiControl(final CharSequence source) {
-        return isCharPredicate(source, CharKit::isAsciiControl);
+        return isCharPredicate(source, Charkit::isAsciiControl);
     }
 
     /**
@@ -2851,12 +2847,12 @@ public final class StringKit {
      * </ul>
      *
      * <pre class="code">
-     *     Strings.isWhitespace(null)   = false
-     *     Strings.isWhitespace("")     = false
-     *     Strings.isWhitespace(" \n")  = true
-     *     Strings.isWhitespace("abc")  = false
-     *     Strings.isWhitespace("ab2c") = false
-     *     Strings.isWhitespace("ab-c") = false
+     *     Stringkit.isWhitespace(null)   = false
+     *     Stringkit.isWhitespace("")     = false
+     *     Stringkit.isWhitespace(" \n")  = true
+     *     Stringkit.isWhitespace("abc")  = false
+     *     Stringkit.isWhitespace("ab2c") = false
+     *     Stringkit.isWhitespace("ab-c") = false
      * </pre>
      *
      * @param source a string

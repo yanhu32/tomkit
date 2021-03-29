@@ -6,7 +6,7 @@ package tomkit.core.lang;
  * @author yh
  * @since 2021/2/3
  */
-public final class CharKit {
+public final class Charkit {
 
     private static final char[] ASCII_CHAR_ARRAY = new char[128];
 
@@ -35,7 +35,7 @@ public final class CharKit {
         }
     }
 
-    private CharKit() {
+    private Charkit() {
     }
 
     public static char[] getAsciiCharArray() {

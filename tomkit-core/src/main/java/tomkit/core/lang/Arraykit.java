@@ -6,7 +6,7 @@ package tomkit.core.lang;
  * @author yh
  * @since 2021/3/26
  */
-public class ArrayKit {
+public class Arraykit {
 
     /* ------------------------------------------- isEmpty ------------------------------------------- */
 

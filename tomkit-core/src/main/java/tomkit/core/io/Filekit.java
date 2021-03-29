@@ -11,9 +11,9 @@ import java.io.*;
  * @author yh
  * @since 2021/3/25
  */
-public final class FileKit {
+public final class Filekit {
 
-    private FileKit() {
+    private Filekit() {
     }
 
     /**
@@ -50,7 +50,7 @@ public final class FileKit {
 
         try (BufferedInputStream inputStream = new BufferedInputStream(new FileInputStream(in));
              BufferedOutputStream outputStream = new BufferedOutputStream(new FileOutputStream(out, append))) {
-            return IOStreamKit.copy(inputStream, outputStream);
+            return IOStreamkit.copy(inputStream, outputStream);
         }
     }
 
@@ -67,11 +67,11 @@ public final class FileKit {
         Assert.notNull(in, "输入流不能为空");
         Assert.notNull(outFile, "目标文件不能为空");
 
-        if (!FileKit.mkdirsParentFile(outFile)) {
+        if (!Filekit.mkdirsParentFile(outFile)) {
             throw new TomkitException("创建文件父目录失败");
         }
         try (OutputStream out = new FileOutputStream(outFile)) {
-            return IOStreamKit.copy(in, out);
+            return IOStreamkit.copy(in, out);
         }
     }
 
@@ -92,7 +92,7 @@ public final class FileKit {
         Assert.state(inFile.isFile(), "源文件必传为文件类型");
 
         try (InputStream in = new BufferedInputStream(new FileInputStream(inFile))) {
-            return IOStreamKit.copy(in, out);
+            return IOStreamkit.copy(in, out);
         }
     }
 
@@ -109,11 +109,11 @@ public final class FileKit {
         Assert.notNull(reader, "阅读器不能为空");
         Assert.notNull(outFile, "目标文件不能为空");
 
-        if (!FileKit.mkdirsParentFile(outFile)) {
+        if (!Filekit.mkdirsParentFile(outFile)) {
             throw new TomkitException("创建文件父目录失败");
         }
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(outFile))) {
-            return IOStreamKit.copy(reader, writer);
+            return IOStreamkit.copy(reader, writer);
         }
     }
 
@@ -134,7 +134,7 @@ public final class FileKit {
         Assert.state(inFile.isFile(), "源文件必传为文件类型");
 
         try (BufferedReader reader = new BufferedReader(new FileReader(inFile))) {
-            return IOStreamKit.copy(reader, writer);
+            return IOStreamkit.copy(reader, writer);
         }
     }
 
