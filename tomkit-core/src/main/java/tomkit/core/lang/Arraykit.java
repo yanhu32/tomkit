@@ -1,5 +1,7 @@
 package tomkit.core.lang;
 
+import java.util.*;
+
 /**
  * 数组工具类
  *
@@ -192,6 +194,19 @@ public class Arraykit {
      */
     public static boolean isNotEmpty(boolean[] array) {
         return !isEmpty(array);
+    }
+
+    /**
+     * 将可变长参数转换为Set集合
+     *
+     * @param a   可变长参数
+     * @param <T> 参数类型
+     * @return Set集合
+     */
+    @SafeVarargs
+    @SuppressWarnings("varargs")
+    public static <T> Set<T> asSet(T... a) {
+        return new HashSet<>(Arrays.asList(a));
     }
 
 
