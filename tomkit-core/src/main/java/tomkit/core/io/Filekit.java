@@ -15,9 +15,9 @@ import java.util.List;
  * @author yh
  * @since 2021/3/25
  */
-public final class Pathkit {
+public final class Filekit {
 
-    private Pathkit() {
+    private Filekit() {
     }
 
     /**
@@ -29,7 +29,7 @@ public final class Pathkit {
      * @throws IOException 发生I/O异常时
      */
     public static long copy(Path in, Path out) throws IOException {
-        return copy(in, out, false);
+        return Files.size(Files.copy(in, out));
     }
 
     /**
@@ -223,6 +223,44 @@ public final class Pathkit {
         if (Files.notExists(path)) {
             Files.createDirectories(path);
         }
+    }
+
+    /**
+     * 判断给定的文件或目录是否为空
+     *
+     * @param path 指定要查询的文件或目录
+     * @return 给定的文件或目录是否为空
+     * @throws IOException 如果发生I/O错误
+     */
+    public static boolean isEmpty(final Path path) throws IOException {
+        return Files.isDirectory(path) ? isEmptyDirectory(path) : isEmptyFile(path);
+    }
+
+    /**
+     * 判断给定的目录是否为空
+     *
+     * @param directory 指定要查询的目录
+     * @return 给定的目录是否为空
+     * @throws IOException 如果发生I/O错误
+     */
+    public static boolean isEmptyDirectory(final Path directory) throws IOException {
+        try (DirectoryStream<Path> directoryStream = Files.newDirectoryStream(directory)) {
+            if (directoryStream.iterator().hasNext()) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    /**
+     * 判断给定文件是否为空
+     *
+     * @param file 指定要查询的文件
+     * @return 给定文件是否为空
+     * @throws IOException 如果发生I/O错误
+     */
+    public static boolean isEmptyFile(final Path file) throws IOException {
+        return Files.size(file) <= 0;
     }
 
 }
