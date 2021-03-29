@@ -8,6 +8,8 @@ import java.util.TreeMap;
 import static java.nio.charset.StandardCharsets.*;
 
 /**
+ * 字符编码工具类
+ *
  * @author yh
  * @since 2021/3/26
  */

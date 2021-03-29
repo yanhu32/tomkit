@@ -14,8 +14,8 @@ public class Weeks {
     /**
      * 获取星期的中文表示
      *
-     * @param week
-     * @return
+     * @param week 星期
+     * @return 星期的中文表示
      */
     public static String weekChs(DayOfWeek week) {
         if (null != week) {
@@ -41,10 +41,10 @@ public class Weeks {
     }
 
     /**
-     * 最新一次星期的日期
+     * 获取最新一次星期的日期
      *
-     * @param week
-     * @return
+     * @param week 星期
+     * @return 最新一次星期的日期
      */
     public static LocalDate nextWeekDate(DayOfWeek week) {
         if (null == week) {
@@ -65,10 +65,10 @@ public class Weeks {
     }
 
     /**
-     * 最新一次星期的日期字符串形式
+     * 获取最新一次星期的日期字符串形式
      *
-     * @param week
-     * @return
+     * @param week 星期
+     * @return 最新一次星期的日期字符串
      */
     public static String nextWeekDateStr(DayOfWeek week) {
         if (null == week) {

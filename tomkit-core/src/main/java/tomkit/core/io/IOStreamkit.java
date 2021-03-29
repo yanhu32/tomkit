@@ -342,8 +342,9 @@ public class IOStreamkit {
      * 从{@link Reader}阅读器复制字符到{@link Writer}写入器
      * 这个方法使用提供的缓冲区，所以不需要使用{@link BufferedReader}
      *
-     * @param reader 阅读器{@link Reader}
-     * @param writer 写入器{@link Writer}
+     * @param reader     阅读器{@link Reader}
+     * @param writer     写入器{@link Writer}
+     * @param bufferSize 复制使用的缓存区大小
      * @return 复制的字符数
      * @throws NullPointerException 如果reader或writer为null
      * @throws IOException          如果出现I/O错误
@@ -951,6 +952,7 @@ public class IOStreamkit {
      *
      * @param input  要跳过的{@link InputStream}
      * @param toSkip 要跳过的字节数
+     * @return 实际跳过字节数
      * @throws IOException 如果读取{@link InputStream}有问题
      * @see InputStream#skip(long)
      */
@@ -965,6 +967,7 @@ public class IOStreamkit {
      *
      * @param input  要跳过的{@link ReadableByteChannel}
      * @param toSkip 要跳过的字节数
+     * @return 实际跳过字节数
      * @throws IOException 如果读取{@link ReadableByteChannel}有问题
      */
     public static long skip(final ReadableByteChannel input, final long toSkip) throws IOException {
@@ -992,6 +995,7 @@ public class IOStreamkit {
      *
      * @param reader 要挑过的流
      * @param toSkip 要跳过的字节数
+     * @return 实际跳过字节数
      * @throws IOException              如果流不可读
      * @throws IllegalArgumentException if toSkip is negative
      * @throws EOFException             if the number of characters skipped was incorrect
@@ -1084,7 +1088,7 @@ public class IOStreamkit {
 
     /**
      * 消耗Reader阅读器的内容并忽略内容
-     * 缓冲区大小为{@link #DEFAULT_BUFFER_SIZE/2}
+     * 缓冲区大小为{@link #DEFAULT_BUFFER_SIZE}/2
      *
      * @param reader 要读取的阅读器
      * @return 复制的字节数，如果input为null则返回0
@@ -1467,8 +1471,9 @@ public class IOStreamkit {
     /**
      * 将集合中每一项的{@code toString()}值逐行写入{@link OutputStream}，使用指定字符编码和系统默认行结束符
      *
-     * @param lines  要写的行，为null的项产生空行
-     * @param output 输出流，不能为null，不进行关闭操作
+     * @param lines   要写的行，为null的项产生空行
+     * @param output  输出流，不能为null，不进行关闭操作
+     * @param charset 字符编码
      * @throws IOException 如果出现I/O错误
      */
     public static void writeLines(final Collection<?> lines, final OutputStream output, Charset charset)

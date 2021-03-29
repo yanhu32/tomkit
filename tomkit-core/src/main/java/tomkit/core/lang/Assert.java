@@ -5,6 +5,8 @@ import java.util.Map;
 import java.util.function.Supplier;
 
 /**
+ * 断言
+ *
  * @author yh
  * @since 2021/1/29
  */
