@@ -11,7 +11,7 @@ import java.util.function.Supplier;
  * @author yh
  * @since 2021/1/28
  */
-public final class Objectkit {
+public final class Objects {
 
     private static final int INITIAL_HASH = 7;
     private static final int MULTIPLIER = 31;
@@ -26,7 +26,7 @@ public final class Objectkit {
     /**
      * 不可实例化
      */
-    private Objectkit() {
+    private Objects() {
     }
 
     /**

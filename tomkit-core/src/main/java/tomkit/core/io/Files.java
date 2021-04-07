@@ -4,7 +4,6 @@ import java.io.*;
 import java.nio.charset.Charset;
 import java.nio.file.DirectoryIteratorException;
 import java.nio.file.DirectoryStream;
-import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,7 +14,7 @@ import java.util.List;
  * @author yh
  * @since 2021/3/25
  */
-public final class Filekit {
+public final class Files {
 
     private static final String[] EMPTY_STRING_ARRAY = new String[0];
 
@@ -61,7 +60,7 @@ public final class Filekit {
         }
     }
 
-    private Filekit() {
+    private Files() {
     }
 
     //-----------------------------------------------------------------------
@@ -96,7 +95,7 @@ public final class Filekit {
      * @throws IOException 发生I/O异常时
      */
     public static long copy(Path in, Path out) throws IOException {
-        return Files.size(Files.copy(in, out));
+        return java.nio.file.Files.size(java.nio.file.Files.copy(in, out));
     }
 
     /**
@@ -111,9 +110,9 @@ public final class Filekit {
     public static long copy(Path in, Path out, boolean append) throws IOException {
         // 创建目标文件父目录
         createParentDirectories(out);
-        try (InputStream inputStream = Files.newInputStream(in);
+        try (InputStream inputStream = java.nio.file.Files.newInputStream(in);
              OutputStream outputStream = new FileOutputStream(out.toFile(), append)) {
-            return IOStreamkit.copy(inputStream, outputStream);
+            return IOStreams.copy(inputStream, outputStream);
         }
     }
 
@@ -129,8 +128,8 @@ public final class Filekit {
     public static long copy(InputStream in, Path out) throws IOException {
         // 创建目标文件父目录
         createParentDirectories(out);
-        try (OutputStream outputStream = Files.newOutputStream(out)) {
-            return IOStreamkit.copy(in, outputStream);
+        try (OutputStream outputStream = java.nio.file.Files.newOutputStream(out)) {
+            return IOStreams.copy(in, outputStream);
         }
     }
 
@@ -144,8 +143,8 @@ public final class Filekit {
      * @throws IOException 发生I/O异常时
      */
     public static long copy(Path in, OutputStream out) throws IOException {
-        try (InputStream inputStream = Files.newInputStream(in)) {
-            return IOStreamkit.copy(inputStream, out);
+        try (InputStream inputStream = java.nio.file.Files.newInputStream(in)) {
+            return IOStreams.copy(inputStream, out);
         }
     }
 
@@ -161,8 +160,8 @@ public final class Filekit {
     public static long copy(Reader reader, Path out) throws IOException {
         // 创建目标文件父目录
         createParentDirectories(out);
-        try (Writer writer = new OutputStreamWriter(Files.newOutputStream(out))) {
-            return IOStreamkit.copy(reader, writer);
+        try (Writer writer = new OutputStreamWriter(java.nio.file.Files.newOutputStream(out))) {
+            return IOStreams.copy(reader, writer);
         }
     }
 
@@ -179,8 +178,8 @@ public final class Filekit {
     public static long copy(Reader reader, Path out, Charset charset) throws IOException {
         // 创建目标文件父目录
         createParentDirectories(out);
-        try (Writer writer = new OutputStreamWriter(Files.newOutputStream(out), charset)) {
-            return IOStreamkit.copy(reader, writer);
+        try (Writer writer = new OutputStreamWriter(java.nio.file.Files.newOutputStream(out), charset)) {
+            return IOStreams.copy(reader, writer);
         }
     }
 
@@ -195,8 +194,8 @@ public final class Filekit {
      * @throws IOException 发生I/O错误时
      */
     public static long copy(Path in, Writer writer) throws IOException {
-        try (Reader reader = new InputStreamReader(Files.newInputStream(in))) {
-            return IOStreamkit.copy(reader, writer);
+        try (Reader reader = new InputStreamReader(java.nio.file.Files.newInputStream(in))) {
+            return IOStreams.copy(reader, writer);
         }
     }
 
@@ -211,8 +210,8 @@ public final class Filekit {
      * @throws IOException 发生I/O错误时
      */
     public static long copy(Path in, Writer writer, Charset decoder) throws IOException {
-        try (Reader reader = new InputStreamReader(Files.newInputStream(in), decoder)) {
-            return IOStreamkit.copy(reader, writer);
+        try (Reader reader = new InputStreamReader(java.nio.file.Files.newInputStream(in), decoder)) {
+            return IOStreams.copy(reader, writer);
         }
     }
 
@@ -225,7 +224,7 @@ public final class Filekit {
      */
     public static List<Path> searchFiles(Path dir) throws IOException {
         List<Path> result = new ArrayList<>();
-        try (DirectoryStream<Path> stream = Files.newDirectoryStream(dir)) {
+        try (DirectoryStream<Path> stream = java.nio.file.Files.newDirectoryStream(dir)) {
             for (Path entry : stream) {
                 result.add(entry);
             }
@@ -246,7 +245,7 @@ public final class Filekit {
      */
     public static List<Path> searchFiles(Path dir, String glob) throws IOException {
         List<Path> result = new ArrayList<>();
-        try (DirectoryStream<Path> stream = Files.newDirectoryStream(dir, glob)) {
+        try (DirectoryStream<Path> stream = java.nio.file.Files.newDirectoryStream(dir, glob)) {
             for (Path entry : stream) {
                 result.add(entry);
             }
@@ -263,8 +262,8 @@ public final class Filekit {
      * @param path 文件路径
      */
     public static void createParentDirectories(Path path) throws IOException {
-        if (Files.notExists(path.getParent())) {
-            Files.createDirectories(path.getParent());
+        if (java.nio.file.Files.notExists(path.getParent())) {
+            java.nio.file.Files.createDirectories(path.getParent());
         }
     }
 
@@ -275,8 +274,8 @@ public final class Filekit {
      * @throws IOException 发生I/O异常时
      */
     public static void createFile(Path path) throws IOException {
-        if (Files.notExists(path)) {
-            Files.createFile(path);
+        if (java.nio.file.Files.notExists(path)) {
+            java.nio.file.Files.createFile(path);
         }
     }
 
@@ -287,8 +286,8 @@ public final class Filekit {
      * @throws IOException 如果发生I/O错误
      */
     public static void createDirectories(Path path) throws IOException {
-        if (Files.notExists(path)) {
-            Files.createDirectories(path);
+        if (java.nio.file.Files.notExists(path)) {
+            java.nio.file.Files.createDirectories(path);
         }
     }
 
@@ -300,7 +299,7 @@ public final class Filekit {
      * @throws IOException 如果发生I/O错误
      */
     public static boolean isEmpty(final Path path) throws IOException {
-        return Files.isDirectory(path) ? isEmptyDirectory(path) : isEmptyFile(path);
+        return java.nio.file.Files.isDirectory(path) ? isEmptyDirectory(path) : isEmptyFile(path);
     }
 
     /**
@@ -311,7 +310,7 @@ public final class Filekit {
      * @throws IOException 如果发生I/O错误
      */
     public static boolean isEmptyDirectory(final Path directory) throws IOException {
-        try (DirectoryStream<Path> directoryStream = Files.newDirectoryStream(directory)) {
+        try (DirectoryStream<Path> directoryStream = java.nio.file.Files.newDirectoryStream(directory)) {
             if (directoryStream.iterator().hasNext()) {
                 return false;
             }
@@ -327,7 +326,7 @@ public final class Filekit {
      * @throws IOException 如果发生I/O错误
      */
     public static boolean isEmptyFile(final Path file) throws IOException {
-        return Files.size(file) <= 0;
+        return java.nio.file.Files.size(file) <= 0;
     }
 
 }

@@ -6,9 +6,9 @@ package tomkit.core.lang;
  * @author yh
  * @since 2021/3/26
  */
-public final class Classkit {
+public final class Classes {
 
-    private Classkit(){}
+    private Classes(){}
 
 
 }

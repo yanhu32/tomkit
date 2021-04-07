@@ -1,6 +1,6 @@
 package tomkit.core.lang;
 
-import tomkit.core.io.IOStreamkit;
+import tomkit.core.io.IOStreams;
 
 import java.io.*;
 import java.nio.charset.Charset;
@@ -37,7 +37,7 @@ public final class Base64kit {
      * @return 编码后字节数组
      */
     public static byte[] encode(final String src) {
-        return encode(src.getBytes(Charsetkit.SYSTEM_DEFAULT_CHARSET));
+        return encode(src.getBytes(Charsets.SYSTEM_DEFAULT_CHARSET));
     }
 
     /**
@@ -59,7 +59,7 @@ public final class Base64kit {
      * @throws IOException 如果发生I/O错误
      */
     public static byte[] encode(final InputStream inputStream) throws IOException {
-        return encode(IOStreamkit.toByteArray(inputStream));
+        return encode(IOStreams.toByteArray(inputStream));
     }
 
     /**
@@ -71,7 +71,7 @@ public final class Base64kit {
      * @throws IOException 如果发生I/O错误
      */
     public static byte[] encode(final Reader reader, final Charset charset) throws IOException {
-        return encode(IOStreamkit.toByteArray(reader, charset));
+        return encode(IOStreams.toByteArray(reader, charset));
     }
 
     /**
@@ -94,7 +94,7 @@ public final class Base64kit {
      * @return 解码后字节数组
      */
     public static byte[] decode(final String src) {
-        return decode(src.getBytes(Charsetkit.SYSTEM_DEFAULT_CHARSET));
+        return decode(src.getBytes(Charsets.SYSTEM_DEFAULT_CHARSET));
     }
 
     /**
@@ -116,7 +116,7 @@ public final class Base64kit {
      * @throws IOException 如果发生I/O错误
      */
     public static byte[] decode(final InputStream inputStream) throws IOException {
-        return decode(IOStreamkit.toByteArray(inputStream));
+        return decode(IOStreams.toByteArray(inputStream));
     }
 
     /**
@@ -128,7 +128,7 @@ public final class Base64kit {
      * @throws IOException 如果发生I/O错误
      */
     public static byte[] decode(final Reader reader, final Charset charset) throws IOException {
-        return decode(IOStreamkit.toByteArray(reader, charset));
+        return decode(IOStreams.toByteArray(reader, charset));
     }
 
     /**
@@ -138,7 +138,7 @@ public final class Base64kit {
      * @return 编码后字符串
      */
     public static String encodeToString(final byte[] src) {
-        return new String(encode(src), Charsetkit.SYSTEM_DEFAULT_CHARSET);
+        return new String(encode(src), Charsets.SYSTEM_DEFAULT_CHARSET);
     }
 
     /**
@@ -159,7 +159,7 @@ public final class Base64kit {
      * @return 解码后字符串
      */
     public static String encodeToString(final String src) {
-        return new String(encode(src.getBytes(Charsetkit.SYSTEM_DEFAULT_CHARSET)), Charsetkit.SYSTEM_DEFAULT_CHARSET);
+        return new String(encode(src.getBytes(Charsets.SYSTEM_DEFAULT_CHARSET)), Charsets.SYSTEM_DEFAULT_CHARSET);
     }
 
     /**
@@ -182,7 +182,7 @@ public final class Base64kit {
      * @throws IOException 如果发生I/O错误
      */
     public static String encodeToString(final InputStream inputStream, final Charset charset) throws IOException {
-        return new String(encode(IOStreamkit.toByteArray(inputStream)), charset);
+        return new String(encode(IOStreams.toByteArray(inputStream)), charset);
     }
 
     /**
@@ -194,7 +194,7 @@ public final class Base64kit {
      * @throws IOException 如果发生I/O错误
      */
     public static String encodeToString(final Reader reader, final Charset charset) throws IOException {
-        return new String(encode(IOStreamkit.toByteArray(reader, charset)), charset);
+        return new String(encode(IOStreams.toByteArray(reader, charset)), charset);
     }
 
     /**
@@ -204,7 +204,7 @@ public final class Base64kit {
      * @return 解码后字符串
      */
     public static String decodeToString(final byte[] src) {
-        return new String(decode(src), Charsetkit.SYSTEM_DEFAULT_CHARSET);
+        return new String(decode(src), Charsets.SYSTEM_DEFAULT_CHARSET);
     }
 
     /**
@@ -225,7 +225,7 @@ public final class Base64kit {
      * @return 解码后字符串
      */
     public static String decodeToString(final String src) {
-        return new String(decode(src.getBytes(Charsetkit.SYSTEM_DEFAULT_CHARSET)), Charsetkit.SYSTEM_DEFAULT_CHARSET);
+        return new String(decode(src.getBytes(Charsets.SYSTEM_DEFAULT_CHARSET)), Charsets.SYSTEM_DEFAULT_CHARSET);
     }
 
     /**
@@ -248,7 +248,7 @@ public final class Base64kit {
      * @throws IOException 如果发生I/O错误
      */
     public static String decodeToString(final InputStream inputStream, final Charset charset) throws IOException {
-        return new String(decode(IOStreamkit.toByteArray(inputStream)), charset);
+        return new String(decode(IOStreams.toByteArray(inputStream)), charset);
     }
 
     /**
@@ -260,7 +260,7 @@ public final class Base64kit {
      * @throws IOException 如果发生I/O错误
      */
     public static String decodeToString(final Reader reader, final Charset charset) throws IOException {
-        return new String(decode(IOStreamkit.toByteArray(reader, charset)), charset);
+        return new String(decode(IOStreams.toByteArray(reader, charset)), charset);
     }
 
     /**
@@ -388,7 +388,7 @@ public final class Base64kit {
      * @return 解码后字节数组
      */
     public static byte[] encodeUrlSafe(final String src) {
-        return encodeUrlSafe(src.getBytes(Charsetkit.SYSTEM_DEFAULT_CHARSET));
+        return encodeUrlSafe(src.getBytes(Charsets.SYSTEM_DEFAULT_CHARSET));
     }
 
     /**
@@ -409,7 +409,7 @@ public final class Base64kit {
      * @return 解码后字节数组
      */
     public static byte[] decodeUrlSafe(final String src) {
-        return decodeUrlSafe(src.getBytes(Charsetkit.SYSTEM_DEFAULT_CHARSET));
+        return decodeUrlSafe(src.getBytes(Charsets.SYSTEM_DEFAULT_CHARSET));
     }
 
     /**
@@ -430,7 +430,7 @@ public final class Base64kit {
      * @return 编码后字符串
      */
     public static String encodeUrlSafeToString(final byte[] src) {
-        return new String(encodeUrlSafe(src), Charsetkit.SYSTEM_DEFAULT_CHARSET);
+        return new String(encodeUrlSafe(src), Charsets.SYSTEM_DEFAULT_CHARSET);
     }
 
     /**
@@ -440,7 +440,7 @@ public final class Base64kit {
      * @return 编码后字符串
      */
     public static String encodeUrlSafeToString(final String src) {
-        return new String(encodeUrlSafe(src.getBytes(Charsetkit.SYSTEM_DEFAULT_CHARSET)), Charsetkit.SYSTEM_DEFAULT_CHARSET);
+        return new String(encodeUrlSafe(src.getBytes(Charsets.SYSTEM_DEFAULT_CHARSET)), Charsets.SYSTEM_DEFAULT_CHARSET);
     }
 
     /**
@@ -461,7 +461,7 @@ public final class Base64kit {
      * @return 解码后字符串
      */
     public static String decodeUrlSafeToString(final byte[] src) {
-        return new String(decodeUrlSafe(src), Charsetkit.SYSTEM_DEFAULT_CHARSET);
+        return new String(decodeUrlSafe(src), Charsets.SYSTEM_DEFAULT_CHARSET);
     }
 
     /**
@@ -471,7 +471,7 @@ public final class Base64kit {
      * @return 解码后字符串
      */
     public static String decodeUrlSafeToString(final String src) {
-        return new String(decodeUrlSafe(src.getBytes(Charsetkit.SYSTEM_DEFAULT_CHARSET)), Charsetkit.SYSTEM_DEFAULT_CHARSET);
+        return new String(decodeUrlSafe(src.getBytes(Charsets.SYSTEM_DEFAULT_CHARSET)), Charsets.SYSTEM_DEFAULT_CHARSET);
     }
 
     /**

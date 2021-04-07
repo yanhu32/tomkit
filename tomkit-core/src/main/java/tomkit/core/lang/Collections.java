@@ -8,7 +8,7 @@ import java.util.Collection;
  * @author yh
  * @since 2021/3/26
  */
-public class Collectionkit {
+public class Collections {
 
     /**
      * 判断集合是否为null或空

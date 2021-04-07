@@ -8,7 +8,7 @@ import java.util.*;
  * @author yh
  * @since 2021/3/26
  */
-public class Arraykit {
+public class Arrays {
 
     /* ------------------------------------------- isEmpty ------------------------------------------- */
 
@@ -206,7 +206,7 @@ public class Arraykit {
     @SafeVarargs
     @SuppressWarnings("varargs")
     public static <T> Set<T> asSet(T... a) {
-        return new HashSet<>(Arrays.asList(a));
+        return new HashSet<>(java.util.Arrays.asList(a));
     }
 
 

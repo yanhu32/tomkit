@@ -80,7 +80,7 @@ public class LineIterator implements Iterator<String>, Closeable {
                     }
                 }
             } catch (final IOException ioe) {
-                IOStreamkit.close(this, ioe::addSuppressed);
+                IOStreams.close(this, ioe::addSuppressed);
                 throw new IllegalStateException(ioe);
             }
         }

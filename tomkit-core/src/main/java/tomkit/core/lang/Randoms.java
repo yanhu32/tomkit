@@ -10,7 +10,7 @@ import java.util.concurrent.ThreadLocalRandom;
  * @author yh
  * @since 2021/3/23
  */
-public final class Randomkit {
+public final class Randoms {
 
     static final char[] CHARS = {
             '0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
@@ -21,7 +21,7 @@ public final class Randomkit {
             'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X',
             'Y', 'Z'};
 
-    private Randomkit() {
+    private Randoms() {
     }
 
     /**
@@ -157,7 +157,7 @@ public final class Randomkit {
      * @return 随机数字串
      */
     public static String randomDigit(int len) {
-        return randomStr(len, Randomkit::nextDigit);
+        return randomStr(len, Randoms::nextDigit);
     }
 
     /**
@@ -167,7 +167,7 @@ public final class Randomkit {
      * @return 随机字母串
      */
     public static String randomLetter(int len) {
-        return randomStr(len, Randomkit::nextLetter);
+        return randomStr(len, Randoms::nextLetter);
     }
 
     /**
@@ -177,7 +177,7 @@ public final class Randomkit {
      * @return 随机字符串
      */
     public static String randomStr(int len) {
-        return randomStr(len, Randomkit::nextChar);
+        return randomStr(len, Randoms::nextChar);
     }
 
     /**
@@ -187,7 +187,7 @@ public final class Randomkit {
      * @return 随机汉字串
      */
     public static String randomHanzi(int len) {
-        return randomStr(len, Randomkit::nextHanzi);
+        return randomStr(len, Randoms::nextHanzi);
     }
 
     /**
