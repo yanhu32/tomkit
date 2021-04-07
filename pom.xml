@@ -86,6 +86,7 @@
 
         <!-- dependency version -->
         <junit.version>4.13</junit.version>
+        <cglib.version>3.3.0</cglib.version>
     </properties>
 
     <!--Build plugins-->
@@ -293,6 +294,11 @@
                 <artifactId>junit</artifactId>
                 <version>${junit.version}</version>
                 <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>cglib</groupId>
+                <artifactId>cglib</artifactId>
+                <version>${cglib.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

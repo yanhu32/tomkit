@@ -19,4 +19,11 @@
     </description>
     <url>https://github.com/yanhu32/tomkit/tree/main/tomkit-core</url>
 
+    <dependencies>
+        <dependency>
+            <groupId>cglib</groupId>
+            <artifactId>cglib</artifactId>
+        </dependency>
+    </dependencies>
+
 </project>
