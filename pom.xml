@@ -251,6 +251,9 @@
                         <goals>
                             <goal>jar</goal>
                         </goals>
+                        <configuration> <!-- add this to disable checking -->
+                            <additionalOptions>-Xdoclint:none</additionalOptions>
+                        </configuration>
                     </execution>
                 </executions>
             </plugin>

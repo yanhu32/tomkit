@@ -292,6 +292,9 @@ public final class Ascii {
      * Returns a copy of the input string in which all {@linkplain #isUpperCase(char) uppercase ASCII
      * characters} have been converted to lowercase. All other characters are copied without
      * modification.
+     *
+     * @param string a string
+     * @return lower case
      */
     public static String toLowerCase(String string) {
         int length = string.length();
