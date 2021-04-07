@@ -17,7 +17,74 @@ import java.util.List;
  */
 public final class Filekit {
 
+    private static final String[] EMPTY_STRING_ARRAY = new String[0];
+
+    private static final String EMPTY_STRING = "";
+
+    private static final int NOT_FOUND = -1;
+
+    /**
+     * 扩展分隔符
+     */
+    public static final char EXTENSION_SEPARATOR = '.';
+
+    /**
+     * 扩展分隔符字符串
+     */
+    public static final String EXTENSION_SEPARATOR_STR = "" + EXTENSION_SEPARATOR;
+
+    /**
+     * Unix分隔符
+     */
+    private static final char UNIX_SEPARATOR = '/';
+
+    /**
+     * Windows分隔符
+     */
+    private static final char WINDOWS_SEPARATOR = '\\';
+
+    /**
+     * 当前系统分隔符
+     */
+    private static final char SYSTEM_SEPARATOR = File.separatorChar;
+
+    /**
+     * 与系统分隔符相反的分隔符
+     */
+    private static final char OTHER_SEPARATOR;
+
+    static {
+        if (isSystemWindows()) {
+            OTHER_SEPARATOR = UNIX_SEPARATOR;
+        } else {
+            OTHER_SEPARATOR = WINDOWS_SEPARATOR;
+        }
+    }
+
     private Filekit() {
+    }
+
+    //-----------------------------------------------------------------------
+
+    /**
+     * 确定是否正在使用Windows文件系统
+     *
+     * @return true if the system is Windows
+     */
+    static boolean isSystemWindows() {
+        return SYSTEM_SEPARATOR == WINDOWS_SEPARATOR;
+    }
+
+    //-----------------------------------------------------------------------
+
+    /**
+     * 检查字符是否为分隔符
+     *
+     * @param ch 要检查的字符
+     * @return 如果是分隔符，则为true
+     */
+    private static boolean isSeparator(final char ch) {
+        return ch == UNIX_SEPARATOR || ch == WINDOWS_SEPARATOR;
     }
 
     /**

@@ -505,12 +505,12 @@ public final class Objectkit {
      *     Objects.defaultIfNull(Boolean.TRUE, *) = Boolean.TRUE
      * </pre>
      *
-     * @param object       a object
+     * @param value        a object
      * @param defaultValue 默认值
      * @return 返回对象或默认值
      */
-    public static Object defaultIfNull(Object object, Object defaultValue) {
-        return object != null ? object : defaultValue;
+    public static <T> T defaultIfNull(T value, T defaultValue) {
+        return value != null ? value : defaultValue;
     }
 
     /**
@@ -524,13 +524,13 @@ public final class Objectkit {
      *     Objects.defaultIfEmpty(Boolean.TRUE, *)  = Boolean.TRUE
      * </pre>
      *
-     * @param object       a object
+     * @param value        a object
      * @param defaultValue 默认值
      * @return 当前对象或默认值
      * @see #isEmpty(Object)
      */
-    public static Object defaultIfEmpty(Object object, Object defaultValue) {
-        return !isEmpty(object) ? object : defaultValue;
+    public static <T> T defaultIfEmpty(T value, T defaultValue) {
+        return !isEmpty(value) ? value : defaultValue;
     }
 
     /**
