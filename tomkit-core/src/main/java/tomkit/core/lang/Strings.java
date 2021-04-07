@@ -2412,7 +2412,7 @@ public final class Strings {
     }
 
     private static boolean isUnderscoreCaseRequired(final char before, final char current, final char after) {
-        return ((Character.isLowerCase(before) || Chars.isAsciiNumeric(before)) && current == UNDERLINE && Character.isLowerCase(after));
+        return ((Character.isLowerCase(before) || Characters.isAsciiNumeric(before)) && current == UNDERLINE && Character.isLowerCase(after));
     }
 
     /**
@@ -2453,7 +2453,7 @@ public final class Strings {
     }
 
     private static boolean isCamelCaseRequired(final char before, final char current, final char after) {
-        return ((Character.isLowerCase(before) || Chars.isAsciiNumeric(before)) && Character.isUpperCase(current) && Character.isLowerCase(after));
+        return ((Character.isLowerCase(before) || Characters.isAsciiNumeric(before)) && Character.isUpperCase(current) && Character.isLowerCase(after));
     }
 
     /**
@@ -2794,10 +2794,10 @@ public final class Strings {
      * @param source a string
      * @return boolean
      * @see #isCharPredicate(CharSequence, Predicate)
-     * @see Chars#isAsciiPrintable(char)
+     * @see Characters#isAsciiPrintable(char)
      */
     public static boolean isAsciiPrintable(final CharSequence source) {
-        return isCharPredicate(source, Chars::isAsciiPrintable);
+        return isCharPredicate(source, Characters::isAsciiPrintable);
     }
 
     /**
@@ -2819,10 +2819,10 @@ public final class Strings {
      * @param source a string
      * @return boolean
      * @see #isCharPredicate(CharSequence, Predicate)
-     * @see Chars#isAsciiControl(char)
+     * @see Characters#isAsciiControl(char)
      */
     public static boolean isAsciiControl(final CharSequence source) {
-        return isCharPredicate(source, Chars::isAsciiControl);
+        return isCharPredicate(source, Characters::isAsciiControl);
     }
 
     /**

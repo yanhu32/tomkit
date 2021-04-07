@@ -1,5 +1,7 @@
 package tomkit.core;
 
+import tomkit.core.codec.binary.Hex;
+
 import java.io.IOException;
 
 /**
@@ -9,6 +11,12 @@ import java.io.IOException;
 public class TestMain {
 
     public static void main(String[] args) throws IOException {
+        Hex hex = new Hex();
+        hex.decode();
+    }
+
+    static enum A {
+        A, B, C
     }
 
 }

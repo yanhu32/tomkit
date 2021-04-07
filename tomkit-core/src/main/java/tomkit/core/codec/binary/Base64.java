@@ -1,10 +1,10 @@
-package tomkit.core.lang;
+package tomkit.core.codec.binary;
 
 import tomkit.core.io.IOStreams;
+import tomkit.core.lang.Charsets;
 
 import java.io.*;
 import java.nio.charset.Charset;
-import java.util.Base64;
 
 /**
  * base64工具类
@@ -12,9 +12,9 @@ import java.util.Base64;
  * @author yh
  * @since 2021/3/25
  */
-public final class Base64s {
+public final class Base64 {
 
-    private Base64s() {
+    private Base64() {
     }
 
     /**
@@ -27,7 +27,7 @@ public final class Base64s {
         if (src.length == 0) {
             return new byte[0];
         }
-        return Base64.getEncoder().encode(src);
+        return java.util.Base64.getEncoder().encode(src);
     }
 
     /**
@@ -84,7 +84,7 @@ public final class Base64s {
         if (src.length == 0) {
             return new byte[0];
         }
-        return Base64.getDecoder().decode(src);
+        return java.util.Base64.getDecoder().decode(src);
     }
 
     /**
@@ -365,7 +365,7 @@ public final class Base64s {
         if (src.length == 0) {
             return src;
         }
-        return Base64.getUrlEncoder().encode(src);
+        return java.util.Base64.getUrlEncoder().encode(src);
     }
 
     /**
@@ -378,7 +378,7 @@ public final class Base64s {
         if (src.length == 0) {
             return src;
         }
-        return Base64.getUrlDecoder().decode(src);
+        return java.util.Base64.getUrlDecoder().decode(src);
     }
 
     /**
@@ -502,10 +502,10 @@ public final class Base64s {
      *
      * @param outputStream 输出流
      * @return 编码包装后的输出流
-     * @see Base64.Encoder#wrap(OutputStream)
+     * @see java.util.Base64.Encoder#wrap(OutputStream)
      */
     public static OutputStream encodeWarp(final OutputStream outputStream) {
-        return Base64.getEncoder().wrap(outputStream);
+        return java.util.Base64.getEncoder().wrap(outputStream);
     }
 
     /**
@@ -519,10 +519,10 @@ public final class Base64s {
      *
      * @param inputStream 输入流
      * @return 解码包装后的输入流
-     * @see Base64.Decoder#wrap(InputStream)
+     * @see java.util.Base64.Decoder#wrap(InputStream)
      */
     public static InputStream decodeWarp(final InputStream inputStream) {
-        return Base64.getDecoder().wrap(inputStream);
+        return java.util.Base64.getDecoder().wrap(inputStream);
     }
 
 }
