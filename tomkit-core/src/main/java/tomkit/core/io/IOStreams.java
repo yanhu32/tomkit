@@ -25,7 +25,7 @@ import java.util.function.Consumer;
  * @author yh
  * @since 2021/3/27
  */
-public class IOStreams {
+public final class IOStreams {
 
     /**
      * 复制方法中使用的默认缓冲区大小
@@ -66,6 +66,9 @@ public class IOStreams {
      * Windows系统行分隔符
      */
     public static final String LINE_SEPARATOR_WINDOWS = "\r\n";
+
+    private IOStreams() {
+    }
 
     /* ------------------------------------------------------ buffer ------------------------------------------------------ */
 

@@ -6,7 +6,11 @@ package tomkit.core.lang;
  * @author yh
  * @since 2021/4/2
  */
-public class Enums {
+public final class Enums {
+
+    private Enums() {
+    }
+
     /**
      * 判断给定枚举名称和指定字符串是否相等
      *

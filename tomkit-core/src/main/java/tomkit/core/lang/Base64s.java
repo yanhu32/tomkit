@@ -12,9 +12,9 @@ import java.util.Base64;
  * @author yh
  * @since 2021/3/25
  */
-public final class Base64kit {
+public final class Base64s {
 
-    private Base64kit() {
+    private Base64s() {
     }
 
     /**

@@ -8,7 +8,10 @@ import java.util.Collection;
  * @author yh
  * @since 2021/3/26
  */
-public class Collections {
+public final class Collections {
+
+    private Collections() {
+    }
 
     /**
      * 判断集合是否为null或空

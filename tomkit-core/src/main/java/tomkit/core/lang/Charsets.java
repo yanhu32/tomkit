@@ -13,7 +13,7 @@ import static java.nio.charset.StandardCharsets.*;
  * @author yh
  * @since 2021/3/26
  */
-public class Charsets {
+public final class Charsets {
 
     public static final Charset SYSTEM_DEFAULT_CHARSET = Charset.defaultCharset();
 
@@ -28,6 +28,9 @@ public class Charsets {
         standardCharsetMap.put(UTF_16LE.name(), UTF_16LE);
         standardCharsetMap.put(UTF_8.name(), UTF_8);
         STANDARD_CHARSET_MAP = Collections.unmodifiableSortedMap(standardCharsetMap);
+    }
+
+    private Charsets() {
     }
 
     /**

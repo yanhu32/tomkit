@@ -8,7 +8,10 @@ import java.util.*;
  * @author yh
  * @since 2021/3/26
  */
-public class Arrays {
+public final class Arrays {
+
+    private Arrays() {
+    }
 
     /* ------------------------------------------- isEmpty ------------------------------------------- */
 
