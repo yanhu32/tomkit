@@ -9,7 +9,7 @@ import java.time.LocalDate;
  * @author yh
  * @since 2021/3/23
  */
-public class Weekkit {
+public class Weeks {
 
     /**
      * 获取星期的中文表示
@@ -74,7 +74,7 @@ public class Weekkit {
         if (null == week) {
             return null;
         }
-        return DateTimekit.format(nextWeekDate(week));
+        return DateTimes.format(nextWeekDate(week));
     }
 
 }

@@ -18,7 +18,7 @@ import java.util.TimeZone;
  * @author yh
  * @since 2021/2/15
  */
-public final class DateTimekit {
+public final class DateTimes {
     /**
      * 默认日期时间格式化
      */
@@ -51,7 +51,7 @@ public final class DateTimekit {
     private static final DateTimeFormatter DEFAULT_TIME_FORMATTER =
             DateTimeFormatter.ofPattern(DEFAULT_TIME_STR).withZone(ZONE_ID);
 
-    private DateTimekit() {
+    private DateTimes() {
     }
 
     /**
