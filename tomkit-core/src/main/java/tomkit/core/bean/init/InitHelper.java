@@ -1,8 +1,8 @@
 package tomkit.core.bean.init;
 
 
-import tomkit.core.lang.Stringkit;
 import tomkit.core.function.StringConverter;
+import tomkit.core.lang.Stringkit;
 
 import java.beans.PropertyDescriptor;
 import java.io.Serializable;
@@ -14,6 +14,8 @@ import java.math.BigInteger;
 import java.sql.Date;
 import java.time.*;
 import java.time.format.DateTimeFormatter;
+import java.util.Arrays;
+import java.util.Optional;
 
 /**
  * @author yh
@@ -138,6 +140,60 @@ public final class InitHelper {
             }
         }
         return null;
+    }
+
+    /**
+     * 初始化字段的类型
+     */
+    private enum InitJavaType {
+        /**
+         *
+         */
+        VOID(void.class, Void.class),
+        BOOLEAN(boolean.class, Boolean.class),
+        BYTE(byte.class, Byte.class),
+        SHORT(short.class, Short.class),
+        INT(int.class, Integer.class),
+        LONG(long.class, Long.class),
+        FLOAT(float.class, Float.class),
+        DOUBLE(double.class, Double.class),
+        CHAR(char.class, Character.class),
+        STRING(String.class),
+        BIG_DECIMAL(BigDecimal.class),
+        BIG_INTEGER(BigInteger.class),
+        DATE(java.util.Date.class),
+        LOCAL_DATE(LocalDate.class),
+        LOCAL_TIME(LocalTime.class),
+        LOCAL_DATE_TIME(LocalDateTime.class),
+        ZONED_DATE_TIME(ZonedDateTime.class),
+        OFFSET_DATE_TIME(OffsetDateTime.class),
+        ;
+
+        private final Class<?>[] classes;
+
+        InitJavaType(Class<?> cls) {
+            this.classes = new Class[]{cls};
+        }
+
+        InitJavaType(Class<?> cls0, Class<?> cls1) {
+            this.classes = new Class[]{cls0, cls1};
+        }
+
+        public static Optional<InitJavaType> get(Class<?> clazz) {
+            return Arrays.stream(InitJavaType.values())
+                    .filter(type -> type.has(clazz))
+                    .findAny();
+        }
+
+        private <T> boolean has(Class<T> clazz) {
+            for (Class<?> cls : classes) {
+                if (cls == clazz) {
+                    return true;
+                }
+            }
+            return false;
+        }
+
     }
 
 }
