@@ -14,9 +14,9 @@ public final class Enums {
     /**
      * 判断给定枚举名称和指定字符串是否相等
      *
-     * @param e
-     * @param name
-     * @return
+     * @param e    指定枚举
+     * @param name 指定字符串
+     * @return 是否相等
      */
     public static boolean equals(Enum<?> e, String name) {
         return null != e && e.name().equals(name);
@@ -25,9 +25,9 @@ public final class Enums {
     /**
      * 判断给定枚举名称和指定字符串是否相等，忽略大小写
      *
-     * @param e
-     * @param name
-     * @return
+     * @param e    指定枚举
+     * @param name 指定字符串
+     * @return 是否相等，忽略大小写
      */
     public static boolean equalsIgnoreCase(Enum<?> e, String name) {
         return null != e && e.name().equalsIgnoreCase(name);
@@ -36,10 +36,10 @@ public final class Enums {
     /**
      * 将字符串转换为指定枚举类
      *
-     * @param name
-     * @param enumType
-     * @param <T>
-     * @return
+     * @param name     枚举名
+     * @param enumType 枚举类型Class
+     * @param <T>      枚举类型
+     * @return 枚举类
      */
     public static <T extends Enum<T>> T valueOf(String name, Class<T> enumType) {
         return Enum.valueOf(enumType, name);
