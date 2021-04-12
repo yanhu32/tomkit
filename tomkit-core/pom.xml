@@ -10,7 +10,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>tomkit-core</artifactId>
-    <version>1.0.3</version>
+    <version>1.0.4</version>
     <packaging>jar</packaging>
 
     <name>tomkit-core</name>
@@ -18,12 +18,5 @@
         tomkit核心工具包
     </description>
     <url>https://github.com/yanhu32/tomkit/tree/main/tomkit-core</url>
-
-    <dependencies>
-        <dependency>
-            <groupId>cglib</groupId>
-            <artifactId>cglib</artifactId>
-        </dependency>
-    </dependencies>
 
 </project>
