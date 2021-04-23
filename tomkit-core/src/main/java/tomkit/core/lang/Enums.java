@@ -45,4 +45,19 @@ public final class Enums {
         return Enum.valueOf(enumType, name);
     }
 
+    /**
+     * 判断给的枚举数组内是否存在名称与给的字符串相同
+     *
+     * @param enums 枚举数组
+     * @param name  字符串
+     * @return 是否存在名称相同
+     */
+    public static boolean include(Enum<?>[] enums, String name) {
+        for (Enum<?> e : enums) {
+            if (equals(e, name)) {
+                return true;
+            }
+        }
+        return false;
+    }
 }

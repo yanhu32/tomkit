@@ -1843,6 +1843,39 @@ public final class Strings {
     }
 
     /**
+     * 将字符串转为字节数组，使用utf-8编码，字符串为空时返回指定默认值
+     *
+     * <p>source为 {@code null} 时返回 {@code null}</p>
+     *
+     * @param source        a string
+     * @param defaultBuffer 默认值
+     * @return ByteBuffer
+     */
+    public static ByteBuffer getByteBuffer(final String source, ByteBuffer defaultBuffer) {
+        return getByteBuffer(source, StandardCharsets.UTF_8, defaultBuffer);
+    }
+
+    /**
+     * 将字符串转为字节数组，字符串为空时返回指定默认值
+     *
+     * <p>source为 {@code null} 时返回 {@code null}</p>
+     *
+     * @param source        a string
+     * @param charset       编码
+     * @param defaultBuffer 默认值
+     * @return ByteBuffer
+     */
+    public static ByteBuffer getByteBuffer(final String source, final Charset charset, ByteBuffer defaultBuffer) {
+        if (source == null) {
+            return defaultBuffer;
+        }
+        if (charset != null) {
+            return ByteBuffer.wrap(source.getBytes(charset));
+        }
+        return ByteBuffer.wrap(source.getBytes());
+    }
+
+    /**
      * 将字符串转为字节数组，使用utf-8编码
      *
      * <p>source为 {@code null} 时返回 {@code null}</p>
@@ -1866,6 +1899,36 @@ public final class Strings {
     public static byte[] getBytes(final String source, final Charset charset) {
         if (null == source) {
             return null;
+        }
+        return source.getBytes(charset);
+    }
+
+    /**
+     * 将字符串转为字节数组，使用utf-8编码，字符串为空时返回指定默认值
+     *
+     * <p>source为 {@code null} 时返回 {@code null}</p>
+     *
+     * @param source       a string
+     * @param defaultBytes 默认字节数组
+     * @return byte[]
+     */
+    public static byte[] getBytes(final String source, byte[] defaultBytes) {
+        return getBytes(source, StandardCharsets.UTF_8, defaultBytes);
+    }
+
+    /**
+     * 将字符串转为字节数组，字符串为空时返回指定默认值
+     *
+     * <p>source为 {@code null} 时返回 {@code null}</p>
+     *
+     * @param source       a string
+     * @param charset      编码
+     * @param defaultBytes 默认字节数组
+     * @return 字节数组
+     */
+    public static byte[] getBytes(final String source, final Charset charset, byte[] defaultBytes) {
+        if (null == source) {
+            return defaultBytes;
         }
         return source.getBytes(charset);
     }
