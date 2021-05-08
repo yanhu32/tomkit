@@ -514,6 +514,17 @@ public final class Objects {
     }
 
     /**
+     * 如果当前对象为 {@code null} 则返回默认值
+     *
+     * @param value        a object
+     * @param defaultValue 默认值
+     * @return 返回对象或默认值
+     */
+    public static <T> T defaultIfNull(T value, Supplier<T> defaultValue) {
+        return value != null ? value : defaultValue.get();
+    }
+
+    /**
      * 如果当前对象为 {@code} 或空对象则返回默认值
      *
      * <pre>
@@ -531,6 +542,18 @@ public final class Objects {
      */
     public static <T> T defaultIfEmpty(T value, T defaultValue) {
         return !isEmpty(value) ? value : defaultValue;
+    }
+
+    /**
+     * 如果当前对象为 {@code} 或空对象则返回默认值
+     *
+     * @param value        a object
+     * @param defaultValue 默认值
+     * @return 当前对象或默认值
+     * @see #isEmpty(Object)
+     */
+    public static <T> T defaultIfEmpty(T value, Supplier<T> defaultValue) {
+        return !isEmpty(value) ? value : defaultValue.get();
     }
 
     /**

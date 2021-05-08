@@ -13,6 +13,7 @@ import java.util.concurrent.ThreadLocalRandom;
 import java.util.concurrent.locks.ReentrantLock;
 import java.util.function.Function;
 import java.util.function.Predicate;
+import java.util.function.Supplier;
 
 /**
  * 字符串工具类
@@ -1434,6 +1435,17 @@ public final class Strings {
     }
 
     /**
+     * 返回传入的字符串，如果为 {@code null} 则返回默认值
+     *
+     * @param source     a string
+     * @param defaultStr default string
+     * @return a string
+     */
+    public static String defaultIfNull(final String source, final Supplier<String> defaultStr) {
+        return (null == source ? defaultStr.get() : source);
+    }
+
+    /**
      * 返回传入的字符串，如果为 {@code null} 或 {@code ""} 则返回默认值
      *
      * <pre class="code">
@@ -1449,6 +1461,17 @@ public final class Strings {
      */
     public static String defaultIfEmpty(final String source, final String defaultStr) {
         return (isEmpty(source) ? defaultStr : source);
+    }
+
+    /**
+     * 返回传入的字符串，如果为 {@code null} 或 {@code ""} 则返回默认值
+     *
+     * @param source     a string
+     * @param defaultStr default string
+     * @return a string
+     */
+    public static String defaultIfEmpty(final String source, final Supplier<String> defaultStr) {
+        return (isEmpty(source) ? defaultStr.get() : source);
     }
 
     /**
@@ -1482,8 +1505,35 @@ public final class Strings {
      * @param defaultStr default string
      * @return a string
      */
-    public static String defaultIfBlank(String source, String defaultStr) {
+    public static String defaultIfBlank(final String source, final String defaultStr) {
         return (isBlank(source) ? defaultStr : source);
+    }
+
+    /**
+     * 目标字符串不为 {@code null}, {@code ""} 或空白字符时返回原字符串，否则返回给定默认字符串
+     * <p>
+     * 空白字符:
+     * <ul>
+     * <li> Unicode空白字符 ({@code SPACE_SEPARATOR},{@code LINE_SEPARATOR},
+     *      or {@code PARAGRAPH_SEPARATOR})
+     *      但不是一个不间断的空格 ({@code '\u00A0'}, {@code '\u2007'}, {@code '\u202F'}).
+     * <li> {@code '\t'}, U+0009 HORIZONTAL TABULATION.
+     * <li> {@code '\n'}, U+000A LINE FEED.
+     * <li> {@code '\u000B'}, U+000B VERTICAL TABULATION.
+     * <li> {@code '\f'}, U+000C FORM FEED.
+     * <li> {@code '\r'}, U+000D CARRIAGE RETURN.
+     * <li> {@code '\u001C'}, U+001C FILE SEPARATOR.
+     * <li> {@code '\u001D'}, U+001D GROUP SEPARATOR.
+     * <li> {@code '\u001E'}, U+001E RECORD SEPARATOR.
+     * <li> {@code '\u001F'}, U+001F UNIT SEPARATOR.
+     * </ul>
+     *
+     * @param source     a string
+     * @param defaultStr default string
+     * @return a string
+     */
+    public static String defaultIfBlank(final String source, final Supplier<String> defaultStr) {
+        return (isBlank(source) ? defaultStr.get() : source);
     }
 
     /**
