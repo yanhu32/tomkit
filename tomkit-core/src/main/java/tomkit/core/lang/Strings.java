@@ -2990,4 +2990,47 @@ public final class Strings {
         return isCharPredicate(source, Character::isDefined);
     }
 
+    /**
+     * 截取字符串
+     *
+     * @param source 字符串
+     * @param limit  截取长度
+     * @return 截取的字符串
+     */
+    public static String limit(String source, int limit) {
+        if (isEmpty(source)) {
+            return EMPTY;
+        }
+        if (limit >= source.length()) {
+            return source;
+        } else {
+            if (limit > 0) {
+                return source.substring(0, limit);
+            } else {
+                return EMPTY;
+            }
+        }
+    }
+
+    /**
+     * 获取跳过剩余的字符串
+     *
+     * @param source 字符串
+     * @param skip   跳过长度
+     * @return 剩余的字符串
+     */
+    public static String skip(String source, int skip) {
+        if (isEmpty(source)) {
+            return EMPTY;
+        }
+        if (skip >= source.length()) {
+            return EMPTY;
+        } else {
+            if (skip > 0) {
+                return source.substring(skip);
+            } else {
+                return source;
+            }
+        }
+    }
 }

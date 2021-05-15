@@ -1262,4 +1262,42 @@ public final class Objects {
         return reference;
     }
 
+    /**
+     * 给的对象是否不存在于给定数组内
+     *
+     * @param value
+     * @param values
+     * @param <T>
+     * @return
+     */
+    public static <T> boolean notIn(T value, T[] values) {
+        if (null != values) {
+            for (T t : values) {
+                if (equals(value, t)) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+    /**
+     * 给的对象是否不存在于给定集合内
+     *
+     * @param value
+     * @param values
+     * @param <T>
+     * @return
+     */
+    public static <T> boolean notIn(T value, Collection<T> values) {
+        if (null != values) {
+            for (T t : values) {
+                if (equals(value, t)) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
 }
