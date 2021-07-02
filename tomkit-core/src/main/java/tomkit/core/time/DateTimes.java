@@ -86,6 +86,39 @@ public final class DateTimes {
     }
 
     /**
+     * 格式化日期时间
+     * 支持以下类型:
+     * <ul>
+     *     {@link ZonedDateTime}
+     *     {@link OffsetDateTime}
+     *     {@link Instant}
+     *     {@link LocalDateTime}
+     *     {@link LocalDate}
+     *     {@link LocalTime}
+     * </ul>
+     *
+     * @param time   {@link Temporal} 子类型日期时间
+     * @param format 格式化
+     * @param <T>    {@link Temporal} 子类型
+     * @return 格式化后的日期时间字符串
+     * @see Temporal
+     * @see DateTimeFormatter#format(TemporalAccessor)
+     */
+    public static <T extends Temporal> String format(T time, String format) {
+        Assert.notNull(time, "time cannot be null");
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(format);
+        if (time instanceof LocalDateTime || time instanceof ZonedDateTime || time instanceof OffsetDateTime || time instanceof Instant) {
+            return formatter.format(time);
+        } else if (time instanceof LocalDate) {
+            return formatter.format(time);
+        } else if (time instanceof LocalTime) {
+            return formatter.format(time);
+        }
+        return time.toString();
+    }
+
+    /**
      * 格式化日期
      *
      * @param date {@link Date} 日期
@@ -97,6 +130,22 @@ public final class DateTimes {
         SimpleDateFormat format = new SimpleDateFormat(DEFAULT_DATE_TIME_STR);
         format.setTimeZone(TimeZone.getDefault());
         return format.format(date);
+    }
+
+
+    /**
+     * 格式化日期
+     *
+     * @param date   {@link Date} 日期
+     * @param format 格式化
+     * @return 格式化后的日期字符串
+     */
+    public static String format(Date date, String format) {
+        Assert.notNull(date, "date cannot be null");
+
+        SimpleDateFormat dateFormat = new SimpleDateFormat(format);
+        dateFormat.setTimeZone(TimeZone.getDefault());
+        return dateFormat.format(date);
     }
 
     /**

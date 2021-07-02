@@ -1300,4 +1300,40 @@ public final class Objects {
         return true;
     }
 
+    /**
+     * 原始值是否匹配给定数组中的其中之一
+     *
+     * @param origin
+     * @param values
+     * @return
+     */
+    public static boolean match(Object origin, Object... values) {
+        if (null != values) {
+            for (Object value : values) {
+                if (equals(origin, value)) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    /**
+     * 原始值是否不匹配给定数组
+     *
+     * @param origin
+     * @param values
+     * @return
+     */
+    public static boolean notMatch(Object origin, Object... values) {
+        if (null != values) {
+            for (Object value : values) {
+                if (equals(origin, value)) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
 }
