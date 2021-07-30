@@ -4,11 +4,9 @@ package tomkit.core.bean.init;
 import tomkit.core.function.StringConverter;
 import tomkit.core.lang.Strings;
 
-import java.beans.PropertyDescriptor;
 import java.io.Serializable;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.sql.Date;
@@ -47,13 +45,12 @@ public final class InitHelper {
         Field[] fields = clazz.getDeclaredFields();
         for (Field field : fields) {
             try {
-                PropertyDescriptor descriptor = new PropertyDescriptor(field.getName(), clazz);
-                Method method = descriptor.getReadMethod();
+                field.setAccessible(true);
                 // 属性值为null时才设置默认值
-                if (null == method.invoke(target)) {
+                if (null == field.get(target)) {
                     Object value = getDefaultValue(field);
                     if (null != value) {
-                        descriptor.getWriteMethod().invoke(target, value);
+                        field.set(target, value);
                     }
                 }
             } catch (Exception e) {

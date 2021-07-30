@@ -19,4 +19,13 @@
     </description>
     <url>https://github.com/yanhu32/tomkit/tree/main/tomkit-core</url>
 
+    <!--属性-->
+    <properties>
+        <java.version>1.8</java.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <maven.compiler.source>${java.version}</maven.compiler.source>
+        <maven.compiler.target>${java.version}</maven.compiler.target>
+    </properties>
+
 </project>

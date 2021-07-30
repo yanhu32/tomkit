@@ -3,6 +3,7 @@ package tomkit.core.lang;
 import java.lang.reflect.Array;
 import java.util.Arrays;
 import java.util.*;
+import java.util.function.Function;
 import java.util.function.Supplier;
 
 /**
@@ -1336,4 +1337,82 @@ public final class Objects {
         return true;
     }
 
+    /**
+     * 如果给的值不为null则执行func函数，否则使用给定默认值执行func函数
+     *
+     * @param value
+     * @param func
+     * @param defaultValue
+     * @param <T>
+     * @param <R>
+     * @return
+     */
+    public static <T, R> R defaultIfNotNull(T value, T defaultValue, Function<T, R> func) {
+        return func.apply(null != value ? value : defaultValue);
+    }
+
+    /**
+     * 如果给的值不为null则执行func函数，否则返回给定默认值
+     *
+     * @param value
+     * @param func
+     * @param defaultValue
+     * @param <T>
+     * @param <R>
+     * @return
+     */
+    public static <T, R> R defaultIfNotNull(T value, Function<T, R> func, R defaultValue) {
+        return null != value ? func.apply(value) : defaultValue;
+    }
+
+    /**
+     * 两个集合是否存在交集
+     *
+     * @param c1
+     * @param c2
+     * @param <T>
+     * @return
+     */
+    public static <T> boolean overlap(Collection<T> c1, Collection<T> c2) {
+        if (isEmpty(c1) || isEmpty(c2)) {
+            return false;
+        }
+        for (T t : c1) {
+            if (c2.contains(t)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * 集合是否包含给定元素
+     *
+     * @param c
+     * @param t
+     * @param <T>
+     * @return
+     */
+    public static <T> boolean contains(Collection<T> c, T t) {
+        if (isEmpty(c)) {
+            return false;
+        }
+        return c.contains(t);
+    }
+
+    /**
+     * 是否处理给定值
+     *
+     * @param handle
+     * @param value
+     * @param func
+     * @param <T>
+     * @return
+     */
+    public static <T> T handle(boolean handle, T value, Function<T, T> func) {
+        if (handle) {
+            return func.apply(value);
+        }
+        return value;
+    }
 }

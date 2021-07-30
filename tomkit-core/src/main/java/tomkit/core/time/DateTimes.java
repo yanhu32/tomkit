@@ -673,4 +673,130 @@ public final class DateTimes {
         return Date.from(LocalDateTime.parse(text, DEFAULT_DATE_TIME_FORMATTER).atZone(ZONE_ID).toInstant());
     }
 
+    /**
+     * 秒数转换为时分秒
+     *
+     * @param sec
+     * @return
+     */
+    public static String toMinuteSec(long sec) {
+        return toMinuteSec(sec, true);
+    }
+
+    /**
+     * 秒数转换为时分秒
+     *
+     * @param sec
+     * @return
+     */
+    public static String toMinuteSec(long sec, boolean simple) {
+        Duration duration = Duration.ofSeconds(sec);
+        StringBuilder time = new StringBuilder();
+        long minutes = duration.toMinutes();
+        if (minutes > 0) {
+            time.append(minutes).append("分钟");
+            duration = duration.minusMinutes(minutes);
+        } else if (!simple) {
+            time.append("0分钟");
+        }
+        long seconds = duration.getSeconds();
+        if (seconds > 0) {
+            time.append(seconds).append("秒");
+        } else if (time.length() <= 0) {
+            time.append("0秒");
+        }
+        return time.toString();
+    }
+
+    /**
+     * 秒数转换为时分秒
+     *
+     * @param sec
+     * @return
+     */
+    public static String toHourMinuteSec(long sec) {
+        return toHourMinuteSec(sec, true);
+    }
+
+    /**
+     * 秒数转换为时分秒
+     *
+     * @param sec
+     * @return
+     */
+    public static String toHourMinuteSec(long sec, boolean simple) {
+        Duration duration = Duration.ofSeconds(sec);
+        StringBuilder time = new StringBuilder();
+        long hours = duration.toHours();
+        if (hours > 0) {
+            time.append(hours).append("小时");
+            duration = duration.minusHours(hours);
+        } else if (!simple) {
+            time.append("0小时");
+        }
+        long minutes = duration.toMinutes();
+        if (minutes > 0) {
+            time.append(minutes).append("分钟");
+            duration = duration.minusMinutes(minutes);
+        } else if (!simple) {
+            time.append("0分钟");
+        }
+        long seconds = duration.getSeconds();
+        if (seconds > 0) {
+            time.append(seconds).append("秒");
+        } else if (time.length() <= 0) {
+            time.append("0秒");
+        }
+        return time.toString();
+    }
+
+    /**
+     * 秒数转换为天时分秒
+     *
+     * @param sec
+     * @return
+     */
+    public static String toDayHourMinuteSec(long sec) {
+        return toDayHourMinuteSec(sec, true);
+    }
+
+    /**
+     * 秒数转换为天时分秒
+     *
+     * @param sec
+     * @return
+     */
+    public static String toDayHourMinuteSec(long sec, boolean simple) {
+        Duration duration = Duration.ofSeconds(sec);
+        StringBuilder time = new StringBuilder();
+        long days = duration.toDays();
+        if (days > 0) {
+            time.append(days).append("天");
+            duration = duration.minusDays(days);
+        } else if (!simple) {
+            time.append("0天");
+        }
+        long hours = duration.toHours();
+        if (hours > 0) {
+            time.append(hours).append("小时");
+            duration = duration.minusHours(hours);
+        } else if (!simple) {
+            time.append("0小时");
+        }
+        long minutes = duration.toMinutes();
+        if (minutes > 0) {
+            time.append(minutes).append("分钟");
+            duration = duration.minusMinutes(minutes);
+        } else if (!simple) {
+            time.append("0分钟");
+        }
+        long seconds = duration.getSeconds();
+        if (seconds > 0) {
+            time.append(seconds).append("秒");
+        } else if (time.length() <= 0) {
+            time.append("0秒");
+        }
+        return time.toString();
+    }
+
 }
