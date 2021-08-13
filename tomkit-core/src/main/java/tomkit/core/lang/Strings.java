@@ -354,6 +354,33 @@ public final class Strings {
         return !isSpace(sequence);
     }
 
+    public static boolean isAllNotSpace(final CharSequence... sequences) {
+        for (CharSequence sequence : sequences) {
+            if (isSpace(sequence)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public static boolean hasNotSpace(final CharSequence... sequences) {
+        for (CharSequence sequence : sequences) {
+            if (isNotSpace(sequence)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public static boolean hasSpace(final CharSequence... sequences) {
+        for (CharSequence sequence : sequences) {
+            if (isSpace(sequence)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     /**
      * 判断字符序列是否为 {@code null}, {@code ""} 或空白字符
      * <p>
@@ -425,6 +452,33 @@ public final class Strings {
      */
     public static boolean isNotBlank(final CharSequence source) {
         return hasText(source);
+    }
+
+    public static boolean isAllNotBlank(final CharSequence... sequences) {
+        for (CharSequence sequence : sequences) {
+            if (isBlank(sequence)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public static boolean hasNotBlank(final CharSequence... sequences) {
+        for (CharSequence sequence : sequences) {
+            if (isNotBlank(sequence)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public static boolean hasBlank(final CharSequence... sequences) {
+        for (CharSequence sequence : sequences) {
+            if (isBlank(sequence)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     /**

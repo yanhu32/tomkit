@@ -213,6 +213,9 @@ public final class Objects {
         if (obj instanceof Collection) {
             return ((Collection<?>) obj).isEmpty();
         }
+        if (obj instanceof Iterable) {
+            return !((Iterable<?>) obj).iterator().hasNext();
+        }
         if (obj instanceof Map) {
             return ((Map<?, ?>) obj).isEmpty();
         }
@@ -1414,5 +1417,26 @@ public final class Objects {
             return func.apply(value);
         }
         return value;
+    }
+
+    /**
+     * 获取元素第一次出现的索引
+     *
+     * @param iterable
+     * @param obj
+     * @return
+     */
+    public static <T> int indexOf(Iterable<T> iterable, T obj) {
+        if (isNotEmpty(iterable)) {
+            int i = 0;
+            Iterator<T> iterator = iterable.iterator();
+            while (iterator.hasNext()) {
+                if (equals(iterator.next(), obj)) {
+                    return i;
+                }
+                i++;
+            }
+        }
+        return -1;
     }
 }
