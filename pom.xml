@@ -65,7 +65,7 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <maven.compiler.source>${java.version}</maven.compiler.source>
         <maven.compiler.target>${java.version}</maven.compiler.target>
-        <gpg.skip>false</gpg.skip>
+        <gpg.skip>true</gpg.skip>
         <javadoc.skip>false</javadoc.skip>
 
         <!-- plugin version -->
